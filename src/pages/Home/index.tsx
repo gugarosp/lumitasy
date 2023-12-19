@@ -1,7 +1,9 @@
+import MenuItem from "elements/MenuItem";
+
 export default function Home () {
     return (
-        <div>
-            Home
-        </div>
+        <MenuItem>
+            teste
+        </MenuItem>
     )
 }

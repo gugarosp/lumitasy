@@ -1,0 +1,33 @@
+.menu {
+    
+
+    .menu-wrapper {
+        display: flex;
+        gap: 120px;
+        height: 75px;
+        align-items: flex-end;
+
+        nav {
+            height: 30px;
+            position: relative;
+            top: -8px;
+        }
+
+        ul, li {
+            height: 100%;
+        }
+
+        ul {
+            display: flex;
+            gap: var(--spacing-6x);
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+    }
+
+}

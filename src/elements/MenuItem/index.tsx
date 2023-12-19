@@ -6,10 +6,10 @@ interface MenuItemProps {
     children: ReactElement | string
 }
 
-export default function MenuItem ({link = "#"}: MenuItemProps) {
+export default function MenuItem ({link = "#", children}: MenuItemProps) {
     return (
         <a href={link} className={styles["menu-item"]}>
-            About
+            {children}
         </a>
     )
 }

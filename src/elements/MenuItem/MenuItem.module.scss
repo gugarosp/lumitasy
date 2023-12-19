@@ -1,7 +1,19 @@
 .menu-item {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    top: 0;
     font-family: var(--font-family-primary);
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-extra-large);
     color: var(--color-white);
     text-decoration: none;
+    transition: color .5s, height .5s, top .5s;
+
+    &:hover {
+        height: 150%;
+        top: -50%;
+        color: var(--color-primary);
+    }
 }

@@ -1,7 +1,16 @@
+html, body {
+    height: 100%;
+}
+
 body {
+    margin: 0;
     background-color: var(--color-secondary-darker-900);
     font-family: var(--font-family-secondary);
     color: var(--color-white);
     font-size: var(--font-size-medium);
     line-height: var(--line-height-extra-large);
+}
+
+.content {
+    margin: 0 var(--spacing-8x);
 }

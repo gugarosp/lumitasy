@@ -9,11 +9,11 @@
     font-size: var(--font-size-extra-large);
     color: var(--color-white);
     text-decoration: none;
-    transition: color .5s, height .5s, top .5s;
+    transition: color .3s, height .3s, top .3s;
 
     &:hover {
-        height: 150%;
-        top: -50%;
+        height: 135%;
+        top: -35%;
         color: var(--color-primary);
     }
 }

@@ -1,0 +1,57 @@
+h1, h2, h3, h4, h5, h6, .h7, .h8, .h9 {
+    font-family: var(--font-family-primary);
+}
+
+h1 {
+    font-size: var(--font-size-titan);
+    line-height: var(--line-height-ultra); 
+}
+
+h2 {
+    font-size: var(--font-size-extra-giant);
+    line-height: var(--line-height-extra-titan); 
+}
+
+h3 {
+    font-size: var(--font-size-giant); 
+    line-height: var(--line-height-titant);
+}
+
+h4 {
+    font-size: var(--font-size-extra-large);
+    line-height: var(--line-height-extra-giant);
+}
+
+h5 {
+    font-size: var(--font-size-large);
+    line-height: var(--line-height-giant);
+}
+
+h6 {
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-extra-large);
+}
+
+.h7, .h8, .h9 {
+    display: block;
+}
+
+.h7 {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-large);
+}
+
+.h8 {
+    font-size: var(--font-size-mini);
+    line-height: var(--line-height-medium);
+}
+
+.h9 {
+    font-size: var(--font-size-micro);
+    line-height: var(--line-height-small);
+}
+
+.title-alternative {
+    font-family: var(--font-family-secondary);
+    font-weight: var(--font-weight-semibold);
+}

@@ -1,15 +1,36 @@
 import Banner from "components/Banner";
 import CategorySlider from "components/CategorySlider";
 import Menu from "components/Menu";
+import { useEffect, useState } from "react";
 
 export default function Home () {
+    const [categoriesList, setCategoriesList] = useState<any[]>([]);
+
+    useEffect(() => {
+        async function categories() {
+            const response = await fetch("http://lumitasy.siteseguro.ws/api/categories/");
+            const info = await response.text();
+            return info;
+        }
+    
+        categories().then(data => {
+            setCategoriesList(JSON.parse(data));
+        });
+        
+    }, [categoriesList]);
+
     return (
         <>
             <Menu />
             <Banner />
             <section className="content-page">
-                <CategorySlider />
-                <CategorySlider />
+                {
+                    categoriesList.map((item, index) => {
+                        return(
+                            <CategorySlider key={index} categoryName={item.name} />
+                        )
+                    })
+                }
             </section>
         </>
     )

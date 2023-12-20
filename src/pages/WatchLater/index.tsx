@@ -1,7 +1,12 @@
+import Menu from "components/Menu";
+
 export default function WtachLater () {
     return (
-        <div>
-            WatchLater
-        </div>
+        <>
+        <Menu />
+            <div>
+                WatchLater
+            </div>
+        </>
     )
 }

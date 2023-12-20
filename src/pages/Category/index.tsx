@@ -1,7 +1,12 @@
+import Menu from "components/Menu";
+
 export default function Category () {
     return (
-        <div>
-            Category
-        </div>
+        <>
+            <Menu />
+            <div>
+                Category
+            </div>
+        </>
     )
 }

@@ -1,7 +1,12 @@
+import Menu from "components/Menu";
+
 export default function Search () {
     return (
-        <div>
-            Search
-        </div>
+        <>
+            <Menu />
+            <div>
+                Search
+            </div>
+        </>
     )
 }

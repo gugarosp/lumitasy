@@ -1,7 +1,12 @@
+import Menu from "components/Menu";
+
 export default function NotFound () {
     return (
-        <div>
-            Not Found
-        </div>
+        <>
+            <Menu />
+            <div>
+                Not Found
+            </div>
+        </>
     )
 }

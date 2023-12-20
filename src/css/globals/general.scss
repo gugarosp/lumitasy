@@ -5,6 +5,10 @@ html, body {
 body {
     margin: 0;
     background-color: var(--color-secondary-darker-900);
+    background-image: radial-gradient(var(--color-transparent-white-30) 0%, var(--color-transparent-white-00) 65%);
+    background-size: 2590px 2590px;
+    background-repeat: no-repeat;
+    background-position: center -2040px;
     font-family: var(--font-family-secondary);
     color: var(--color-white);
     font-size: var(--font-size-medium);

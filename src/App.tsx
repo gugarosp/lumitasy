@@ -13,7 +13,6 @@ import About from 'pages/About';
 
 function App() {
   return (
-    <div>
       <BrowserRouter>
           <Routes>
             <Route index element={<Home />}></Route>
@@ -27,7 +26,6 @@ function App() {
             <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
-    </div>
   );
 }
 

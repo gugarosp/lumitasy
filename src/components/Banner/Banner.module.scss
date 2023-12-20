@@ -1,0 +1,41 @@
+.banner {
+    position: relative;
+    height: 550px;
+
+    .banner-caroussel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+
+        .banner-container {
+            height: 100%;
+            
+            .banner-background {
+                height: 100%;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+            }
+
+        }
+    }
+
+    .banner-shadows {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image:
+            linear-gradient(180deg, var(--color-transparent-black-60) 0%, var(--color-transparent-black-00) 100%),
+            linear-gradient(67deg, var(--color-transparent-black-80) 0%, var(--color-transparent-black-00) 70%),;
+        background-size: 100% 300px, 70% 100%;
+        background-repeat: no-repeat;
+    }
+
+}

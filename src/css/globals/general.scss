@@ -15,6 +15,17 @@ body {
     line-height: var(--line-height-extra-large);
 }
 
+.content-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5x);
+    padding: var(--spacing-5x) 0 var(--spacing-8x);
+}
+
 .content {
-    margin: 0 var(--spacing-8x);
+    padding: 0 var(--spacing-8x);
+}
+
+.no-margin {
+    margin: 0;
 }

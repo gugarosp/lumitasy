@@ -7,10 +7,9 @@ export default function Home () {
         <>
             <Menu />
             <Banner />
-            <section>
-                <div className="content">
-                    <CategorySlider />
-                </div>
+            <section className="content-page">
+                <CategorySlider />
+                <CategorySlider />
             </section>
         </>
     )

@@ -1,0 +1,18 @@
+.category-slider {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2x);
+    overflow: hidden;
+    
+    .category-slider-container {
+        display: flex;
+        gap: var(--spacing-3x);
+
+        img {
+            width: 160px;
+            height: 228px;
+            object-fit: cover;
+        }
+    }
+
+}

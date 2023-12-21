@@ -1,4 +1,37 @@
-import { createContext } from "react";
+import { ReactElement, createContext, useEffect, useState } from "react";
 
 export const MoviesContext:any = createContext('');
 
+interface moviesListProps {
+    id: number
+    slug: string
+    title: string
+    categories: string
+}
+
+interface MoviesProviderProps {
+    children: ReactElement
+}
+
+export const MoviesProvider = ({children}:MoviesProviderProps) =>{
+    const [moviesList, setMoviesList] = useState<moviesListProps[]>([]);
+
+    useEffect(() => {
+        async function movies() {
+            const response = await fetch("http://lumitasy.siteseguro.ws/api/movies/");
+            const info = await response.text();
+            return info;
+        }
+  
+        movies().then(data => {
+          setMoviesList(JSON.parse(data));
+        });
+  
+    }, []);
+
+    return (
+        <MoviesContext.Provider value={{ moviesList }}>
+            {children}
+        </MoviesContext.Provider>
+    )
+}

@@ -11,41 +11,18 @@ import Categories from 'pages/Categories';
 import Category from 'pages/Category';
 import WtachLater from 'pages/WatchLater';
 import About from 'pages/About';
-import { MoviesContext } from "context/movies";
-import { useEffect, useState } from "react";
-
-interface moviesListProps {
-  id: number
-  slug: string
-  title: string
-  categories: string
-}
+import { MoviesProvider } from "context/movies";
 
 function App() {
-
-  const [moviesList, setMoviesList] = useState<moviesListProps[]>([]);
-
-  useEffect(() => {
-      async function movies() {
-          const response = await fetch("http://lumitasy.siteseguro.ws/api/movies/");
-          const info = await response.text();
-          return info;
-      }
-
-      movies().then(data => {
-        setMoviesList(JSON.parse(data));
-      });
-
-  }, []);
 
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={
-            <MoviesContext.Provider value={{ moviesList }}>
+            <MoviesProvider>
               <Home />
-            </MoviesContext.Provider>
+            </MoviesProvider>
           }>
           </Route>
           <Route path="movie/*" element={<Movie />}></Route>

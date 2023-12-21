@@ -3,9 +3,16 @@ import CategorySlider from "components/CategorySlider";
 import Menu from "components/Menu";
 import { useEffect, useState } from "react";
 
+interface categoriesListProps {
+    id: number
+    slug: string
+    name: string
+    icon: string
+}
+
 export default function Home() {
 
-    const [categoriesList, setCategoriesList] = useState<any[]>([]);
+    const [categoriesList, setCategoriesList] = useState<categoriesListProps[]>([]);
 
     useEffect(() => {
         async function categories() {

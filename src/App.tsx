@@ -14,9 +14,16 @@ import About from 'pages/About';
 import { MoviesContext } from "context/movies";
 import { useEffect, useState } from "react";
 
+interface moviesListProps {
+  id: number
+  slug: string
+  title: string
+  categories: string
+}
+
 function App() {
 
-  const [moviesList, setMoviesList] = useState<any[]>([]);
+  const [moviesList, setMoviesList] = useState<moviesListProps[]>([]);
 
   useEffect(() => {
       async function movies() {

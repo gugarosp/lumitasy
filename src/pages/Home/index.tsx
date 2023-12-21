@@ -3,7 +3,8 @@ import CategorySlider from "components/CategorySlider";
 import Menu from "components/Menu";
 import { useEffect, useState } from "react";
 
-export default function Home () {
+export default function Home() {
+
     const [categoriesList, setCategoriesList] = useState<any[]>([]);
 
     useEffect(() => {
@@ -12,12 +13,12 @@ export default function Home () {
             const info = await response.text();
             return info;
         }
-    
+
         categories().then(data => {
             setCategoriesList(JSON.parse(data));
         });
-        
-    }, [categoriesList]);
+
+    }, []);
 
     return (
         <>
@@ -26,8 +27,8 @@ export default function Home () {
             <section className="content-page">
                 {
                     categoriesList.map((item, index) => {
-                        return(
-                            <CategorySlider key={index} categoryName={item.name} />
+                        return (
+                            <CategorySlider key={index} categoryName={item.name} categorySlug={item.slug} />
                         )
                     })
                 }

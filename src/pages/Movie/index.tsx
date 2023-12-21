@@ -1,7 +1,12 @@
+import Menu from "components/Menu";
+
 export default function Movie () {
     return (
-        <div>
-            Movie
-        </div>
+        <>
+            <Menu />
+            <div>
+                Movie
+            </div>
+        </>
     )
 }

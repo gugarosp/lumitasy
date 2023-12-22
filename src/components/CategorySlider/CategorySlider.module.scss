@@ -25,7 +25,6 @@
 
                 &::before,
                 &::after {
-                    content: attr(alt);
                     display: inline-grid;
                     place-items: end center;
                     position: absolute;
@@ -38,12 +37,22 @@
                     background-color: var(--color-secondary-darker-800);
                     color: var(--color-secondary-darker-400);
                     font-size: var(--font-size-small);
-                    line-height: var(--line-height-medium);
+                    line-height: var(--line-height-extra-giant);
                     text-align: center;
                 }
 
+                &::before {
+                    content: "movie";
+                    padding-bottom: 0;
+                    font-family: 'Material Symbols Outlined';
+                    font-size: 40px;
+                    line-height: 1.1;
+                }
+
                 &::after {
+                    content: attr(alt);
                     place-items: start center;
+                    padding-top: 0;
                     top: auto;
                     bottom: 0;
                 }

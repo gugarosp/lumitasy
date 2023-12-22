@@ -1,14 +1,15 @@
 interface PosterProps {
     link: string
     src: string
+    title: string
 }
 
-export default function Poster ({link, src}:PosterProps) {
+export default function Poster ({link, src, title}:PosterProps) {
     return (
-        <a href={src}>
+        <a href={link}>
             <img
-                src={link}
-                alt="Poster" />
+                src={src}
+                alt={title} />
         </a>
     )
 }

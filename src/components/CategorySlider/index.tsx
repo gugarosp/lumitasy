@@ -27,7 +27,12 @@ export default function CategorySlider({ categoryName, categorySlug }: CategoryS
             {
                 moviesList.filter(item => item.categories.includes(categorySlug)).map((item, index) => {
                 return (
-                    <Poster key={index} src={`movie/${item.slug}`} link="http://lumitasy.siteseguro.ws/images/movies/posters/poster-1.png" />
+                        <Poster
+                            key={index}
+                            link={`movie/${item.slug}`}
+                            src={`http://lumitasy.siteseguro.ws/images/movies/posters/${item.slug}.png`}
+                            title={item.title}
+                        />
                     )
                 })
             }

@@ -44,7 +44,7 @@
                     transition: margin-top .3s;
 
                     a {
-                        transition: font-size .3s;
+                        transition: font-size 0.3s, height .3s, color .3s, top .3s;
                     }
                 }
 

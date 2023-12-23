@@ -1,6 +1,6 @@
 import Menu from "components/Menu";
 
-export default function WtachLater () {
+export default function WatchLater () {
     return (
         <>
         <Menu />

@@ -11,7 +11,10 @@ interface CategorySliderProps {
 }
 
 interface MovieContextProps {
-    moviesList: any[];
+    moviesList: {
+        title: string,
+        slug:string,
+        categories: string}[];
 }
 
 

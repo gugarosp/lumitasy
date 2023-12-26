@@ -1,18 +1,19 @@
 // Fonts
-@import url("css/fonts/fonts.scss");
+@import url("fonts/fonts.scss");
 
 // Icons
-@import url("css/icons/icons.scss");
+@import url("icons/icons.scss");
 
 // Variables
-@import url("css/variables/colors.scss");
-@import url("css/variables/text.scss");
-@import url("css/variables/spacing.scss");
-@import url("css/variables/corners.scss");
-@import url("css/variables/elevation.scss");
-@import url("css/variables/icons.scss");
+@import url("variables/colors.scss");
+@import url("variables/text.scss");
+@import url("variables/spacing.scss");
+@import url("variables/corners.scss");
+@import url("variables/elevation.scss");
+@import url("variables/icons.scss");
 
 // Globals
-@import url("css/globals/general.scss");
-@import url("css/globals/headings.scss");
-@import url("css/globals/content-text.scss");
+@import url("globals/general.scss");
+@import url("globals/headings.scss");
+@import url("globals/content-text.scss");
+@import url("globals/links.scss");

@@ -31,7 +31,7 @@ export default function Home() {
         <>
             <Menu />
             <Banner />
-            <section className="content-page">
+            <section className="outer-content">
                 {
                     categoriesList.map((item, index) => {
                         return (

@@ -16,26 +16,24 @@ import { MoviesProvider } from "context/movies";
 function App() {
 
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={
-            <MoviesProvider>
-              <Home />
-            </MoviesProvider>
-          }>
-          </Route>
-          <Route path="movie/*" element={<Movie />}></Route>
-          <Route path="play/*" element={<Play />}></Route>
-          <Route path="search" element={<Search />}></Route>
-          <Route path="categories" element={<Categories />}></Route>
-          <Route path="category/*" element={<Category />}></Route>
-          <Route path="watch-later" element={<WatchLater />}></Route>
-          <Route path="about" element={<About />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+          <MoviesProvider>
+            <Home />
+          </MoviesProvider>
+        }>
+        </Route>
+        <Route path="movie/*" element={<Movie />}></Route>
+        <Route path="play/*" element={<Play />}></Route>
+        <Route path="search" element={<Search />}></Route>
+        <Route path="categories" element={<Categories />}></Route>
+        <Route path="category/*" element={<Category />}></Route>
+        <Route path="watch-later" element={<WatchLater />}></Route>
+        <Route path="about" element={<About />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,12 +1,9 @@
 import Icon from "elements/Icon";
 import styles from "./NotFoundContent.module.scss"
 
-import Menu from "components/Menu";
-
 export default function NotFoundContent () {
     return (
         <>
-            <Menu />
             <section className={`${styles["not-found"]} outer-content-common outer-content-full`}>
                 <div className={styles["not-found-background"]}></div>
                 <div className={styles["not-found-outer-content"]}>

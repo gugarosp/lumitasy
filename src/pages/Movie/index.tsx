@@ -20,14 +20,18 @@ export default function Movie () {
     return (
         <>
             <Menu />
-            {movieInfo?.title ? 
+            {
+            movieInfo?.title !== undefined
+            ? 
                 <div className="outer-content-common outer-content-full">
                     <div className="content">
                         {movieInfo?.title}
                     </div>
                 </div>
-            : 
+            : moviesList[0] !== undefined && movieInfo?.title === undefined ? 
                 <NotFoundContent />
+
+            : ""
             }
         </>
     )

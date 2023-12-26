@@ -26,7 +26,7 @@ export default function CategorySlider({ categoryName, categorySlug }: CategoryS
         <div className={`content ${styles["category-slider"]}`}>
         <h3 className="no-margin">{categoryName}</h3>
 
-        <div className={styles["category-slider-container"]}>
+        <div className={styles.container}>
             {
                 moviesList.filter(item => item.categories.includes(categorySlug)).map((item, index) => {
                 return (

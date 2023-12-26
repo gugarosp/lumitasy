@@ -4,7 +4,7 @@
     width: 100%;
     transition: background .3s, box-shadow .3s;
 
-    .menu-wrapper {
+    .wrapper {
         display: flex;
         gap: 120px;
         height: 75px;
@@ -12,7 +12,7 @@
         transition: gap .3s, height .3s;
 
 
-        .menu-logo {
+        .logo {
 
             a {
                 display: inline-block;
@@ -56,17 +56,17 @@
 
     }
 
-    &.menu-scrolled {
+    &.scrolled {
         background-color: var(--color-secondary-darker-800);
         background-image: linear-gradient(180deg, var(--color-transparent-black-00) 0%, var(--color-transparent-black-20) 100%);
         box-shadow: var(--elevation-1x-t50);
 
-        .menu-wrapper {
+        .wrapper {
             height: 68px;
             gap: 80px;
             align-items: center;
 
-            .menu-logo {
+            .logo {
                 
                 a {
                     width: 120px;

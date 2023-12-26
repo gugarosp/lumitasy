@@ -2,17 +2,17 @@
     position: relative;
     height: 550px;
 
-    .banner-caroussel {
+    .caroussel {
         position: absolute;
         top: 0;
         left: 0;
         height: 100%;
         width: 100%;
 
-        .banner-container {
+        .container {
             height: 100%;
             
-            .banner-background {
+            .background {
                 height: 100%;
                 
                 img {
@@ -26,7 +26,7 @@
         }
     }
 
-    .banner-shadows {
+    .shadows {
         position: absolute;
         top: 0;
         left: 0;

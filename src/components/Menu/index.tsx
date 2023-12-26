@@ -15,13 +15,13 @@ export default function Menu () {
     const [menuScrolled, setMenuScrolled] = useState('');
 
     window.addEventListener("scroll", () => {
-        window.scrollY > 50 ? setMenuScrolled(styles["menu-scrolled"]) : setMenuScrolled('');
+        window.scrollY > 50 ? setMenuScrolled(styles.scrolled) : setMenuScrolled('');
     });
 
     return (
         <section className={`${styles.menu} ${menuScrolled}`}>
-            <div className={ `content ${styles["menu-wrapper"]}` }>
-                <div className={styles["menu-logo"]}>
+            <div className={ `content ${styles.wrapper}` }>
+                <div className={styles.logo}>
                     <a href="/">
                         <LumitasyLogo />
                     </a>

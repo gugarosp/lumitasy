@@ -11,11 +11,14 @@ interface MovieContextProps {
 }
 
 export default function Movie () {
+
     const movieSlug = window.location.href.split("movie/")[1];
 
     const { moviesList }:MovieContextProps = useContext(MoviesContext);
 
     const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
+
+    document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
     return (
         <>

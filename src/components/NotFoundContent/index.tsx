@@ -1,3 +1,4 @@
+import Icon from "elements/Icon";
 import styles from "./NotFoundContent.module.scss"
 
 import Menu from "components/Menu";
@@ -11,6 +12,9 @@ export default function NotFoundContent () {
                 <div className={styles["not-found-outer-content"]}>
                     <div className={`${styles["not-found-inner-content"]} content`}>
                         <div className={styles["not-found-error"]}>
+                            <div className={styles["not-found-icon"]}>
+                                <Icon>movie</Icon>
+                            </div>
                             <h2 className="title-alternative no-margin">
                                 404 / Page not found
                             </h2>

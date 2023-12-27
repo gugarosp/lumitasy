@@ -1,13 +1,19 @@
+import styles from "./Movie.module.scss"
+
 import Menu from "components/Menu";
 import NotFoundContent from "components/NotFoundContent";
 import { MoviesContext } from "context/movies";
+import Separator from "elements/Separator";
 import { useContext } from "react";
 
 interface MovieContextProps {
     moviesList: {
         title: string,
         slug:string,
-        categories: string}[];
+        categories: string
+        year: string
+        description: string
+    }[];
 }
 
 export default function Movie () {
@@ -26,14 +32,52 @@ export default function Movie () {
             {
             movieInfo?.title !== undefined
             ? 
-                <div className="outer-content-common outer-content-full">
-                    <div className="content">
-                        {movieInfo?.title}
+                <section className={`${styles.movie} outer-content-common outer-content-full`}>
+
+                    <div className={styles.background}>
+                        <img src={`http://lumitasy.siteseguro.ws/images/movies/backgrounds/${movieInfo.slug}.jpg`} alt={movieInfo.title} />
                     </div>
-                </div>
+
+                    <div className={`${styles.logo} content`}>
+                        <div className={styles["logo-container"]}>
+                            <img src={`http://lumitasy.siteseguro.ws/images/movies/logos/${movieInfo.slug}.png`} alt={movieInfo.title} data-alt={movieInfo.title} />
+                        </div>
+                    </div>
+
+                    <div className={`${styles.data} content`}>
+                        
+                        <div className={styles.info}>
+                            <div className={styles.meta}>
+                                <div className={styles.categories}>
+                                    {
+                                        movieInfo.categories.split(", ").map((item, index) => {
+                                            return (
+                                                <span className="h7 title-alternative" key={index}>{item}</span>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <Separator />
+                                <span className="h7 title-alternative">{movieInfo.year}</span>
+                            </div>
+
+                            <p className={`no-margin`}>
+                                {movieInfo.description}
+                            </p>
+                        </div>
+
+                        <div className={styles.actions}>
+                            <div>
+                                <span>Watch Movie</span>
+                            </div>
+                            <div>
+                                <span>Watch Later</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             : moviesList[0] !== undefined && movieInfo?.title === undefined ? 
                 <NotFoundContent />
-
             : ""
             }
         </>

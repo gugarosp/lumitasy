@@ -40,7 +40,7 @@ export default function Movie () {
 
                     <div className={`${styles.logo} content`}>
                         <div className={styles["logo-container"]}>
-                            <img src={`http://lumitasy.siteseguro.ws/images/movies/logos/${movieInfo.slug}.png`} alt={movieInfo.title} data-alt={movieInfo.title} />
+                            <img src={`http://lumitasy.siteseguro.ws/images/movies/logos/${movieInfo.slug}.png`} alt={movieInfo.title} />
                         </div>
                     </div>
 

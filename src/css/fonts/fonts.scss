@@ -18,12 +18,13 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('Inter-SemiBold.woff2') format('woff2'),
-        url('Inter-SemiBold.woff') format('woff');
+    src: url('Inter-Medium.woff2') format('woff2'),
+        url('Inter-Medium.woff') format('woff'); /* Medium font used as Semibold because it's more accurate to Figma mockup */
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
+
 
 @font-face {
     font-family: 'Inika';

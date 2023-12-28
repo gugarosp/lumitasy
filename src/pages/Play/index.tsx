@@ -1,35 +1,74 @@
+import styles from "./Play.module.scss"
+
 import { SyntheticEvent, useState } from "react";
+import Button from "elements/Button";
 
 export default function Play () {
 
-    // Video Info
+    // Video Element
+    const [videoElement, setVideoElement] = useState<any>("");
+    
+    function metaDataVideo (event:SyntheticEvent<HTMLVideoElement>) {
+        setVideoElement(event.target)
+    }
+    
+    // Play and pause video
+    const [videoStatus, setVideoStatus] = useState("paused");
+
+    function PlayPauseVideo () {
+        if (videoStatus === "paused") {
+            videoElement.play();
+            setVideoStatus("playing");
+        } else if (videoStatus === "playing") {
+            videoElement.pause();
+            setVideoStatus("paused");
+        }
+    }
+
+    // Video Infos
     const [getVideoInfo, setGetInfoVideo] = useState('');
     const [videoCurrentTime, setVideoCurrentTime] = useState(0);
+    const [videoDuration, setVideoDuration] = useState(0);
 
     function videoInfo(element:any) {
         setVideoCurrentTime(Math.floor(element.currentTime));
+        setVideoDuration(Math.ceil(element.duration));
     }
     
-    // Video Play
-    function playVideo(event:SyntheticEvent<HTMLVideoElement>) {
+    // Video while playing
+    function whilePlayVideo(event:SyntheticEvent<HTMLVideoElement>) {
         const intervalVideo:any = window.setInterval(() => {
             videoInfo(event.target);
         }, 1);
         setGetInfoVideo(intervalVideo);
     }
 
-    // Video Pause
-    function pauseVideo () {
+    // Video when paused
+    function whenPauseVideo () {
         clearInterval(getVideoInfo);
     }
 
     return (
-        <div>
-            <video onPlay={(event) => playVideo(event)} onPause={pauseVideo} width="320" height="240" controls>
-                <source src="https://rr1---sn-gpv7yne6.c.drive.google.com/videoplayback?expire=1703366075&ei=iyOHZeHOCoWa2LYP-qi1mA0&ip=2804:14c:65d6:622f:d929:c283:d5e2:aacb&id=494bea3da781c032&itag=18&source=webdrive&requiressl=yes&xpc=EghonaK1InoBAQ==&mh=DO&mm=32&mn=sn-gpv7yne6&ms=su&mv=m&mvi=1&pl=48&sc=yes&ttl=transient&susc=dr&driveid=1QwzNGufGvAqe-QVappJRn7fXH16I0dAW&app=explorer&eaua=WIug9EHVF8Q&mime=video/mp4&vprv=1&prv=1&dur=46.695&lmt=1701378722501658&mt=1703354934&subapp=DRIVE_WEB_FILE_VIEWER&txp=0006224&sparams=expire,ei,ip,id,itag,source,requiressl,xpc,ttl,susc,driveid,app,eaua,mime,vprv,prv,dur,lmt&sig=AJfQdSswRgIhAM_zJKfFx3LIXz8QP_IYUnbmR8qM03nGtlDPh8Ei7XBIAiEAp7rAoTvCOXV-bCCbPby82yJTi9CQkNZbzeQBH3tFY5c=&lsparams=mh,mm,mn,ms,mv,mvi,pl,sc&lsig=AAO5W4owRQIgQPfdjjwHu3c-kVy65Q-teW_MD6IeFUmmF1j6Y1cCTNQCIQCNOxVwfXlNNeoe4ACpJPMHsZEgmDfKpaMS5eBSlQFUzg==&cpn=u6CzmWniEoRK8iQX&c=WEB_EMBEDDED_PLAYER&cver=1.20231217.00.00" type="video/mp4" />
-            </video>
-            <br />
-            <span>{videoCurrentTime}</span>
-        </div>
+        <section className={styles.play}>
+
+            <div className={styles["video-container"]}>
+                <video onLoadedMetadata={(event) => {metaDataVideo(event)}} onPlay={(event) => whilePlayVideo(event)} onPause={whenPauseVideo}>
+                    <source src="https://drive.google.com/uc?id=1QwzNGufGvAqe-QVappJRn7fXH16I0dAW" type="video/mp4" />
+                </video>
+
+                <div className={styles.glass} onClick={PlayPauseVideo}></div>
+            </div>
+                
+
+            <div className={styles.actions}>
+                <Button icon="arrow_back" size="giant" strength="higher" />
+            </div>
+            
+            <div className={styles.controls}>
+                <span>{videoCurrentTime}/{videoDuration}</span>
+                <br />
+                <input style={{width: "100%", margin: 0}} type="range" min="0" max={videoDuration} step="1" defaultValue={videoCurrentTime} />
+            </div>
+        </section>
     )
 }

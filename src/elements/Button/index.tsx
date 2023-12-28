@@ -21,7 +21,7 @@ export default function Button ({icon="add", iconFill=false, strength="lower", s
             }>
             <span
                 className={
-                    `material-symbols-outlined icon-${
+                    `material-symbols-rounded icon-${
                     iconFill === true ? "filled" : iconFill === false ? "outlined" : ""}-${
                     strength === "lower" ? "regular" : strength === "higher" ? "semibold" : ""} ${
                     styles.icon}`

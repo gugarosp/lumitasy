@@ -6,7 +6,7 @@ interface IconProps {
 
 export default function Icon ({ children}: IconProps) {
     return (
-        <span className="material-symbols-outlined">
+        <span className="material-symbols-rounded">
             {children}
         </span>
     )

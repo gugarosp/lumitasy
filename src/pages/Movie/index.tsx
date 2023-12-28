@@ -3,6 +3,7 @@ import styles from "./Movie.module.scss"
 import Menu from "components/Menu";
 import NotFoundContent from "components/NotFoundContent";
 import { MoviesContext } from "context/movies";
+import Button from "elements/Button";
 import Separator from "elements/Separator";
 import { useContext } from "react";
 
@@ -68,10 +69,10 @@ export default function Movie () {
 
                         <div className={styles.actions}>
                             <div>
-                                <span>Watch Movie</span>
+                                <Button icon="play_arrow" size="titan" iconFill={true} strength="lower" type="icon-ring">Watch Movie</Button>
                             </div>
                             <div>
-                                <span>Watch Later</span>
+                                <Button icon="add" size="extra-large" iconFill={true} strength="lower" type="icon">Watch Movie</Button>
                             </div>
                         </div>
                     </div>

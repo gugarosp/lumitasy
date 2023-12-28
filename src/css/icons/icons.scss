@@ -9,11 +9,39 @@
 .material-symbols-outlined {
     display: inline-block;
     font-family: "Material Symbols Outlined";
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
     user-select: none;
+
+    &.icon-outlined-regular {
+        font-variation-settings:
+        'FILL' var(--icon-fill-outlined),
+        'wght' 300,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
+    &.icon-outlined-semibold {
+        font-variation-settings:
+        'FILL' var(--icon-fill-outlined),
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
+    &.icon-filled-regular {
+        font-variation-settings:
+        'FILL' var(--icon-fill-filled),
+        'wght' 300,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
+    &.icon-filled-semibold {
+        font-variation-settings:
+        'FILL' var(--icon-fill-filled),
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
 }
 

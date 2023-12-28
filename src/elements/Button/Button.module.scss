@@ -1,0 +1,94 @@
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-white);
+    font-family: var(--font-family-primary);
+    
+    // Button
+    @mixin button ($height, $text-font-size, $text-line-height, $icon-font-size, $icon-line-height, $gap, $height-icon-ring, $icon-outline-stroke, $gap-icon-ring) {
+        height: $height;
+        font-size: var(--font-size-#{$text-font-size});
+        line-height: var(--font-size-#{$text-font-size});
+        gap: $gap;
+        padding: 0 var(--spacing-2x) 0 var(--spacing-1x);
+    
+        // Icon
+        .icon {
+            display: inline-grid;
+            place-items: center;
+            height: 100%;
+            aspect-ratio: 1/1;
+            font-size: var(--font-size-#{$icon-font-size});
+            line-height: var(--font-size-#{$icon-line-height});
+        }
+
+        // Type
+        &.type-icon-ring {
+            gap: $gap-icon-ring;
+            height: $height-icon-ring;
+            padding: 0;
+
+            .icon {
+                outline: $icon-outline-stroke solid var(--color-white);
+                outline-offset: -($icon-outline-stroke);
+                border-radius: var(--rounded-corners-full);
+            }
+        }
+    }
+
+    &.size-small {
+        @include button (36px, "small", "small", "extra-large", "extra-large", var(--spacing-0-5x), 36px, 1px, var(--spacing-1x));
+    }
+
+    &.size-medium {
+        @include button (40px, "medium", "medium", "giant", "giant", var(--spacing-1x), 40px, 2px, var(--spacing-1x));
+    }
+
+    &.size-large {
+        @include button (44px, "large", "large", "extra-giant", "extra-giant", var(--spacing-1x), 48px, 2px, var(--spacing-2x));
+    }
+
+    &.size-extra-large {
+        @include button (48px, "extra-large", "extra-large", "titan", "titan", var(--spacing-1x), 56px, 3px, var(--spacing-2x));
+    }
+
+    &.size-giant {
+        @include button (56px, "giant", "giant", "extra-titan", "extra-titan", var(--spacing-1x), 64px, 3px, var(--spacing-2x));
+    }
+
+    &.size-extra-giant {
+        @include button (64px, "extra-giant", "extra-giant", "ultra", "ultra", var(--spacing-1x), 80px, 4px, var(--spacing-3x));
+    }
+
+    &.size-titan {
+        @include button (64px, "titan", "titan", "ultra", "ultra", var(--spacing-1x), 80px, 4px, var(--spacing-3x));
+    }
+
+    // Strength
+    @mixin strength ($font-weight) {
+        .text {
+            font-weight: $font-weight;
+        }
+    }
+
+    &.strength-lower {
+        @include strength (var(--font-weight-regular));
+    }
+
+    &.strength-higher {
+        @include strength (var(--font-weight-semibold));
+    }
+
+    // Text 
+    &.text-hide {
+        padding: 0;
+
+        .text {
+            display: none;
+        }
+
+    }
+
+}

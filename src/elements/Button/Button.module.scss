@@ -5,6 +5,8 @@
     text-decoration: none;
     color: var(--color-white);
     font-family: var(--font-family-primary);
+    cursor: pointer;
+    user-select: none;
     
     // Button
     @mixin button ($height, $text-font-size, $text-line-height, $icon-font-size, $icon-line-height, $gap, $height-icon-ring, $icon-outline-stroke, $gap-icon-ring) {

@@ -6,12 +6,34 @@ interface ButtonProps {
     strength?: string
     size?: string
     type?: string
+    link?: string
     children?: string
 }
 
-export default function Button ({icon="add", iconFill=false, strength="lower", size="medium", type="outlined", children=""}:ButtonProps) {
+
+export default function Button (
+    {
+        icon = "add", 
+        iconFill = false, 
+        strength = "lower", 
+        size = "medium", 
+        type = "outlined", 
+        link = "",
+        children=""
+    }:ButtonProps) {
+    
+    function buttonBehavior (event:React.MouseEvent<HTMLElement>) {
+        if (event.currentTarget.getAttribute("href") === "") {
+            event.preventDefault();
+        }
+    }
+
+    const removeHref:any = false;
+
     return (
-        <a href="/" 
+        <a
+            onClick={event => buttonBehavior(event)}
+            href={link !== "" ? `/play/${link}` : removeHref} 
             className={`${
                 styles.button} ${
                 styles[`size-${size}`]} ${

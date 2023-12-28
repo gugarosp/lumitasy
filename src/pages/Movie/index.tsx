@@ -69,7 +69,7 @@ export default function Movie () {
 
                         <div className={styles.actions}>
                             <div>
-                                <Button icon="play_arrow" size="titan" iconFill={true} strength="lower" type="icon-ring">Watch Movie</Button>
+                                <Button icon="play_arrow" size="titan" iconFill={true} strength="lower" type="icon-ring" link={movieSlug}>Watch Movie</Button>
                             </div>
                             <div>
                                 <Button icon="add" size="extra-large" iconFill={true} strength="lower" type="icon">Watch Movie</Button>

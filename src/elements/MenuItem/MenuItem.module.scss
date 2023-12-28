@@ -10,6 +10,7 @@
     color: var(--color-white);
     text-decoration: none;
     transition: color .3s, height .3s, top .3s;
+    user-select: none;
 
     &:hover {
         height: 135%;

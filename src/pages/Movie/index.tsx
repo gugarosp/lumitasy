@@ -27,6 +27,10 @@ export default function Movie () {
 
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
+    function addWatchLater() {
+        console.log("Add this movie to watch later list");
+    }
+
     return (
         <>
             <Menu />
@@ -72,7 +76,7 @@ export default function Movie () {
                                 <Button icon="play_arrow" size="titan" iconFill={true} strength="lower" type="icon-ring" link={movieSlug}>Watch Movie</Button>
                             </div>
                             <div>
-                                <Button icon="add" size="extra-large" iconFill={true} strength="lower" type="icon">Watch Movie</Button>
+                                <Button icon="add" size="extra-large" iconFill={true} strength="lower" type="icon" action={{addWatchLater}}>Watch Later</Button>
                             </div>
                         </div>
                     </div>

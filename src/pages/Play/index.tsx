@@ -53,7 +53,7 @@ export default function Play () {
 
             <div className={styles["video-container"]}>
                 <video onLoadedMetadata={(event) => {metaDataVideo(event)}} onPlay={(event) => whilePlayVideo(event)} onPause={whenPauseVideo}>
-                    <source src="https://drive.google.com/uc?id=1QwzNGufGvAqe-QVappJRn7fXH16I0dAW" type="video/mp4" />
+                    <source src="https://drive.google.com/uc?id=185AJMmiPdmEjmtVAukjWO4fyr38QGlnk" type="video/mp4" />
                 </video>
 
                 <div className={styles.glass} onClick={PlayPauseVideo}></div>
@@ -65,9 +65,11 @@ export default function Play () {
             </div>
             
             <div className={styles.controls}>
-                <span>{videoCurrentTime}/{videoDuration}</span>
-                <br />
-                <input style={{width: "100%", margin: 0}} type="range" min="0" max={videoDuration} step="1" defaultValue={videoCurrentTime} />
+                <div style={{display: "none"}}>
+                    <span>{videoCurrentTime}/{videoDuration}</span>
+                    <br />
+                    <input style={{width: "100%", margin: 0}} type="range" min="0" max={videoDuration} step="1" defaultValue={videoCurrentTime} />
+                </div>
             </div>
         </section>
     )

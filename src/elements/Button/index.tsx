@@ -18,7 +18,7 @@ export default function Button (
         iconFill = false, 
         strength = "lower", 
         size = "medium", 
-        type = "outlined", 
+        type = "icon", 
         link = "",
         action,
         children=""
@@ -29,8 +29,7 @@ export default function Button (
     function buttonBehavior (event:React.MouseEvent<HTMLElement>) {
         if (!event.currentTarget.hasAttribute("href")) {
             event.preventDefault();
-            action[`${Object.keys(action)[0]}`]();
-            
+            action();
         }
     }
 

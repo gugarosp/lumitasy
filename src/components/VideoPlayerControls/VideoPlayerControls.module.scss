@@ -1,0 +1,66 @@
+.video-player-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3x);
+    
+    .time-bar {
+
+        .time-bar-background {
+            height: 6px;
+            border-radius: var(--rounded-corners-full);
+            background-color: var(--color-transparent-white-20);
+            overflow: hidden;
+
+            .time-bar-current-time {
+                width: 0;
+                height: 100%;
+                background-color: var(--color-white);
+            }
+
+        }
+
+    }
+
+    .controls {
+        display: flex;
+        gap: var(--spacing-3x);
+
+        .time, .options, .player {
+            display: flex;
+            align-items: center;
+            flex-basis: 33.3333%;
+        }
+
+        .player {
+            justify-content: center;
+            gap: var(--spacing-5x);
+
+            .forward, .backward {
+                position: relative;
+
+                &> span {
+                    position: absolute;
+                    bottom: 1px;
+                    left: 0;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+
+            .forward {
+
+                a {
+                    transform: scaleX(-1);
+                }
+
+            }
+        }
+
+        .options {
+            justify-content: flex-end;
+        }
+
+
+
+    }
+}

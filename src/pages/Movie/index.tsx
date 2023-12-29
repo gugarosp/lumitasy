@@ -76,7 +76,7 @@ export default function Movie () {
                                 <Button icon="play_arrow" size="titan" iconFill={true} strength="lower" type="icon-ring" link={`/play/${movieSlug}`}>Watch Movie</Button>
                             </div>
                             <div>
-                                <Button icon="add" size="extra-large" iconFill={true} strength="lower" type="icon" action={{addWatchLater}}>Watch Later</Button>
+                                <Button icon="add" size="extra-large" iconFill={true} strength="lower" type="icon" action={addWatchLater}>Watch Later</Button>
                             </div>
                         </div>
                     </div>

@@ -5,6 +5,8 @@ import Button from "elements/Button";
 
 export default function Play () {
 
+    const movieSlug = window.location.href.split("play/")[1];
+
     // Video Element
     const [videoElement, setVideoElement] = useState<any>("");
     
@@ -61,7 +63,7 @@ export default function Play () {
                 
 
             <div className={styles.actions}>
-                <Button icon="arrow_back" size="giant" strength="higher" />
+                <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
             </div>
             
             <div className={styles.controls}>

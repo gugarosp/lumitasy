@@ -37,7 +37,7 @@ export default function Button (
     return (
         <a
             onClick={event => buttonBehavior(event)}
-            href={link !== "" ? `/play/${link}` : undefined} 
+            href={link !== "" ? `${link}` : undefined} 
             className={`${
                 styles.button} ${
                 styles[`size-${size}`]} ${

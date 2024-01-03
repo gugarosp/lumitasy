@@ -1,7 +1,7 @@
 import Button from "elements/Button";
 import styles from "./VideoPlayerControls.module.scss"
 import Slider from "elements/Slider";
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 
 interface VideoPlayerControlsProps {
     currentTime: number;
@@ -11,21 +11,27 @@ interface VideoPlayerControlsProps {
 
 export default function VideoPlayerControls ({currentTime, totalTime, playVideo}:VideoPlayerControlsProps) {
 
+    // Transforms the video current time and total time into a 'h:mm' format
     function timeFormat (time:number) {
         return new Date(10800000 + (time * 1000)).toString().slice(17, 24);
     }
 
-    const sliderBarPosition = useRef<number>(0)
+    // Calculation of slider progress according to video current time and total time
+    const [sliderPosition, setSliderPosition] = useState<number>()
 
-    const sliderBarPositionPercentage = currentTime/totalTime * 100;
-    if (!isNaN(sliderBarPositionPercentage)) {
-        sliderBarPosition.current = sliderBarPositionPercentage;
+    let sliderBarPositionPercentage = currentTime/totalTime * 100;
+    if (isNaN(sliderBarPositionPercentage)) {
+        sliderBarPositionPercentage = 0;
     }
+
+    useEffect(() => {
+        setSliderPosition(sliderBarPositionPercentage);
+    }, [sliderBarPositionPercentage])
 
     return (
         <div className={styles["video-player-controls"]}>
 
-            <Slider sliderPosition={sliderBarPosition.current}/>
+            <Slider sliderPosition={sliderPosition}/>
 
             <div className={styles.controls}>
                 <div className={styles.time}>

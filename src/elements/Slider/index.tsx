@@ -21,8 +21,15 @@ export default function Slider () {
         const sliderBasePosition = event.currentTarget.parentElement.querySelector(":first-child").getBoundingClientRect().x;
         const dragPosition = event.clientX;
         const handlePosition = dragPosition - sliderBasePosition;
+        let handlePositionPercentage = handlePosition / sliderWidth * 100;
 
-        setCurrentSlidePosition(handlePosition / sliderWidth * 100);
+        if (handlePositionPercentage < 0) {
+            handlePositionPercentage = 0;
+        } else if (handlePositionPercentage > 100) {
+            handlePositionPercentage = 100
+        }
+            
+        setCurrentSlidePosition(handlePositionPercentage);
 
         if (sliderMoving.current === false) {
             return handler.current.removeEventListener("mousemove", slide);
@@ -39,7 +46,6 @@ export default function Slider () {
 
     function removeSlideHandle() {
         sliderMoving.current = false;
-        console.log(sliderMoving);
     }
 
     return (

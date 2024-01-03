@@ -18,7 +18,7 @@ export default function Slider () {
         const newBarPosition = barClickPosition - sliderBaseXPosition;
         const newBarPositionPercentage = newBarPosition / sliderWidth * 100
 
-        // Sets the new inner bar position
+        // Sets the new slider position (and therefore the new inner bar position)
         setCurrentSlidePosition(newBarPositionPercentage);
     }
 
@@ -30,11 +30,19 @@ export default function Slider () {
     // Ref to get handler html element
     const handler = useRef<any>();
 
+    //
+    const lastTouchPosition = useRef<number>(0);
+
     // Calculation for the handle to slide according mouse movement
     function slide (event:any):void {
         const sliderWidth = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().width;
         const sliderBaseXPosition = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().x;
-        const handlePosition = event.clientX;
+        
+        if (event.touches[0]) {
+            lastTouchPosition.current = event.touches[0].clientX;
+        }
+        const handlePosition = event.clientX ? event.clientX : lastTouchPosition.current;
+        
         const newHandlePosition = handlePosition - sliderBaseXPosition;
         let newHandlePositionPercentage = newHandlePosition / sliderWidth * 100;
 
@@ -44,9 +52,10 @@ export default function Slider () {
             newHandlePositionPercentage = 100
         }
         
-        // Sets the new handle position
+        // Sets the new slider position (and therefore the new handle position)
         setCurrentSlidePosition(newHandlePositionPercentage);
 
+        // Remove all event listeners
         if (sliderMoving.current === false) {
             return removeListeners();
         }
@@ -56,6 +65,10 @@ export default function Slider () {
     function removeListeners() {
         window.removeEventListener("mousemove", slide);
         window.removeEventListener("mouseup", finishSlideHandle);
+
+        window.removeEventListener("touchmove", slide);
+        window.removeEventListener("touchend", finishSlideHandle);
+        window.removeEventListener("touchend", slide);
     }
 
     // Changes handle movement status so "function 'slide'" can remove added handle listeners 
@@ -63,12 +76,16 @@ export default function Slider () {
         sliderMoving.current = false;
     }
 
-
     // Starts handle movement/listeners
     function startHandleMovement () {
         sliderMoving.current = true;
+
         window.addEventListener("mousemove", slide);
         window.addEventListener("mouseup", finishSlideHandle);
+
+        window.addEventListener("touchmove", slide);
+        window.addEventListener("touchend", finishSlideHandle);
+        window.addEventListener("touchend", slide);
     }
 
     // Handle movement status
@@ -81,6 +98,7 @@ export default function Slider () {
             </div>
             <div ref={handler} className={styles.handler} style={{left: `${currentSlidePosition}%`}}
                 onMouseDown={startHandleMovement}
+                onTouchStart={startHandleMovement}
             ></div>
         </div>
     )

@@ -1,0 +1,30 @@
+.slider {
+    position: relative;
+
+    .background {
+        height: 6px;
+        border-radius: var(--rounded-corners-full);
+        background-color: var(--color-transparent-white-20);
+        overflow: hidden;
+        cursor: pointer;
+
+        .current-position {
+            width: 0;
+            height: 100%;
+            background-color: var(--color-white);
+        }
+
+    }
+
+    .handler {
+        position: absolute;
+        top: 50%;
+        height: 20px;
+        width: 20px;
+        background: white;
+        border-radius: var(--rounded-corners-full);
+        transform: translate(-50%, -50%);
+        box-shadow: var(--elevation-1x-t50);
+    }
+
+}

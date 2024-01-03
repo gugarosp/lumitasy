@@ -1,5 +1,6 @@
 import Button from "elements/Button";
 import styles from "./VideoPlayerControls.module.scss"
+import Slider from "elements/Slider";
 
 interface VideoPlayerControlsProps {
     currentTime: number;
@@ -9,7 +10,7 @@ interface VideoPlayerControlsProps {
 
 export default function VideoPlayerControls ({currentTime, totalTime, playVideo}:VideoPlayerControlsProps) {
 
-    const currentTimeBarPosition = currentTime/totalTime * 100;
+    //const currentTimeBarPosition = currentTime/totalTime * 100;
 
     function timeFormat (time:number) {
         return new Date(10800000 + (time * 1000)).toString().slice(17, 24);
@@ -18,13 +19,15 @@ export default function VideoPlayerControls ({currentTime, totalTime, playVideo}
     return (
         <div className={styles["video-player-controls"]}>
 
-            <div className={styles["time-bar"]}>
+            <Slider />
+
+            {/* <div className={styles["time-bar"]}>
                 <div className={styles["time-bar-background"]}>
                     <div className={styles["time-bar-current-time"]} style={{width: `${currentTimeBarPosition}%`}}>
                     
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className={styles.controls}>
                 <div className={styles.time}>

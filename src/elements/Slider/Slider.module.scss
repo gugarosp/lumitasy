@@ -1,12 +1,13 @@
 .slider {
     position: relative;
+    cursor: pointer;
+    user-select: none;
 
     .background {
         height: 6px;
         border-radius: var(--rounded-corners-full);
         background-color: var(--color-transparent-white-20);
         overflow: hidden;
-        cursor: pointer;
 
         .current-position {
             width: 0;

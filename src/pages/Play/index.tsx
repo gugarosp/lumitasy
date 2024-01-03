@@ -1,6 +1,6 @@
 import styles from "./Play.module.scss"
 
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useRef, useState } from "react";
 import Button from "elements/Button";
 import VideoPlayerControls from "components/VideoPlayerControls";
 
@@ -8,12 +8,13 @@ export default function Play () {
 
     const movieSlug = window.location.href.split("play/")[1];
 
-    // Video Element
-    const [videoElement, setVideoElement] = useState<any>("");
-    
-    function metaDataVideo (event:SyntheticEvent<HTMLVideoElement>) {
+    // Video Element 
+    const video = useRef<any>();
+
+    function metaDataVideo (event:SyntheticEvent<HTMLVideoElement, Event>) {
         console.log("video is loaded");
-        setVideoElement(event.target)
+        setVideoCurrentTime(Math.floor(video.current.currentTime));
+        setVideoDuration(Math.ceil(video.current.duration));
     }
     
     // Play and pause video
@@ -21,10 +22,10 @@ export default function Play () {
 
     function PlayPauseVideo () {
         if (videoStatus === "paused") {
-            videoElement.play();
+            video.current.play();
             setVideoStatus("playing");
         } else if (videoStatus === "playing") {
-            videoElement.pause();
+            video.current.pause();
             setVideoStatus("paused");
         }
     }
@@ -56,7 +57,7 @@ export default function Play () {
         <section className={styles.play}>
 
             <div className={styles["video-container"]}>
-                <video onLoadedMetadata={(event) => {metaDataVideo(event)}} onPlay={(event) => whilePlayVideo(event)} onPause={whenPauseVideo}>
+                <video ref={video} onLoadedMetadata={event => metaDataVideo(event)} onPlay={event => whilePlayVideo(event)} onPause={whenPauseVideo}>
                     <source src="https://drive.google.com/uc?id=185AJMmiPdmEjmtVAukjWO4fyr38QGlnk" type="video/mp4" />
                 </video>
 

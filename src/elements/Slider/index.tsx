@@ -1,10 +1,15 @@
 import { useRef, useState } from "react";
 import styles from "./Slider.module.scss";
 
-export default function Slider () {
+interface SliderProps {
+    sliderPosition?: number
+}
 
-    // Receives the slider position
-    const [currentSlidePosition, setCurrentSlidePosition] = useState<number>(0);
+export default function Slider ({sliderPosition = 0}:SliderProps) {
+
+    // Receives the slider position 
+    const currentSlidePosition = useRef<number>(0)
+    currentSlidePosition.current = sliderPosition;
 
     /////////
     /* BAR */
@@ -19,7 +24,7 @@ export default function Slider () {
         const newBarPositionPercentage = newBarPosition / sliderWidth * 100
 
         // Sets the new slider position (and therefore the new inner bar position)
-        setCurrentSlidePosition(newBarPositionPercentage);
+        currentSlidePosition.current = newBarPositionPercentage;
     }
 
 
@@ -38,7 +43,7 @@ export default function Slider () {
         const sliderWidth = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().width;
         const sliderBaseXPosition = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().x;
         
-        if (event.touches[0]) {
+        if (event.touches[0] !== undefined) {
             lastTouchPosition.current = event.touches[0].clientX;
         }
         const handlePosition = event.clientX ? event.clientX : lastTouchPosition.current;
@@ -53,7 +58,7 @@ export default function Slider () {
         }
         
         // Sets the new slider position (and therefore the new handle position)
-        setCurrentSlidePosition(newHandlePositionPercentage);
+        currentSlidePosition.current = newHandlePositionPercentage;
 
         // Remove all event listeners
         if (sliderMoving.current === false) {
@@ -94,9 +99,9 @@ export default function Slider () {
     return (
         <div className={styles.slider}>
             <div className={styles["background"]} onClick={event => barClickPosition(event)}>
-                <div className={styles["current-position"]} style={{width: `${currentSlidePosition}%`}}></div>
+                <div className={styles["current-position"]} style={{width: `${currentSlidePosition.current}%`}}></div>
             </div>
-            <div ref={handler} className={styles.handler} style={{left: `${currentSlidePosition}%`}}
+            <div ref={handler} className={styles.handler} style={{left: `${currentSlidePosition.current}%`}}
                 onMouseDown={startHandleMovement}
                 onTouchStart={startHandleMovement}
             ></div>

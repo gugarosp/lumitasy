@@ -1,57 +1,46 @@
 import styles from "./Play.module.scss"
 
-import { SyntheticEvent, useRef, useState } from "react";
+import { useContext } from "react";
 import Button from "elements/Button";
 import VideoPlayerControls from "components/VideoPlayerControls";
+import { PlayMovieContext } from "context/playMovie";
+
+interface playProps {
+    video: any,
+    metaDataVideo: any
+    getVideoInfo: string
+    setGetInfoVideo: React.Dispatch<React.SetStateAction<string>>
+    videoCurrentTime: number
+    setVideoCurrentTime: React.Dispatch<React.SetStateAction<number>>
+    videoDuration: number
+    setVideoDuration: React.Dispatch<React.SetStateAction<number>>
+    PlayPauseVideo: () => void,
+    videoInfo: () => void,
+    whilePlayVideo: any,
+    whenPauseVideo: () => void
+}
 
 export default function Play () {
 
+    // Movie Slug
     const movieSlug = window.location.href.split("play/")[1];
 
-    // Video Element 
-    const video = useRef<any>();
+    // Video Element
+    const { video }:playProps = useContext(PlayMovieContext);
+    const { metaDataVideo }:playProps = useContext(PlayMovieContext);
 
-    function metaDataVideo (event:SyntheticEvent<HTMLVideoElement, Event>) {
-        console.log("video is loaded");
-        setVideoCurrentTime(Math.floor(video.current.currentTime));
-        setVideoDuration(Math.ceil(video.current.duration));
-    }
-    
     // Play and pause video
-    const [videoStatus, setVideoStatus] = useState("paused");
-
-    function PlayPauseVideo () {
-        if (videoStatus === "paused") {
-            video.current.play();
-            setVideoStatus("playing");
-        } else if (videoStatus === "playing") {
-            video.current.pause();
-            setVideoStatus("paused");
-        }
-    }
+    const { PlayPauseVideo }:playProps = useContext(PlayMovieContext);
 
     // Video Infos
-    const [getVideoInfo, setGetInfoVideo] = useState('');
-    const [videoCurrentTime, setVideoCurrentTime] = useState(0);
-    const [videoDuration, setVideoDuration] = useState(0);
-
-    function videoInfo(element:any) {
-        setVideoCurrentTime(Math.floor(element.currentTime));
-        setVideoDuration(Math.ceil(element.duration));
-    }
+    const { videoCurrentTime }:playProps = useContext(PlayMovieContext);
+    const { videoDuration }:playProps = useContext(PlayMovieContext);
     
     // Video while playing
-    function whilePlayVideo(event:SyntheticEvent<HTMLVideoElement>) {
-        const intervalVideo:any = window.setInterval(() => {
-            videoInfo(event.target);
-        }, 1);
-        setGetInfoVideo(intervalVideo);
-    }
+    const { whilePlayVideo }:playProps = useContext(PlayMovieContext);
 
     // Video when paused
-    function whenPauseVideo () {
-        clearInterval(getVideoInfo);
-    }
+    const { whenPauseVideo }:playProps = useContext(PlayMovieContext);
 
     return (
         <section className={styles.play}>

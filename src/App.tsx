@@ -12,6 +12,7 @@ import Category from 'pages/Category';
 import WatchLater from 'pages/WatchLater';
 import About from 'pages/About';
 import { MoviesProvider } from "context/movies";
+import { PlayMovieProvider } from "context/playMovie";
 
 function App() {
 
@@ -29,7 +30,11 @@ function App() {
             <Movie />
           </MoviesProvider>
         }></Route>
-        <Route path="play/*" element={<Play />}></Route>
+        <Route path="play/*" element={
+          <PlayMovieProvider>
+            <Play />
+          </PlayMovieProvider>
+        }></Route>
         <Route path="search" element={<Search />}></Route>
         <Route path="categories" element={<Categories />}></Route>
         <Route path="category/*" element={<Category />}></Route>

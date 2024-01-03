@@ -61,11 +61,9 @@ export default function Play () {
             <div className={styles.controls}>
                 <div style={{display: "none"}}>
                     <span>{videoCurrentTime}/{videoDuration}</span>
-                    <br />
-                    <input style={{width: "100%", margin: 0}} type="range" min="0" max={videoDuration} step="1" defaultValue={videoCurrentTime} />
                 </div>
 
-                <VideoPlayerControls currentTime={videoCurrentTime} totalTime={videoDuration} playVideo={PlayPauseVideo} />
+                <VideoPlayerControls currentTime={videoCurrentTime} totalTime={videoDuration} />
             </div>
         </section>
     )

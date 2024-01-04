@@ -14,7 +14,7 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     function metaDataVideo (event:any) {
         setVideoCurrentTime(Math.floor(video.current.currentTime));
         setVideoDuration(Math.ceil(video.current.duration));
-        setShowControls(true);
+        setMovieLoaded(true);
     }
 
     // Video Infos
@@ -55,7 +55,7 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     }
 
     // Show controls when loaded
-    const [showControls, setShowControls] = useState(false);
+    const [movieLoaded, setMovieLoaded] = useState(false);
 
     return (
         <PlayMovieContext.Provider value={
@@ -72,8 +72,8 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
                 videoInfo,
                 whilePlayVideo,
                 whenPauseVideo,
-                showControls,
-                setShowControls
+                movieLoaded,
+                setMovieLoaded
             }
         }>
             {children}

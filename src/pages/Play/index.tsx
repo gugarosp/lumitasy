@@ -18,7 +18,7 @@ interface playProps {
     videoInfo: () => void,
     whilePlayVideo: any,
     whenPauseVideo: () => void,
-    showControls: boolean
+    movieLoaded: boolean
 }
 
 export default function Play () {
@@ -62,7 +62,7 @@ export default function Play () {
                 <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
             </div>
             
-            <div className={`${styles.controls} ${showControls === true ? styles["show-controls"] : "" }`}>
+            <div className={`${styles.controls} ${movieLoaded === true ? styles["show-controls"] : "" }`}>
                 <VideoPlayerControls currentTime={videoCurrentTime} totalTime={videoDuration} />
             </div>
         </section>

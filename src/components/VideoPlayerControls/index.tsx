@@ -42,6 +42,19 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     function changePlayIcon () {
         playPauseIcon === "play_arrow" ? setPlayPauseIcon("pause") : setPlayPauseIcon("play_arrow");
     }
+
+    // Fullscreen
+    const [fullscreenIcon, setFullscreenIcon] = useState("fullscreen")
+
+    function fullscreen () {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            setFullscreenIcon("fullscreen_exit")
+        } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+            setFullscreenIcon("fullscreen")
+        }
+    }
     
     return (
         <div className={styles["video-player-controls"]}>
@@ -71,7 +84,7 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
 
                 <div className={styles.options}>
                     <Button icon="volume_up" size="giant" strength="lower" />
-                    <Button icon="fullscreen" size="giant" strength="lower" />
+                    <Button icon={fullscreenIcon} size="giant" strength="lower" action={() => fullscreen()} />
                 </div>
 
             </div>

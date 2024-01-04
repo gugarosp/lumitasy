@@ -54,7 +54,16 @@ export default function Play () {
                     <source src="https://drive.google.com/uc?id=185AJMmiPdmEjmtVAukjWO4fyr38QGlnk" type="video/mp4" />
                 </video>
 
-                <div className={styles.glass} onClick={PlayPauseVideo}></div>
+                <div className={styles.glass} onClick={PlayPauseVideo}>
+                    <div className={`${styles["loading-warning"]} ${movieLoaded === true ? styles["loading-warning-hide"] : "" }`}>
+                    
+                        <div className={styles["loading-icon"]}><div></div><div></div><div></div><div></div></div>
+
+                        <h6 className="title-alternative no-margin">
+                            Your movie will begin soon
+                        </h6>
+                    </div>
+                </div>
             </div>
                 
 

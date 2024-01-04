@@ -17,7 +17,8 @@ interface playProps {
     PlayPauseVideo: () => void,
     videoInfo: () => void,
     whilePlayVideo: any,
-    whenPauseVideo: () => void
+    whenPauseVideo: () => void,
+    showControls: boolean
 }
 
 export default function Play () {
@@ -42,6 +43,9 @@ export default function Play () {
     // Video when paused
     const { whenPauseVideo }:playProps = useContext(PlayMovieContext);
 
+    // Show controls
+    const { showControls }:playProps = useContext(PlayMovieContext);
+
     return (
         <section className={styles.play}>
 
@@ -58,11 +62,7 @@ export default function Play () {
                 <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
             </div>
             
-            <div className={styles.controls}>
-                <div style={{display: "none"}}>
-                    <span>{videoCurrentTime}/{videoDuration}</span>
-                </div>
-
+            <div className={`${styles.controls} ${showControls === true ? styles["show-controls"] : "" }`}>
                 <VideoPlayerControls currentTime={videoCurrentTime} totalTime={videoDuration} />
             </div>
         </section>

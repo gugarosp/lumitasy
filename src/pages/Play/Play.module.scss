@@ -56,7 +56,12 @@
     }
     
     .controls {
+        display: none;
         padding: 0 var(--spacing-3x) var(--spacing-3x);
+
+        &.show-controls {
+            display: block;
+        }
         
     }
     

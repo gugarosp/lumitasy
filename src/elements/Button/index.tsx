@@ -7,7 +7,7 @@ interface ButtonProps {
     size?: string
     type?: string
     link?: string
-    action?: any
+    action?: () => void
     children?: string
 }
 
@@ -29,7 +29,7 @@ export default function Button (
     function buttonBehavior (event:React.MouseEvent<HTMLElement>) {
         if (!event.currentTarget.hasAttribute("href")) {
             event.preventDefault();
-            action();
+            action?.();
         }
     }
 

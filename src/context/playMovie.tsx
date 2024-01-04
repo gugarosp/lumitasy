@@ -26,10 +26,10 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     const [videoStatus, setVideoStatus] = useState("paused");
 
     function PlayPauseVideo () {
-        if (videoStatus === "paused") {
+        if (videoStatus === "paused" && movieLoaded === true) {
             video.current.play();
             setVideoStatus("playing");
-        } else if (videoStatus === "playing") {
+        } else if (videoStatus === "playing" && movieLoaded === true) {
             video.current.pause();
             setVideoStatus("paused");
         }

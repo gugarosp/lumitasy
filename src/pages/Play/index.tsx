@@ -1,6 +1,6 @@
 import styles from "./Play.module.scss"
 
-import { useContext } from "react";
+import { SetStateAction, useContext, useRef, useState } from "react";
 import Button from "elements/Button";
 import VideoPlayerControls from "components/VideoPlayerControls";
 import { PlayMovieContext } from "context/playMovie";
@@ -36,7 +36,7 @@ export default function Play () {
     // Video Infos
     const { videoCurrentTime }:playProps = useContext(PlayMovieContext);
     const { videoDuration }:playProps = useContext(PlayMovieContext);
-    
+
     // Video while playing
     const { whilePlayVideo }:playProps = useContext(PlayMovieContext);
 
@@ -45,6 +45,40 @@ export default function Play () {
 
     // Show controls
     const { movieLoaded }:playProps = useContext(PlayMovieContext);
+
+    // Hide controls and actions
+    const [hideControlsClass, setHideControlsClass] = useState<SetStateAction<any>>("");
+    const [hideActionsClass, setHideActionsClass] = useState<SetStateAction<any>>("");
+
+    const hideControlsActions = useRef(true);
+
+    const movieAlreadyLoaded = useRef(false);
+
+    if (movieLoaded === true && movieAlreadyLoaded.current === false) { // Executes only one time, even if component rerenders
+        setTimeout(() => {
+            setHideControlsClass(`${styles["hide-controls"]}`);
+            setHideActionsClass(styles["hide-actions"]);
+            
+            movieAlreadyLoaded.current = true;
+        }, 5000)  
+         
+    }
+
+    window.addEventListener("mousemove", () => {
+        if (hideControlsActions.current === true && movieAlreadyLoaded.current === true) {
+            setHideControlsClass("");
+            setHideActionsClass("");
+            hideControlsActions.current = false;
+
+            setTimeout(() => {
+                    setHideControlsClass(`${styles["hide-controls"]}`);
+                    setHideActionsClass(styles["hide-actions"]);
+                    
+                    hideControlsActions.current = true;
+                }, 5000);
+            
+        }
+    });
 
     return (
         <section className={styles.play}>
@@ -56,7 +90,7 @@ export default function Play () {
 
                 <div className={styles.glass} onClick={PlayPauseVideo}>
                     <div className={`${styles["loading-warning"]} ${movieLoaded === true ? styles["loading-warning-hide"] : "" }`}>
-                    
+
                         <div className={styles["loading-icon"]}><div></div><div></div><div></div><div></div></div>
 
                         <h6 className="title-alternative no-margin">
@@ -65,13 +99,23 @@ export default function Play () {
                     </div>
                 </div>
             </div>
-                
 
-            <div className={styles.actions}>
+
+            <div className={`${
+                    styles.actions} ${
+                    movieLoaded === true ? ` ${
+                        hideActionsClass}` : "" }`
+            }>
                 <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
             </div>
-            
-            <div className={`${styles.controls} ${movieLoaded === true ? styles["show-controls"] : "" }`}>
+
+            <div
+                className={`${
+                    styles.controls}${
+                    movieLoaded === true ? ` ${
+                            styles["show-controls"]} ${
+                            hideControlsClass}` : "" }`
+            }>
                 <VideoPlayerControls currentTime={videoCurrentTime} totalTime={videoDuration} />
             </div>
         </section>

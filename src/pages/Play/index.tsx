@@ -44,7 +44,7 @@ export default function Play () {
     const { whenPauseVideo }:playProps = useContext(PlayMovieContext);
 
     // Show controls
-    const { showControls }:playProps = useContext(PlayMovieContext);
+    const { movieLoaded }:playProps = useContext(PlayMovieContext);
 
     return (
         <section className={styles.play}>

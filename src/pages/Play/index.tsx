@@ -103,6 +103,9 @@ export default function Play () {
         }
     });
 
+    // Page title
+    document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
+
     return (
         <section className={styles.play}>
 

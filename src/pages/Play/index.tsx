@@ -4,6 +4,7 @@ import { SetStateAction, useContext, useRef, useState } from "react";
 import Button from "elements/Button";
 import VideoPlayerControls from "components/VideoPlayerControls";
 import { PlayMovieContext } from "context/playMovie";
+import { MoviesContext } from "context/movies";
 
 interface playProps {
     video: any,
@@ -21,14 +22,36 @@ interface playProps {
     movieLoaded: boolean
 }
 
+interface MovieContextProps {
+    moviesList: {
+        title: string,
+        slug:string,
+        categories: string
+        year: string
+        description: string
+        source: string
+    }[];
+}
+
 export default function Play () {
 
     // Movie Slug
     const movieSlug = window.location.href.split("play/")[1];
-
+    
     // Video Element
     const { video }:playProps = useContext(PlayMovieContext);
     const { metaDataVideo }:playProps = useContext(PlayMovieContext);
+
+    // Movie Reference
+    const { moviesList }:MovieContextProps = useContext(MoviesContext);
+    const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
+
+    // Loads movie when the source from api is loaded
+    const movieSourceLoaded = useRef(false)
+    if (movieInfo?.source !== undefined && movieSourceLoaded.current === false) {
+        video.current?.load();
+        movieSourceLoaded.current = true;
+    }
 
     // Play and pause video
     const { PlayPauseVideo }:playProps = useContext(PlayMovieContext);
@@ -85,7 +108,7 @@ export default function Play () {
 
             <div className={styles["video-container"]}>
                 <video ref={video} onLoadedMetadata={event => metaDataVideo(event)} onPlay={event => whilePlayVideo(event)} onPause={whenPauseVideo}>
-                    <source src="https://drive.google.com/uc?id=185AJMmiPdmEjmtVAukjWO4fyr38QGlnk" type="video/mp4" />
+                    <source src={movieInfo?.source} type="video/mp4" />
                 </video>
 
                 <div className={styles.glass} onClick={PlayPauseVideo}>

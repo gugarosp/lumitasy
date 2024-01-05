@@ -31,9 +31,11 @@ function App() {
           </MoviesProvider>
         }></Route>
         <Route path="play/*" element={
-          <PlayMovieProvider>
-            <Play />
-          </PlayMovieProvider>
+          <MoviesProvider>
+            <PlayMovieProvider>
+              <Play />
+            </PlayMovieProvider>
+          </MoviesProvider>
         }></Route>
         <Route path="search" element={<Search />}></Route>
         <Route path="categories" element={<Categories />}></Route>

@@ -7,6 +7,7 @@ interface moviesListProps {
     slug: string
     title: string
     categories: string
+    source: string
 }
 
 interface MoviesProviderProps {

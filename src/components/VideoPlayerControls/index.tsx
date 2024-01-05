@@ -11,7 +11,9 @@ interface VideoPlayerControlsProps {
 
 interface playProps {
     videoCurrentTime: number
-    PlayPauseVideo: () => void,
+    PlayPauseVideo: () => void
+    playPauseIcon: string
+    changePlayIcon: () => void
 }
 
 export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlayerControlsProps) {
@@ -36,12 +38,9 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     // Play and pause video
     const { PlayPauseVideo }:playProps = useContext(PlayMovieContext);
 
-    // Change play/pause icon acording to movie status
-    const [playPauseIcon, setPlayPauseIcon] = useState("play_arrow")
-
-    function changePlayIcon () {
-        playPauseIcon === "play_arrow" ? setPlayPauseIcon("pause") : setPlayPauseIcon("play_arrow");
-    }
+    // Play and pause icon change
+    const { playPauseIcon }:playProps = useContext(PlayMovieContext);
+    const { changePlayIcon }:playProps = useContext(PlayMovieContext);
 
     // Fullscreen
     const [fullscreenIcon, setFullscreenIcon] = useState("fullscreen")

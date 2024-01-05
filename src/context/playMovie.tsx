@@ -57,6 +57,13 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     // Show controls when loaded
     const [movieLoaded, setMovieLoaded] = useState(false);
 
+    // Change play/pause icon acording to movie status
+    const [playPauseIcon, setPlayPauseIcon] = useState("play_arrow")
+
+    function changePlayIcon () {
+        playPauseIcon === "play_arrow" ? setPlayPauseIcon("pause") : setPlayPauseIcon("play_arrow");
+    }
+
     return (
         <PlayMovieContext.Provider value={
             {
@@ -73,7 +80,9 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
                 whilePlayVideo,
                 whenPauseVideo,
                 movieLoaded,
-                setMovieLoaded
+                setMovieLoaded,
+                playPauseIcon,
+                changePlayIcon
             }
         }>
             {children}

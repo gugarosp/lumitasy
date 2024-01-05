@@ -19,16 +19,14 @@ interface playProps {
     videoInfo: () => void,
     whilePlayVideo: any,
     whenPauseVideo: () => void,
-    movieLoaded: boolean
+    movieLoaded: boolean,
+    changePlayIcon: () => void
 }
 
 interface MovieContextProps {
     moviesList: {
         title: string,
         slug:string,
-        categories: string
-        year: string
-        description: string
         source: string
     }[];
 }
@@ -55,6 +53,9 @@ export default function Play () {
 
     // Play and pause video
     const { PlayPauseVideo }:playProps = useContext(PlayMovieContext);
+
+    // Play and pause icon change
+    const { changePlayIcon }:playProps = useContext(PlayMovieContext);
 
     // Video Infos
     const { videoCurrentTime }:playProps = useContext(PlayMovieContext);
@@ -114,7 +115,7 @@ export default function Play () {
                     <source src={movieInfo?.source} type="video/mp4" />
                 </video>
 
-                <div className={styles.glass} onClick={PlayPauseVideo}>
+                <div className={styles.glass} onClick={() => {PlayPauseVideo(); changePlayIcon();}}>
                     <div className={`${styles["loading-warning"]} ${movieLoaded === true ? styles["loading-warning-hide"] : "" }`}>
 
                         <div className={styles["loading-icon"]}><div></div><div></div><div></div><div></div></div>

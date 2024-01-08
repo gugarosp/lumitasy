@@ -51,14 +51,15 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
     const lastTouchPosition = useRef<number>(0);
 
     // Calculation for the handle to slide according mouse movement
-    function slide (event:any):void {
+    function slide (event:MouseEvent | TouchEvent) {
+        console.log(event);
         const sliderWidth = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().width;
         const sliderBaseXPosition = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().x;
         
-        if (event.type === "touchmove") {
+        if (event instanceof TouchEvent) {
             lastTouchPosition.current = event.touches[0].clientX;
         }
-        const handlePosition = event.clientX ? event.clientX : lastTouchPosition.current;
+        const handlePosition = event instanceof MouseEvent && event.clientX ? event.clientX : lastTouchPosition.current;
         
         const newHandlePosition = handlePosition - sliderBaseXPosition;
         let newHandlePositionPercentage = newHandlePosition / sliderWidth * 100;

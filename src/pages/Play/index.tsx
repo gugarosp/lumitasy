@@ -67,15 +67,26 @@ export default function Play () {
     // Video when paused
     const { whenPauseVideo }:playProps = useContext(PlayMovieContext);
 
-    // Show controls
+    // Movie load status
     const { movieLoaded }:playProps = useContext(PlayMovieContext);
 
-    // Hide controls and actions
+
+    ////////////////////////////////////////
+    /* HIDE AND SHOW CONTROLS AND ACTIONS */
+    ////////////////////////////////////////
+    
+    /* NOTE */
+    // Actions: Action buttons that is on top of the page
+    // Controls: Video player controls that is on bottom of the page
+
+    // Hide controls and actions css classes
     const [hideControlsClass, setHideControlsClass] = useState<SetStateAction<any>>("");
     const [hideActionsClass, setHideActionsClass] = useState<SetStateAction<any>>("");
 
+    // Status of controls and actions hide status
     const hideControlsActions = useRef(true);
 
+    // Confirmation that the movie already loaded so the initial setTimeout (below) won't run infinitely
     const movieAlreadyLoaded = useRef(false);
 
     if (movieLoaded === true && movieAlreadyLoaded.current === false) { // Executes only one time, even if component rerenders
@@ -88,13 +99,26 @@ export default function Play () {
          
     }
 
+    // Timeout that hides controls and actions after mouse stops moving
+    const controlsTimeout = useRef<ReturnType<typeof setTimeout>>();
+
+    // Status of hiding timeOut, informs that if it is running (waiting until execution)
+    const controlsTimeoutRunning = useRef<boolean>(false);
+
     window.addEventListener("mousemove", () => {
+        if (controlsTimeoutRunning.current === true) {
+            clearInterval(controlsTimeout.current)
+            hideControlsActions.current = true;
+            controlsTimeoutRunning.current = false;
+        }
+
         if (hideControlsActions.current === true && movieAlreadyLoaded.current === true) {
             setHideControlsClass("");
             setHideActionsClass("");
             hideControlsActions.current = false;
 
-            setTimeout(() => {
+            controlsTimeoutRunning.current = true;
+            controlsTimeout.current = setTimeout(() => {
                     setHideControlsClass(`${styles["hide-controls"]}`);
                     setHideActionsClass(styles["hide-actions"]);
                     

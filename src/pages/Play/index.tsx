@@ -128,22 +128,25 @@ export default function Play () {
             </div>
 
 
-            <div className={`${
-                    styles.actions} ${
+            <div className={styles.actions}>
+                <div className={`${
+                    styles["actions-wrapper"]} ${
                     movieLoaded === true ? ` ${
                         hideActionsClass}` : "" }`
-            }>
-                <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
+                }>
+                    <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
+                </div>
             </div>
 
-            <div
-                className={`${
-                    styles.controls}${
+            <div className={styles.controls}>
+                <div className={`${
+                    styles["controls-wrapper"]}${
                     movieLoaded === true ? ` ${
                             styles["show-controls"]} ${
                             hideControlsClass}` : "" }`
-            }>
-                <VideoPlayerControls currentTime={videoCurrentTime} totalTime={videoDuration} />
+                }>
+                    <VideoPlayerControls currentTime={videoCurrentTime} totalTime={videoDuration} />
+                </div>
             </div>
         </section>
     )

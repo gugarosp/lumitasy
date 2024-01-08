@@ -49,33 +49,40 @@
         }
     }
 
-    .actions,
-    .controls {
+    .actions .actions-wrapper,
+    .controls .controls-wrapper {
         position: relative;
         top: 0;
-        transition: top 2s;
-        //transition-delay: 1s;
+        transition: top .5s;
     }
 
     .actions {
         align-self: flex-start;
         padding: var(--spacing-4x) 0 0 var(--spacing-4x);
 
-        &.hide-actions {
-            top: -100%;
+        .actions-wrapper {
+
+            &.hide-actions {
+                top: calc(-100% - var(--spacing-4x));
+            }
         }
+        
     }
 
     .controls {
-        display: none;
         padding: 0 var(--spacing-4x) var(--spacing-4x);
 
-        &.show-controls {
-            display: block;
-        }
-
-        &.hide-controls {
-            top: 100%;
+        .controls-wrapper {
+            display: none;
+            width: 100%;
+            
+            &.show-controls {
+                display: block;
+            }
+    
+            &.hide-controls {
+                top: calc(100% + var(--spacing-5x));
+            }
         }
 
     }

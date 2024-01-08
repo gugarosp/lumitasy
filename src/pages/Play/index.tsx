@@ -1,6 +1,6 @@
 import styles from "./Play.module.scss"
 
-import { SetStateAction, useContext, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Button from "elements/Button";
 import VideoPlayerControls from "components/VideoPlayerControls";
 import { PlayMovieContext } from "context/playMovie";
@@ -80,8 +80,8 @@ export default function Play () {
     // Controls: Video player controls that is on bottom of the page
 
     // Hide controls and actions css classes
-    const [hideControlsClass, setHideControlsClass] = useState<SetStateAction<string>>("");
-    const [hideActionsClass, setHideActionsClass] = useState<SetStateAction<string>>("");
+    const [hideControlsClass, setHideControlsClass] = useState("");
+    const [hideActionsClass, setHideActionsClass] = useState("");
 
     // Status of controls and actions hide status
     const hideControlsActions = useRef(true);

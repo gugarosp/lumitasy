@@ -3,9 +3,10 @@ import styles from "./Slider.module.scss";
 
 interface SliderProps {
     sliderPosition?: number
+    slidePlayElement?: any
 }
 
-export default function Slider ({sliderPosition = 0}:SliderProps) {
+export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderProps) {
 
     // Receives the slider position
     const [currentSlidePosition, setCurrentSlidePosition] = useState<number>(0);
@@ -29,8 +30,15 @@ export default function Slider ({sliderPosition = 0}:SliderProps) {
 
         // Sets the new slider position (and therefore the new inner bar position)
         setCurrentSlidePosition(newBarPositionPercentage);
-    }
 
+
+        // Skips video to specific time if prop slidePlayElement exists
+        if (slidePlayElement) {
+            const videoDuration = slidePlayElement().duration;
+            const currentVideoTime = videoDuration * newBarPositionPercentage / 100
+            slidePlayElement().currentTime = currentVideoTime;
+        }
+    }
 
     /////////////
     /* HANDLER */
@@ -39,7 +47,7 @@ export default function Slider ({sliderPosition = 0}:SliderProps) {
     // Ref to get handler html element
     const handler = useRef<any>();
 
-    //
+    // Last Touch Position
     const lastTouchPosition = useRef<number>(0);
 
     // Calculation for the handle to slide according mouse movement
@@ -102,7 +110,7 @@ export default function Slider ({sliderPosition = 0}:SliderProps) {
 
     return (
         <div className={styles.slider}>
-            <div className={styles["background"]} onClick={event => barClickPosition(event)}>
+            <div className={styles["background"]} onClick={event => {barClickPosition(event)}} >
                 <div className={styles["current-position"]} style={{width: `${currentSlidePosition}%`}}></div>
             </div>
             <div ref={handler} className={styles.handler} style={{left: `${currentSlidePosition}%`}}

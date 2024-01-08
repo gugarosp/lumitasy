@@ -10,6 +10,7 @@ interface VideoPlayerControlsProps {
 }
 
 interface playProps {
+    video: any
     videoCurrentTime: number
     PlayPauseVideo: () => void
     playPauseIcon: string
@@ -55,10 +56,17 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
         }
     }
     
+    // Video Element
+    const { video }:playProps = useContext(PlayMovieContext);
+
+    function slidePlayElement(element:any) {
+        return element;
+    }
+
     return (
         <div className={styles["video-player-controls"]}>
 
-            <Slider sliderPosition={sliderPosition}/>
+            <Slider sliderPosition={sliderPosition} slidePlayElement={() => slidePlayElement(video.current)}/>
 
             <div className={styles.controls}>
                 <div className={styles.time}>

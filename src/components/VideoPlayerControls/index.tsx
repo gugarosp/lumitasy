@@ -59,7 +59,7 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     // Video Element
     const { video }:playProps = useContext(PlayMovieContext);
 
-    function sliderPlayElement(element:any) {
+    function sliderPlayElement(element:HTMLVideoElement) {
         return element;
     }
 

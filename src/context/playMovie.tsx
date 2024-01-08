@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useRef, useState } from "react";
 
-export const PlayMovieContext:any = createContext('');
+export const PlayMovieContext:any = createContext<PlayMovieProviderProps | null>(null);
 
 interface PlayMovieProviderProps {
     children: ReactElement

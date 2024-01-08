@@ -1,6 +1,7 @@
 import { ReactElement, createContext, useEffect, useState } from "react";
 
-export const MoviesContext:any = createContext('');
+
+export const MoviesContext:any = createContext<moviesListProps | null>(null);
 
 interface moviesListProps {
     id: number

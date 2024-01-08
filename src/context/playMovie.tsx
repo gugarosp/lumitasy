@@ -9,12 +9,14 @@ interface PlayMovieProviderProps {
 export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
 
     // Video Element
-    const video = useRef<any>();
+    const video = useRef<HTMLVideoElement>();
 
-    function metaDataVideo (event:any) {
-        setVideoCurrentTime(Math.floor(video.current.currentTime));
-        setVideoDuration(Math.ceil(video.current.duration));
-        setMovieLoaded(true);
+    function metaDataVideo () {
+        if (video.current !== undefined) {
+            setVideoCurrentTime(Math.floor(video.current.currentTime));
+            setVideoDuration(Math.ceil(video.current.duration));
+            setMovieLoaded(true);
+        }
     }
 
     // Video Infos
@@ -26,10 +28,10 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     const [videoStatus, setVideoStatus] = useState("paused");
 
     function PlayPauseVideo () {
-        if (videoStatus === "paused" && movieLoaded === true) {
+        if (videoStatus === "paused" && movieLoaded === true && video.current !== undefined) {
             video.current.play();
             setVideoStatus("playing");
-        } else if (videoStatus === "playing" && movieLoaded === true) {
+        } else if (videoStatus === "playing" && movieLoaded === true && video.current !== undefined) {
             video.current.pause();
             setVideoStatus("paused");
         }

@@ -52,7 +52,6 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
 
     // Calculation for the handle to slide according mouse movement
     function slide (event:MouseEvent | TouchEvent) {
-        console.log(event);
         const sliderWidth = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().width;
         const sliderBaseXPosition = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().x;
         

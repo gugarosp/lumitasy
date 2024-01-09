@@ -82,7 +82,7 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
             const currentVideoTime = videoDuration * newHandlePositionPercentage / 100;
             handleCurrentVideoTime.current = currentVideoTime;
             
-            if (slidePlayElement().paused === true) {
+            if (slidePlayElement().paused === false) {
                 slidePlayElement().pause();
             }
         }
@@ -103,11 +103,11 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
         window.removeEventListener("touchend", slide);
     }
 
-    // 
-    //const handlePlayVideoTimeout = useRef<ReturnType<typeof setTimeout>>();
+    // Timeout that prevents play video when it's not already loaded
+    const handlePlayVideoTimeout = useRef<ReturnType<typeof setTimeout>>();
 
-    // 
-    //const handlePlayVideoTimeoutRunning = useRef<boolean>(false);
+    // Status of handlePlayVideo timeOut, informs that if it is running (waiting until execution)
+    // const handlePlayVideoTimeoutRunning = useRef<boolean>(false);
 
     // Changes handle movement status so "function 'slide'" can remove added handle listeners 
     function finishSlideHandle() {
@@ -115,8 +115,14 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
 
         // Plays video when handle is released if prop slidePlayElement exists
         if (slidePlayElement) {
+            
             slidePlayElement().currentTime = handleCurrentVideoTime.current;
-            slidePlayElement().play();
+            
+            clearTimeout(handlePlayVideoTimeout.current);
+            handlePlayVideoTimeout.current = setTimeout(() => {
+                slidePlayElement()?.play();
+            }, 1000);
+
         }
     }
 

@@ -13,7 +13,9 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
     
     // Sets the slider position if sliderPosition is given/updated
     useEffect(() => {
-        setCurrentSlidePosition(sliderPosition);
+        if (sliderMoving.current === false) {
+            setCurrentSlidePosition(sliderPosition);
+        }
     }, [sliderPosition])
     
     /////////
@@ -30,7 +32,6 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
 
         // Sets the new slider position (and therefore the new inner bar position)
         setCurrentSlidePosition(newBarPositionPercentage);
-
 
         // Skips video to specific time if prop slidePlayElement exists
         if (slidePlayElement) {
@@ -71,6 +72,13 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
         
         // Sets the new slider position (and therefore the new handle position)
         setCurrentSlidePosition(newHandlePositionPercentage);
+
+        // Skips video to specific time if prop slidePlayElement exists
+        if (slidePlayElement) {
+            const videoDuration = slidePlayElement().duration;
+            const currentVideoTime = videoDuration * newHandlePositionPercentage / 100
+            slidePlayElement().currentTime = currentVideoTime;
+        }
 
         // Remove all event listeners
         if (sliderMoving.current === false) {

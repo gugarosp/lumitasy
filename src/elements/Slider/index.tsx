@@ -47,10 +47,13 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
 
     // Ref to get handler html element
     const handler = useRef<any>();
-
+    
+    // Current video time when handle is dragged
+    const handleCurrentVideoTime = useRef<number>();
+    
     // Last Touch Position
     const lastTouchPosition = useRef<number>(0);
-
+    
     // Calculation for the handle to slide according mouse movement
     function slide (event:MouseEvent | TouchEvent) {
         const sliderWidth = handler.current.parentElement.querySelector(":first-child").getBoundingClientRect().width;
@@ -76,8 +79,12 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
         // Skips video to specific time if prop slidePlayElement exists
         if (slidePlayElement) {
             const videoDuration = slidePlayElement().duration;
-            const currentVideoTime = videoDuration * newHandlePositionPercentage / 100
-            slidePlayElement().currentTime = currentVideoTime;
+            const currentVideoTime = videoDuration * newHandlePositionPercentage / 100;
+            handleCurrentVideoTime.current = currentVideoTime;
+            
+            if (slidePlayElement().paused === true) {
+                slidePlayElement().pause();
+            }
         }
 
         // Remove all event listeners
@@ -96,9 +103,21 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
         window.removeEventListener("touchend", slide);
     }
 
+    // 
+    //const handlePlayVideoTimeout = useRef<ReturnType<typeof setTimeout>>();
+
+    // 
+    //const handlePlayVideoTimeoutRunning = useRef<boolean>(false);
+
     // Changes handle movement status so "function 'slide'" can remove added handle listeners 
     function finishSlideHandle() {
         sliderMoving.current = false;
+
+        // Plays video when handle is released if prop slidePlayElement exists
+        if (slidePlayElement) {
+            slidePlayElement().currentTime = handleCurrentVideoTime.current;
+            slidePlayElement().play();
+        }
     }
 
     // Starts handle movement/listeners

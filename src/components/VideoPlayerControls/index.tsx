@@ -19,7 +19,7 @@ interface playProps {
 
 export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlayerControlsProps) {
     
-    // Transforms the video current time and total time into a 'h:mm' format
+    // Transforms the video current time and total time into a 'h:mm:ss' format
     function timeFormat (time:number) {
         return new Date(10800000 + (time * 1000)).toString().slice(17, 24);
     }

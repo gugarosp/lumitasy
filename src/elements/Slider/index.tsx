@@ -49,7 +49,7 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
     const handler = useRef<any>();
     
     // Current video time when handle is dragged
-    const handleCurrentVideoTime = useRef<number>();
+    const handleCurrentVideoTime = useRef<number>(0);
     
     // Last Touch Position
     const lastTouchPosition = useRef<number>(0);
@@ -106,12 +106,11 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
     // Timeout that prevents play video when it's not already loaded
     const handlePlayVideoTimeout = useRef<ReturnType<typeof setTimeout>>();
 
-    // Status of handlePlayVideo timeOut, informs that if it is running (waiting until execution)
-    // const handlePlayVideoTimeoutRunning = useRef<boolean>(false);
-
     // Changes handle movement status so "function 'slide'" can remove added handle listeners 
     function finishSlideHandle() {
         sliderMoving.current = false;
+
+        setVideoHandlerClass("");
 
         // Plays video when handle is released if prop slidePlayElement exists
         if (slidePlayElement) {
@@ -130,6 +129,8 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
     function startHandleMovement () {
         sliderMoving.current = true;
 
+        setVideoHandlerClass(styles["video-handler-time"]);
+
         window.addEventListener("mousemove", slide);
         window.addEventListener("mouseup", finishSlideHandle);
 
@@ -139,14 +140,28 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
     }
 
     // Handle movement status
-    const sliderMoving = useRef<boolean>(false)
+    const sliderMoving = useRef<boolean>(false);
+
+    /* VIDEO TOOLTIP */
+
+    // Transforms the video current time and total time into a 'h:mm:ss' format
+    function timeFormat (time:number) {
+        return new Date(10800000 + (time * 1000)).toString().slice(17, 24);
+    }
+
+    // Tooltip class
+    const [videoHandlerClass, setVideoHandlerClass] = useState<string>("");
 
     return (
         <div className={styles.slider}>
             <div className={styles["background"]} onClick={event => {barClickPosition(event)}} >
                 <div className={styles["current-position"]} style={{width: `${currentSlidePosition}%`}}></div>
             </div>
-            <div ref={handler} className={styles.handler} style={{left: `${currentSlidePosition}%`}}
+            <div
+                ref={handler}
+                data-videohandlertime={slidePlayElement ? timeFormat(handleCurrentVideoTime.current) : undefined}
+                className={`${styles.handler} ${slidePlayElement ? videoHandlerClass : ""}`}
+                style={{left: `${currentSlidePosition}%`}}
                 onMouseDown={startHandleMovement}
                 onTouchStart={startHandleMovement}
             ></div>

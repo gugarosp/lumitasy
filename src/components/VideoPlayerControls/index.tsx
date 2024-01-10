@@ -60,14 +60,14 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     const { video }:playProps = useContext(PlayMovieContext);
 
     // Function that passes the video html element to slider element
-    function sliderPlayElement(element:HTMLVideoElement) {
+    function sliderVideoElement(element:HTMLVideoElement) {
         return element;
     }
 
     return (
         <div className={styles["video-player-controls"]}>
 
-            <Slider sliderPosition={sliderPosition} slidePlayElement={() => sliderPlayElement(video.current)}/>
+            <Slider sliderPosition={sliderPosition} sliderVideoElement={() => sliderVideoElement(video.current)}/>
 
             <div className={styles.controls}>
                 <div className={styles.time}>

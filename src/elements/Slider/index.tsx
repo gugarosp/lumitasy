@@ -3,14 +3,17 @@ import styles from "./Slider.module.scss";
 
 interface SliderProps {
     sliderPosition?: number
-    slidePlayElement?: any
+    sliderVideoElement?: any
 }
 
-export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderProps) {
+export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderProps) {
 
     /////////////
     /* GENERAL */
     /////////////
+
+    /* NOTE */
+    // sliderVideoElement is a specific prop used by VideoPlayerControls Component
 
     // Receives the slider position prop
     const [currentSlidePosition, setCurrentSlidePosition] = useState<number>(0);
@@ -42,11 +45,11 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
         // Sets the new slider position (and therefore the new inner bar position)
         setCurrentSlidePosition(newBarPositionPercentage);
 
-        // Skips video to specific time if prop slidePlayElement exists
-        if (slidePlayElement) {
-            const videoDuration = slidePlayElement().duration;
+        // Skips video to specific time if prop sliderVideoElement exists
+        if (sliderVideoElement) {
+            const videoDuration = sliderVideoElement().duration;
             const currentVideoTime = videoDuration * newBarPositionPercentage / 100
-            slidePlayElement().currentTime = currentVideoTime;
+            sliderVideoElement().currentTime = currentVideoTime;
         }
     }
 
@@ -65,7 +68,7 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
     // to register the last touch while user is dragging the handle)
     const lastHandleTouchPosition = useRef<number>(0);
     
-    // Current video time when handle is dragged (used only if slidePlayElement exists)
+    // Current video time when handle is dragged (used only if sliderVideoElement exists)
     const handleCurrentVideoTime = useRef<number>(0);
 
     // Starts handle movement/listeners
@@ -105,14 +108,14 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
         // Sets the new slider position (and therefore the new handle position)
         setCurrentSlidePosition(newHandlePositionPercentage);
 
-        // Skips video to specific time (used only if slidePlayElement exists)
-        if (slidePlayElement) {
-            const videoDuration = slidePlayElement().duration;
+        // Skips video to specific time (used only if sliderVideoElement exists)
+        if (sliderVideoElement) {
+            const videoDuration = sliderVideoElement().duration;
             const currentVideoTime = videoDuration * newHandlePositionPercentage / 100;
             handleCurrentVideoTime.current = currentVideoTime;
             
-            if (slidePlayElement().paused === false) {
-                slidePlayElement().pause();
+            if (sliderVideoElement().paused === false) {
+                sliderVideoElement().pause();
             }
         }
 
@@ -132,7 +135,7 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
         window.removeEventListener("touchend", slide);
     }
     
-    // Timeout that prevents play video when it's not already loaded (used only if slidePlayElement exists)
+    // Timeout that prevents play video when it's not already loaded (used only if sliderVideoElement exists)
     const handlePlayVideoTimeout = useRef<ReturnType<typeof setTimeout>>();
     
     // Video time handle tooltip css class status
@@ -144,13 +147,13 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
 
         setVideoHandleClass("");
 
-        // Plays video when handle is released (used only if slidePlayElement exists)
-        if (slidePlayElement) {
-            slidePlayElement().currentTime = handleCurrentVideoTime.current;
+        // Plays video when handle is released (used only if sliderVideoElement exists)
+        if (sliderVideoElement) {
+            sliderVideoElement().currentTime = handleCurrentVideoTime.current;
             
             clearTimeout(handlePlayVideoTimeout.current);
             handlePlayVideoTimeout.current = setTimeout(() => {
-                slidePlayElement()?.play();
+                sliderVideoElement()?.play();
             }, 1000);
         }
     }
@@ -162,8 +165,8 @@ export default function Slider ({sliderPosition = 0, slidePlayElement}:SliderPro
             </div>
             <div
                 ref={handle}
-                data-videohandletime={slidePlayElement ? timeFormat(handleCurrentVideoTime.current) : undefined}
-                className={`${styles.handle} ${slidePlayElement ? videohandleClass : ""}`}
+                data-videohandletime={sliderVideoElement ? timeFormat(handleCurrentVideoTime.current) : undefined}
+                className={`${styles.handle} ${sliderVideoElement ? videohandleClass : ""}`}
                 style={{left: `${currentSlidePosition}%`}}
                 onMouseDown={startHandleMovement}
                 onTouchStart={startHandleMovement}

@@ -11,7 +11,6 @@ interface ButtonProps {
     children?: string
 }
 
-
 export default function Button (
     {
         icon = "add", 
@@ -23,8 +22,6 @@ export default function Button (
         action,
         children=""
     }:ButtonProps) {
-    
-    
     
     function buttonBehavior (event:React.MouseEvent<HTMLElement>) {
         if (!event.currentTarget.hasAttribute("href")) {

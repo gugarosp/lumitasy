@@ -66,16 +66,21 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
     // Last Touch Position
     // (touchend event doesn't give the touch end position, so you need
     // to register the last touch while user is dragging the handle)
-    const lastHandleTouchPosition = useRef<number>(0);
+    const handleLastTouchPosition = useRef<number>(0);
     
     // Current video time when handle is dragged (used only if sliderVideoElement exists)
     const handleCurrentVideoTime = useRef<number>(0);
+
+    // Initial video status (playing or paused) (used only if sliderVideoElement exists)
+    const handleVideoCurrentStatus = useRef<any>();
 
     // Starts handle movement/listeners
     function startHandleMovement () {
         sliderMoving.current = true;
 
         setVideoHandleClass(styles["video-handle-time"]);
+
+        handleVideoCurrentStatus.current = sliderVideoElement().paused;
 
         window.addEventListener("mousemove", slide);
         window.addEventListener("mouseup", finishSlideHandle);
@@ -92,9 +97,9 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
         const sliderBaseXPosition = handle.current.parentElement.querySelector(":first-child").getBoundingClientRect().x;
         
         if (event instanceof TouchEvent) {
-            lastHandleTouchPosition.current = event.touches[0].clientX;
+            handleLastTouchPosition.current = event.touches[0].clientX;
         }
-        const handlePosition = event instanceof MouseEvent && event.clientX ? event.clientX : lastHandleTouchPosition.current;
+        const handlePosition = event instanceof MouseEvent && event.clientX ? event.clientX : handleLastTouchPosition.current;
         
         const newHandlePosition = handlePosition - sliderBaseXPosition;
         let newHandlePositionPercentage = newHandlePosition / sliderWidth * 100;
@@ -152,9 +157,12 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
             sliderVideoElement().currentTime = handleCurrentVideoTime.current;
             
             clearTimeout(handlePlayVideoTimeout.current);
-            handlePlayVideoTimeout.current = setTimeout(() => {
-                sliderVideoElement()?.play();
-            }, 1000);
+            
+            if (handleVideoCurrentStatus.current === false) {
+                handlePlayVideoTimeout.current = setTimeout(() => {
+                    sliderVideoElement()?.play();
+                }, 1000);
+            }
         }
     }
 

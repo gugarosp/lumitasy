@@ -25,15 +25,11 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     const [videoDuration, setVideoDuration] = useState(0);
     
     // Play and pause video
-    const [videoStatus, setVideoStatus] = useState("paused");
-
     function PlayPauseVideo () {
-        if (videoStatus === "paused" && movieLoaded === true && video.current !== undefined) {
+        if (video.current?.paused === true && movieLoaded === true) {
             video.current.play();
-            setVideoStatus("playing");
-        } else if (videoStatus === "playing" && movieLoaded === true && video.current !== undefined) {
+        } else if (video.current?.paused === false && movieLoaded === true) {
             video.current.pause();
-            setVideoStatus("paused");
         }
     }
 
@@ -60,7 +56,7 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     const [movieLoaded, setMovieLoaded] = useState(false);
 
     // Change play/pause icon acording to movie status
-    const [playPauseIcon, setPlayPauseIcon] = useState("play_arrow")
+    const [playPauseIcon, setPlayPauseIcon] = useState("play_arrow");
 
     return (
         <PlayMovieContext.Provider value={

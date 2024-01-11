@@ -33,17 +33,18 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
         }
     }
 
+    
+    // Video while playing
+    function whilePlayVideo(element:HTMLVideoElement) {
+        getVideoInfo.current = setInterval(() => {
+            videoInfo(element);
+        }, 1);
+    }
+    
     // Video Infos
     function videoInfo(element:HTMLVideoElement) {
         setVideoCurrentTime(Math.floor(element.currentTime));
         setVideoDuration(Math.ceil(element.duration));
-    }
-
-    // Video while playing
-    function whilePlayVideo(event:any) {
-        getVideoInfo.current = setInterval(() => {
-            videoInfo(event.target);
-        }, 1);
     }
 
     // Video when paused

@@ -138,7 +138,7 @@ export default function Play () {
                 <video
                     ref={video}
                     onLoadedMetadata={event => metaDataVideo(event)}
-                    onPlay={event => {whilePlayVideo(event); setPlayPauseIcon("pause")}}
+                    onPlay={event => {whilePlayVideo(event.target); setPlayPauseIcon("pause");}}
                     onPause={() => {whenPauseVideo(); setPlayPauseIcon("play_arrow");}}
                 >
                     <source src={movieInfo?.source} type="video/mp4" />

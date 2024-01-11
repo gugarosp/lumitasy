@@ -20,7 +20,7 @@ interface playProps {
     whilePlayVideo: any,
     whenPauseVideo: () => void,
     movieLoaded: boolean,
-    changePlayIcon: () => void
+    setPlayPauseIcon: React.Dispatch<React.SetStateAction<string>>
 }
 
 interface MovieContextProps {
@@ -53,9 +53,6 @@ export default function Play () {
 
     // Play and pause video
     const { PlayPauseVideo }:playProps = useContext(PlayMovieContext);
-
-    // Play and pause icon change
-    const { changePlayIcon }:playProps = useContext(PlayMovieContext);
 
     // Video Infos
     const { videoCurrentTime }:playProps = useContext(PlayMovieContext);
@@ -128,6 +125,9 @@ export default function Play () {
         }
     });
 
+    // Play/Pause Icon
+    const { setPlayPauseIcon }:playProps = useContext(PlayMovieContext);
+
     // Page title
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
@@ -135,11 +135,16 @@ export default function Play () {
         <section className={styles.play}>
 
             <div className={styles["video-container"]}>
-                <video ref={video} onLoadedMetadata={event => metaDataVideo(event)} onPlay={event => whilePlayVideo(event)} onPause={whenPauseVideo}>
+                <video
+                    ref={video}
+                    onLoadedMetadata={event => metaDataVideo(event)}
+                    onPlay={event => {whilePlayVideo(event); setPlayPauseIcon("pause")}}
+                    onPause={() => {whenPauseVideo(); setPlayPauseIcon("play_arrow");}}
+                >
                     <source src={movieInfo?.source} type="video/mp4" />
                 </video>
 
-                <div className={styles.glass} onClick={() => {PlayPauseVideo(); changePlayIcon();}}>
+                <div className={styles.glass} onClick={() => {PlayPauseVideo();}}>
                     <div className={`${styles["loading-warning"]} ${movieLoaded === true ? styles["loading-warning-hide"] : "" }`}>
 
                         <div className={styles["loading-icon"]}><div></div><div></div><div></div><div></div></div>

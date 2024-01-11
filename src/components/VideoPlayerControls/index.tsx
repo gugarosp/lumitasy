@@ -14,7 +14,6 @@ interface playProps {
     videoCurrentTime: number
     PlayPauseVideo: () => void
     playPauseIcon: string
-    changePlayIcon: () => void
 }
 
 export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlayerControlsProps) {
@@ -41,7 +40,6 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
 
     // Play and pause icon change
     const { playPauseIcon }:playProps = useContext(PlayMovieContext);
-    const { changePlayIcon }:playProps = useContext(PlayMovieContext);
 
     // Fullscreen
     const [fullscreenIcon, setFullscreenIcon] = useState("fullscreen")
@@ -82,7 +80,7 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
                         <span className="h8 title-alternative">10</span>
                     </div>
                     
-                    <Button icon={playPauseIcon} iconFill={true} type="icon-ring" size="titan" strength="higher" action={() => {PlayPauseVideo(); changePlayIcon();}}/>
+                    <Button icon={playPauseIcon} iconFill={true} type="icon-ring" size="titan" strength="higher" action={() => PlayPauseVideo()}/>
                     
                     <div className={styles.forward}>
                         <Button icon="replay" iconFill={true} type="icon-ring" size="giant" strength="higher" />

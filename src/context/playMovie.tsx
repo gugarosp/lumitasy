@@ -20,7 +20,7 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     }
 
     // Video Infos
-    const [getVideoInfo, setGetInfoVideo] = useState('');
+    const getVideoInfo = useRef<ReturnType<typeof setInterval>>();
     const [videoCurrentTime, setVideoCurrentTime] = useState(0);
     const [videoDuration, setVideoDuration] = useState(0);
     
@@ -34,22 +34,21 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     }
 
     // Video Infos
-    function videoInfo(element:any) {
+    function videoInfo(element:HTMLVideoElement) {
         setVideoCurrentTime(Math.floor(element.currentTime));
         setVideoDuration(Math.ceil(element.duration));
     }
 
     // Video while playing
     function whilePlayVideo(event:any) {
-        const intervalVideo:any = window.setInterval(() => {
+        getVideoInfo.current = setInterval(() => {
             videoInfo(event.target);
         }, 1);
-        setGetInfoVideo(intervalVideo);
     }
 
     // Video when paused
     function whenPauseVideo () {
-        clearInterval(getVideoInfo);
+        clearInterval(getVideoInfo.current);
     }
 
     // Show controls when loaded
@@ -64,7 +63,6 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
                 video,
                 metaDataVideo,
                 getVideoInfo,
-                setGetInfoVideo,
                 videoCurrentTime,
                 setVideoCurrentTime,
                 videoDuration,

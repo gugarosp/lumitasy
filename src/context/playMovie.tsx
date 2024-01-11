@@ -58,6 +58,19 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     // Change play/pause icon acording to movie status
     const [playPauseIcon, setPlayPauseIcon] = useState("play_arrow");
 
+    // Fullscreen
+    const [fullscreenIcon, setFullscreenIcon] = useState("fullscreen")
+
+    function fullscreen () {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            setFullscreenIcon("fullscreen_exit")
+        } else if (document.exitFullscreen) {
+            document.exitFullscreen();
+            setFullscreenIcon("fullscreen")
+        }
+    }
+
     return (
         <PlayMovieContext.Provider value={
             {
@@ -75,7 +88,10 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
                 movieLoaded,
                 setMovieLoaded,
                 playPauseIcon,
-                setPlayPauseIcon
+                setPlayPauseIcon,
+                fullscreenIcon,
+                fullscreen,
+                setFullscreenIcon
             }
         }>
             {children}

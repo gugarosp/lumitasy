@@ -14,9 +14,8 @@ interface playProps {
     videoCurrentTime: number
     PlayPauseVideo: () => void
     playPauseIcon: string,
-    fullscreenIcon:string;
-    fullscreen: () => void,
-    setFullscreenIcon: React.Dispatch<React.SetStateAction<string>>;
+    fullscreenIcon: string;
+    fullscreen: () => void
 }
 
 export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlayerControlsProps) {
@@ -45,20 +44,10 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     const { playPauseIcon }:playProps = useContext(PlayMovieContext);
 
     // Fullscreen
-
     const { fullscreenIcon }:playProps = useContext(PlayMovieContext);
-    const { setFullscreenIcon }:playProps = useContext(PlayMovieContext);
 
-    function fullscreen () {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-            setFullscreenIcon("fullscreen_exit")
-        } else if (document.exitFullscreen) {
-            document.exitFullscreen();
-            setFullscreenIcon("fullscreen")
-        }
-    }
-    
+    const { fullscreen }:playProps = useContext(PlayMovieContext);
+
     // Video Element
     const { video }:playProps = useContext(PlayMovieContext);
 

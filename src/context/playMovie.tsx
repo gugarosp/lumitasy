@@ -32,7 +32,6 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
             video.current.pause();
         }
     }
-
     
     // Video while playing
     function whilePlayVideo(element:HTMLVideoElement) {

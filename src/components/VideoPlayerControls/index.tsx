@@ -45,7 +45,6 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
 
     // Fullscreen
     const { fullscreenIcon }:playProps = useContext(PlayMovieContext);
-
     const { fullscreen }:playProps = useContext(PlayMovieContext);
 
     // Video Element

@@ -20,7 +20,8 @@ interface playProps {
     whilePlayVideo: any,
     whenPauseVideo: () => void,
     movieLoaded: boolean,
-    setPlayPauseIcon: React.Dispatch<React.SetStateAction<string>>
+    setPlayPauseIcon: React.Dispatch<React.SetStateAction<string>>,
+    fullscreen: () => void,
 }
 
 interface MovieContextProps {
@@ -66,7 +67,6 @@ export default function Play () {
 
     // Movie load status
     const { movieLoaded }:playProps = useContext(PlayMovieContext);
-
 
     ////////////////////////////////////////
     /* HIDE AND SHOW CONTROLS AND ACTIONS */
@@ -128,6 +128,9 @@ export default function Play () {
     // Play/Pause Icon
     const { setPlayPauseIcon }:playProps = useContext(PlayMovieContext);
 
+    // Fullscreen
+    const { fullscreen }:playProps = useContext(PlayMovieContext);
+
     // Page title
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
@@ -144,7 +147,11 @@ export default function Play () {
                     <source src={movieInfo?.source} type="video/mp4" />
                 </video>
 
-                <div className={styles.glass} onClick={() => {PlayPauseVideo();}}>
+                <div
+                    className={styles.glass}
+                    onClick={() => {PlayPauseVideo();}}
+                    onDoubleClick={fullscreen}
+                >
                     <div className={`${styles["loading-warning"]} ${movieLoaded === true ? styles["loading-warning-hide"] : "" }`}>
 
                         <div className={styles["loading-icon"]}><div></div><div></div><div></div><div></div></div>

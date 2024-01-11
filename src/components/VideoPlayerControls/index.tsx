@@ -50,9 +50,17 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     // Video Element
     const { video }:playProps = useContext(PlayMovieContext);
 
-    // Function that passes the video html element to slider element
+    // Passes the video html element to slider element
     function sliderVideoElement(element:HTMLVideoElement) {
         return element;
+    }
+
+    // Forward and backward 10 seconds
+    function changeVideoTime (direction:string, seconds: number) {
+        const videoCurrentTime = video.current.currentTime;
+        const vector = direction === "forward" ? 1 : "backward" ? -1 : 0;
+
+        video.current.currentTime = videoCurrentTime + (vector * seconds);
     }
 
     return (
@@ -69,14 +77,14 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
 
                 <div className={styles.player}>
                     <div className={styles.backward}>
-                        <Button icon="replay" iconFill={true} type="icon-ring" size="giant" strength="higher" />
+                        <Button icon="replay" iconFill={true} type="icon-ring" size="giant" strength="higher" action={() => changeVideoTime("backward", 10)}/>
                         <span className="h8 title-alternative">10</span>
                     </div>
                     
                     <Button icon={playPauseIcon} iconFill={true} type="icon-ring" size="titan" strength="higher" action={() => PlayPauseVideo()}/>
                     
                     <div className={styles.forward}>
-                        <Button icon="replay" iconFill={true} type="icon-ring" size="giant" strength="higher" />
+                        <Button icon="replay" iconFill={true} type="icon-ring" size="giant" strength="higher" action={() => changeVideoTime("forward", 10)} />
                         <span className="h8 title-alternative">10</span>
                     </div>
                 </div>

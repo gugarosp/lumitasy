@@ -35,6 +35,7 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     
     // Video while playing
     function whilePlayVideo(element:HTMLVideoElement) {
+        clearInterval(getVideoInfo.current);
         getVideoInfo.current = setInterval(() => {
             videoInfo(element);
         }, 1);
@@ -44,11 +45,6 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     function videoInfo(element:HTMLVideoElement) {
         setVideoCurrentTime(element.currentTime === element.duration ? Math.ceil(element.currentTime) : Math.floor(element.currentTime));
         setVideoDuration(Math.ceil(element.duration));
-    }
-
-    // Video when paused
-    function whenPauseVideo () {
-        clearInterval(getVideoInfo.current);
     }
 
     // Show controls when loaded
@@ -83,7 +79,6 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
                 PlayPauseVideo,
                 videoInfo,
                 whilePlayVideo,
-                whenPauseVideo,
                 movieLoaded,
                 setMovieLoaded,
                 playPauseIcon,

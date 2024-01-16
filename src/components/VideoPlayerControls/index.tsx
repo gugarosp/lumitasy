@@ -69,7 +69,7 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     }
 
     // Forward and backward 10 seconds
-    function changeVideoTime (direction:string, seconds: number) {
+    function changeVideoTime (direction:string, seconds:number) {
         const videoCurrentTime = video.current.currentTime;
         const vector = direction === "forward" ? 1 : "backward" ? -1 : 0;
 

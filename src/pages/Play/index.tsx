@@ -18,7 +18,6 @@ interface playProps {
     PlayPauseVideo: () => void,
     videoInfo: () => void,
     whilePlayVideo: any,
-    whenPauseVideo: () => void,
     movieLoaded: boolean,
     setPlayPauseIcon: React.Dispatch<React.SetStateAction<string>>,
     fullscreen: () => void,
@@ -61,9 +60,6 @@ export default function Play () {
 
     // Video while playing
     const { whilePlayVideo }:playProps = useContext(PlayMovieContext);
-
-    // Video when paused
-    const { whenPauseVideo }:playProps = useContext(PlayMovieContext);
 
     // Movie load status
     const { movieLoaded }:playProps = useContext(PlayMovieContext);
@@ -141,7 +137,7 @@ export default function Play () {
                     ref={video}
                     onLoadedMetadata={event => metaDataVideo(event)}
                     onPlay={event => {whilePlayVideo(event.target); setPlayPauseIcon("pause");}}
-                    onPause={() => {whenPauseVideo(); setPlayPauseIcon("play_arrow");}}
+                    onPause={() => {setPlayPauseIcon("play_arrow");}}
                 >
                     <source src={movieInfo?.source} type="video/mp4" />
                 </video>

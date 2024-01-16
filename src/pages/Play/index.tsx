@@ -92,8 +92,7 @@ export default function Play () {
             setHideActionsClass(styles["hide-actions"]);
             
             movieAlreadyLoaded.current = true;
-        }, 5000)  
-         
+        }, 5000);
     }
 
     // Timeout that hides controls and actions after mouse stops moving
@@ -104,7 +103,7 @@ export default function Play () {
 
     window.addEventListener("mousemove", () => {
         if (controlsTimeoutRunning.current === true) {
-            clearInterval(controlsTimeout.current)
+            clearTimeout(controlsTimeout.current)
             hideControlsActions.current = true;
             controlsTimeoutRunning.current = false;
         }

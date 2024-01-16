@@ -94,7 +94,7 @@ export default function Play () {
     // Timeout that hides controls and actions after mouse stops moving
     const controlsTimeout = useRef<ReturnType<typeof setTimeout>>();
 
-    // Status of hiding timeOut, informs that if it is running (waiting until execution)
+    // Status of hiding timeOut, informs if it is running
     const controlsTimeoutRunning = useRef<boolean>(false);
 
     window.addEventListener("mousemove", () => {
@@ -126,6 +126,42 @@ export default function Play () {
     // Fullscreen
     const { fullscreen }:playProps = useContext(PlayMovieContext);
 
+
+    ////////////////////////////////////////
+    /* ADVERTISEMENT */
+    ////////////////////////////////////////
+
+    // Hide ad screen
+    const [adClass, setAdClass] = useState("");
+
+    // Show skip ad counter
+    let adCloseSeconds = 5;
+    const [skipAdCounterNumber, setSkipAdCounterNumber] = useState<number>(adCloseSeconds)
+    const skipAdCounter = useRef<ReturnType<typeof setInterval>>();
+    const skipAdCounterStarted = useRef<boolean>(false);
+    
+    const [showSkipButton, setShowSkipButton] = useState("");
+    
+    if (skipAdCounterStarted.current === false) {
+        skipAdCounterStarted.current = true;
+        
+        skipAdCounter.current = setInterval(() => {
+            adCloseSeconds--;
+            setSkipAdCounterNumber(adCloseSeconds);
+            if (adCloseSeconds === 0) {
+                clearInterval(skipAdCounter.current);
+                setShowSkipButton(styles["show-ad-skip-button"]);
+            }
+        }, 1000);
+    }
+    
+    // Close ad
+    function closeAd () {
+        setAdClass(styles["ad-hide"]);
+
+        video.current.play(); // Plays video when ad is closed
+    }
+
     // Page title
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
@@ -156,8 +192,31 @@ export default function Play () {
                         </h6>
                     </div>
                 </div>
-            </div>
 
+                <div className={`${styles.ad} ${adClass}`}>
+                    <div className={styles["ad-container"]}>
+                        <div className={styles["ad-header"]}>
+                            <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
+
+                            <div className={`${styles["ad-skip"]} ${showSkipButton}`}>
+                                <div className={styles["ad-skip-message"]}>
+                                    Skip ad in {skipAdCounterNumber}
+                                </div>
+
+                                <div className={styles["ad-skip-button"]}>
+                                    <Button icon="skip_next" size="large" strength="lower" iconFill={true} action={closeAd}>
+                                        Skip ad
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={styles["ad-content"]}>
+                            <img src="/ad.png" alt="Advertisement" />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div className={styles.actions}>
                 <div className={`${

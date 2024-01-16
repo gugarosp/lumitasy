@@ -43,6 +43,19 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     // Play and pause icon change
     const { playPauseIcon }:playProps = useContext(PlayMovieContext);
 
+    // Volume
+    const [volumeIcon, setVolumeIcon] = useState("volume_up");
+
+    function volume () {
+        if (volumeIcon === "volume_up") {
+            setVolumeIcon("volume_off");
+            video.current.volume = 0;
+        } else {
+            setVolumeIcon("volume_up");
+            video.current.volume = 1;
+        }
+    }
+
     // Fullscreen
     const { fullscreenIcon }:playProps = useContext(PlayMovieContext);
     const { fullscreen }:playProps = useContext(PlayMovieContext);
@@ -90,7 +103,7 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
                 </div>
 
                 <div className={styles.options}>
-                    <Button icon="volume_up" size="giant" strength="lower" />
+                    <Button icon={volumeIcon} size="giant" strength="lower" action={() => volume()} />
                     <Button icon={fullscreenIcon} size="giant" strength="lower" action={() => fullscreen()} />
                 </div>
 

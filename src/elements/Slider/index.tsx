@@ -117,7 +117,7 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
         if (sliderVideoElement) {
             const videoDuration = sliderVideoElement().duration;
             const currentVideoTime = videoDuration * newHandlePositionPercentage / 100;
-            handleCurrentVideoTime.current = currentVideoTime;
+            handleCurrentVideoTime.current = currentVideoTime === videoDuration ? Math.ceil(currentVideoTime) : Math.floor(currentVideoTime);
             
             if (sliderVideoElement().paused === false) {
                 sliderVideoElement().pause();

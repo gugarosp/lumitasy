@@ -42,7 +42,7 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     
     // Video Infos
     function videoInfo(element:HTMLVideoElement) {
-        setVideoCurrentTime(Math.floor(element.currentTime));
+        setVideoCurrentTime(element.currentTime === element.duration ? Math.ceil(element.currentTime) : Math.floor(element.currentTime));
         setVideoDuration(Math.ceil(element.duration));
     }
 

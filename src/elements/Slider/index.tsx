@@ -97,10 +97,10 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
         const sliderBaseXPosition = handle.current.parentElement.querySelector(":first-child").getBoundingClientRect().x;
         
         if (event instanceof TouchEvent) {
-            handleLastTouchPosition.current = event.touches[0].clientX;
+            handleLastTouchPosition.current = event.touches[0]?.clientX === undefined ? handleLastTouchPosition.current : event.touches[0].clientX;
         }
         const handlePosition = event instanceof MouseEvent && event.clientX ? event.clientX : handleLastTouchPosition.current;
-        
+
         const newHandlePosition = handlePosition - sliderBaseXPosition;
         let newHandlePositionPercentage = newHandlePosition / sliderWidth * 100;
 

@@ -79,18 +79,6 @@ export default function Play () {
     // Status of controls and actions hide status
     const hideControlsActions = useRef(true);
 
-    // Confirmation that the movie already loaded so the initial setTimeout (below) won't run infinitely
-    const movieAlreadyLoaded = useRef(false);
-
-    if (movieLoaded === true && movieAlreadyLoaded.current === false) { // Executes only one time, even if component rerenders
-        setTimeout(() => {
-            setHideControlsClass(`${styles["hide-controls"]}`);
-            setHideActionsClass(styles["hide-actions"]);
-            
-            movieAlreadyLoaded.current = true;
-        }, 5000);
-    }
-
     // Timeout that hides controls and actions after mouse stops moving
     const controlsTimeout = useRef<ReturnType<typeof setTimeout>>();
 
@@ -104,7 +92,7 @@ export default function Play () {
             controlsTimeoutRunning.current = false;
         }
 
-        if (hideControlsActions.current === true && movieAlreadyLoaded.current === true) {
+        if (hideControlsActions.current === true) {
             setHideControlsClass("");
             setHideActionsClass("");
             hideControlsActions.current = false;

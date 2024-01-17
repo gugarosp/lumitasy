@@ -38,7 +38,7 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
         clearInterval(getVideoInfo.current);
         getVideoInfo.current = setInterval(() => {
             videoInfo(element);
-        }, 1);
+        }, 100);
     }
     
     // Video Infos

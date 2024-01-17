@@ -4,21 +4,23 @@ import Slider from "elements/Slider";
 import { useContext, useEffect, useState } from "react";
 import { PlayMovieContext } from "context/playMovie";
 
-interface VideoPlayerControlsProps {
-    currentTime: number;
-    totalTime: number;
-}
-
 interface playProps {
     video: any
-    videoCurrentTime: number
+    videoCurrentTime: number,
+    videoDuration: number
     PlayPauseVideo: () => void
     playPauseIcon: string,
     fullscreenIcon: string;
     fullscreen: () => void
 }
 
-export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlayerControlsProps) {
+export default function VideoPlayerControls () {
+    // Video Element
+    const { video }:playProps = useContext(PlayMovieContext);
+    
+    // Video current time and duration
+    const { videoCurrentTime }:playProps = useContext(PlayMovieContext);
+    const { videoDuration }:playProps = useContext(PlayMovieContext);
     
     // Transforms the video current time and total time into a 'h:mm:ss' format
     function timeFormat (time:number) {
@@ -28,7 +30,7 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     // Calculation of slider progress according to video current time and total time
     const [sliderPosition, setSliderPosition] = useState<number>()
     
-    let sliderBarPositionPercentage = currentTime/totalTime * 100;
+    let sliderBarPositionPercentage = videoCurrentTime/videoDuration * 100;
     if (isNaN(sliderBarPositionPercentage)) {
         sliderBarPositionPercentage = 0;
     }
@@ -60,8 +62,6 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
     const { fullscreenIcon }:playProps = useContext(PlayMovieContext);
     const { fullscreen }:playProps = useContext(PlayMovieContext);
 
-    // Video Element
-    const { video }:playProps = useContext(PlayMovieContext);
 
     // Passes the video html element to slider element
     function sliderVideoElement(element:HTMLVideoElement) {
@@ -70,7 +70,6 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
 
     // Forward and backward 10 seconds
     function changeVideoTime (direction:string, seconds:number) {
-        const videoCurrentTime = video.current.currentTime;
         const vector = direction === "forward" ? 1 : "backward" ? -1 : 0;
 
         video.current.currentTime = videoCurrentTime + (vector * seconds);
@@ -84,7 +83,7 @@ export default function VideoPlayerControls ({currentTime, totalTime}:VideoPlaye
             <div className={styles.controls}>
                 <div className={styles.time}>
                     <h5 className="title-alternative">
-                        {timeFormat(currentTime)}/{timeFormat(totalTime)}
+                        {timeFormat(videoCurrentTime)}/{timeFormat(videoDuration)}
                     </h5>
                 </div>
 

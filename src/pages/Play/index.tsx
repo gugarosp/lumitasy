@@ -10,11 +10,7 @@ interface playProps {
     video: any,
     metaDataVideo: any
     getVideoInfo: string
-    setGetInfoVideo: React.Dispatch<React.SetStateAction<string>>
-    videoCurrentTime: number
-    setVideoCurrentTime: React.Dispatch<React.SetStateAction<number>>
     videoDuration: number
-    setVideoDuration: React.Dispatch<React.SetStateAction<number>>
     PlayPauseVideo: () => void,
     videoInfo: () => void,
     whilePlayVideo: any,
@@ -53,10 +49,6 @@ export default function Play () {
 
     // Play and pause video
     const { PlayPauseVideo }:playProps = useContext(PlayMovieContext);
-
-    // Video Infos
-    const { videoCurrentTime }:playProps = useContext(PlayMovieContext);
-    const { videoDuration }:playProps = useContext(PlayMovieContext);
 
     // Video while playing
     const { whilePlayVideo }:playProps = useContext(PlayMovieContext);
@@ -153,6 +145,8 @@ export default function Play () {
     // Page title
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
+
+
     return (
         <section className={styles.play}>
 
@@ -223,7 +217,7 @@ export default function Play () {
                             styles["show-controls"]} ${
                             hideControlsClass}` : "" }`
                 }>
-                    <VideoPlayerControls currentTime={videoCurrentTime} totalTime={videoDuration} />
+                    {/* <VideoPlayerControls /> */}
                 </div>
             </div>
         </section>

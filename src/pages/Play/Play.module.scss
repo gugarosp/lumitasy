@@ -68,6 +68,10 @@
 
                     .ad-skip {
 
+                        .ad-skip-message {
+                            user-select: none;;
+                        }
+
                         .ad-skip-button {
                             display: none;
                         }

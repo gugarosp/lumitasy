@@ -145,8 +145,6 @@ export default function Play () {
     // Page title
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
-
-
     return (
         <section className={styles.play}>
 
@@ -217,7 +215,7 @@ export default function Play () {
                             styles["show-controls"]} ${
                             hideControlsClass}` : "" }`
                 }>
-                    {/* <VideoPlayerControls /> */}
+                    <VideoPlayerControls />
                 </div>
             </div>
         </section>

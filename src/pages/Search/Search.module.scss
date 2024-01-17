@@ -1,12 +1,19 @@
 .search {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-3x);
+    flex-direction: column;
+    gap: var(--spacing-5x);
+    
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-3x);
 
-    a {
-        //flex-basis: calc(12.5vw - 40px);
-        flex-basis: calc((100% / 8) - 21px);
-        flex-grow: 0;
-        flex-shrink: 0;
+        a {
+            //flex-basis: calc(12.5vw - 40px);
+            flex-basis: calc((100% / 8) - 21px);
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+
     }
 }

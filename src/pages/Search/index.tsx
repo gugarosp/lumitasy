@@ -4,6 +4,7 @@ import Menu from "components/Menu";
 import { useContext } from "react";
 import { MoviesContext } from "context/movies";
 import Poster from "elements/Poster";
+import Input from "elements/Input";
 
 interface MovieContextProps {
     moviesList: {
@@ -22,8 +23,13 @@ export default function Search () {
     return (
         <>
             <Menu />
-            <section className={`outer-content-common`}>
-                <div className={`${styles.search} content`}>
+            <section className={`${styles.search} outer-content-common`}>
+                <div className="content">
+                    <Input />
+                </div>
+                
+                <div className={`${styles.content} content`}>
+                    
                     {
                         moviesList.map((item, index) => {
                             return (

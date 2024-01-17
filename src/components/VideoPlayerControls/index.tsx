@@ -75,6 +75,20 @@ export default function VideoPlayerControls () {
         video.current.currentTime = videoCurrentTime + (vector * seconds);
     }
 
+    // Keyboard player controls
+    function keyboardControls (event:KeyboardEvent) {
+        switch (event.code) {
+            case 'Space': PlayPauseVideo(); break;
+            case 'ArrowLeft': changeVideoTime("backward", 10); break;
+            case 'ArrowRight': changeVideoTime("forward", 10);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("keydown", keyboardControls);
+        return () => document.removeEventListener("keydown", keyboardControls);
+    });
+
     return (
         <div className={styles["video-player-controls"]}>
 

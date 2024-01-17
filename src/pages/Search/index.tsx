@@ -25,7 +25,7 @@ export default function Search () {
             <Menu />
             <section className={`${styles.search} outer-content-common`}>
                 <div className="content">
-                    <Input />
+                    <Input placeholder="Search"/>
                 </div>
                 
                 <div className={`${styles.content} content`}>

@@ -9,6 +9,10 @@
         background-color: var(--color-secondary-darker-800);
         object-fit: cover;
 
+        &:-moz-loading {
+            visibility: hidden;
+        }
+
         &::before,
         &::after {
             display: grid;
@@ -42,4 +46,21 @@
             bottom: 0;
         }
     }
+}
+
+// Exceptions for Firefox
+@-moz-document url-prefix() {
+    .poster img {
+            
+        &::before {
+            display: none;
+        }
+
+        &::after {
+            place-items: center;
+            height: 100%;
+        }
+
+    }
+
 }

@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { MoviesContext } from "context/movies";
 import Poster from "elements/Poster";
 import Input from "elements/Input";
+import Icon from "elements/Icon";
 
 interface MovieContextProps {
     moviesList: {
@@ -60,7 +61,19 @@ export default function Search() {
                             </div>
                         : 
                             <div className={styles["no-result"]}>
-                                No movie found
+                                <div className={styles.error}>
+                                    <div className={styles.icon}>
+                                        <Icon>sentiment_sad</Icon>
+                                    </div>
+                                    <h2 className="title-alternative no-margin">
+                                        Sorry! We didn’t find you movie
+                                    </h2>
+                                </div>
+
+                                <div className={styles.message}>
+                                    <h2 className="no-margin">No result for "{searchWord}"</h2>
+                                    <p className="no-margin">Try again</p>
+                                </div>
                             </div>
                     }
                 </div>

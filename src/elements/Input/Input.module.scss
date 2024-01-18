@@ -53,7 +53,7 @@
         box-sizing: border-box;
 
 
-        &:placeholder {
+        &::placeholder {
             color: var(--color-secondary-darker-400);
         }
 

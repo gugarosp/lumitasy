@@ -13,7 +13,6 @@
         gap: var(--spacing-3x);
 
         a {
-            //flex-basis: calc(12.5vw - 40px);
             flex-basis: calc((100% / 8) - 21px);
             flex-grow: 0;
             flex-shrink: 0;
@@ -54,6 +53,10 @@
             h2,
             p {
                 text-align: center;
+            }
+
+            h2 {
+                word-break: break-all;
             }
 
             a {

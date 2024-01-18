@@ -66,7 +66,7 @@ export default function Search() {
                                         <Icon>sentiment_sad</Icon>
                                     </div>
                                     <h2 className="title-alternative no-margin">
-                                        Sorry! We didn’t find you movie
+                                        Sorry! We didn’t find your movie
                                     </h2>
                                 </div>
 

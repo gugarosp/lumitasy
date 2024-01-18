@@ -70,6 +70,9 @@ export default function Play () {
     const [hideControlsClass, setHideControlsClass] = useState("");
     const [hideActionsClass, setHideActionsClass] = useState("");
 
+    // Cursor hide
+    const [hideCursor, setHideCursor] = useState("");
+    
     // Status of controls and actions hide status
     const hideControlsActions = useRef(true);
 
@@ -89,12 +92,14 @@ export default function Play () {
         if (hideControlsActions.current === true) {
             setHideControlsClass("");
             setHideActionsClass("");
+            setHideCursor("");
             hideControlsActions.current = false;
 
             controlsTimeoutRunning.current = true;
             controlsTimeout.current = setTimeout(() => {
                     setHideControlsClass(`${styles["hide-controls"]}`);
                     setHideActionsClass(styles["hide-actions"]);
+                    setHideCursor(styles["hide-cursor"]);
                     
                     hideControlsActions.current = true;
                 }, 5000);
@@ -152,7 +157,7 @@ export default function Play () {
             {
                 movieInfo?.title !== undefined
                 ?
-                    <section className={styles.play}>
+                    <section className={`${styles.play} ${hideCursor}`}>
 
                         <div className={styles["video-container"]}>
                             <video

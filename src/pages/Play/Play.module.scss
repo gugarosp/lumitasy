@@ -7,6 +7,10 @@
     height: 100%;
     overflow: hidden;
 
+    &.hide-cursor:hover {
+        cursor: none;
+    }
+
     .video-container {
         position: absolute;
         width: 100%;

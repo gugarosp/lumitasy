@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Menu () {
     const menuItems = [
-        {link: "/search",name: "Search"},
+        {link: "/search", name: "Search"},
         {link: "/categories", name: "Categories"},
         {link: "/watch-later", name: "Watch Later"},
         {link: "/about", name: "About"}

@@ -8,13 +8,11 @@
         display: flex;
         gap: var(--spacing-3x);
         
-
         a {
             display: block;
             flex-basis: calc((100vw/8) - 39px);
             flex-grow: 0;
             flex-shrink: 0;
-            aspect-ratio: 160/228;
             line-height: 0;
         }
     }

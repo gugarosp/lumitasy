@@ -9,7 +9,7 @@ interface inputProps {
 export default function Input ({placeholder = undefined, value = undefined, typing}:inputProps) {
     return (
         <div className={styles.input}>
-            <input type="text" placeholder={placeholder} value={value} onChange={typing} />
+            <input type="text" placeholder={placeholder} value={value} onChange={typing} spellCheck="false"/>
         </div>
     )
 }

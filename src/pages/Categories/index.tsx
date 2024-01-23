@@ -7,7 +7,19 @@ export default function Categories () {
             <Menu />
             <div className="outer-content-common">
                 <div className="content">
-                    <Display icon="new_releases" link="#" subtitle="Subtitle">
+                    <Display>
+                        Category
+                    </Display>
+
+                    <Display subtitle="Subtitle">
+                        Category
+                    </Display>
+
+                    <Display icon="new_releases">
+                        Category
+                    </Display>
+
+                    <Display icon="new_releases" subtitle="Subtitle">
                         Category
                     </Display>
                 </div>

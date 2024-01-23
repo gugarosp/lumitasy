@@ -2,8 +2,6 @@ import styles from "./Display.module.scss"
 
 interface DisplayProps {
     icon?: string
-    iconFill?: boolean
-    size?: string
     link?: string
     children?: string
     subtitle?: string
@@ -12,7 +10,7 @@ interface DisplayProps {
 export default function Display(
     {
         icon = "",
-        link = "",
+        link = undefined,
         children = "",
         subtitle = ""
     }: DisplayProps) {
@@ -21,16 +19,28 @@ export default function Display(
         <a href={link !== "" ? `${link}` : undefined} className={styles.display}>
             <div className={styles.content}>
                 <div className={styles["title-content"]}>
-                    <span className={`${styles.icon} material-symbols-rounded icon-outlined-light`}>
-                        {icon}
-                    </span>
+                    { 
+                        icon !== "" ? 
+                            <span className={`${styles.icon} material-symbols-rounded icon-outlined-light`}>
+                                {icon}
+                            </span>
+                        :
+                            <></>
+                    }
                     <div className={styles.title}>
                         {children}
                     </div>
                 </div>
-                <div className={styles.subtitle}>
-                    {subtitle}
-                </div>
+
+                { 
+                    subtitle !== "" ? 
+                        <div className={styles.subtitle}>
+                            {subtitle}
+                        </div>
+                    :
+                        <></>
+                }
+                
             </div>
         </a>
     )

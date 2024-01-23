@@ -14,7 +14,7 @@
     &.icon-outlined-light {
         font-variation-settings:
         'FILL' var(--icon-fill-outlined),
-        'wght' 200,
+        'wght' 200, // 300 in Figma
         'GRAD' 0,
         'opsz' 24;
     }
@@ -22,7 +22,7 @@
     &.icon-outlined-regular {
         font-variation-settings:
         'FILL' var(--icon-fill-outlined),
-        'wght' 300,
+        'wght' 300, // 400 in Figma
         'GRAD' 0,
         'opsz' 24;
     }
@@ -30,7 +30,7 @@
     &.icon-outlined-semibold {
         font-variation-settings:
         'FILL' var(--icon-fill-outlined),
-        'wght' 400,
+        'wght' 400, // 600 in Figma
         'GRAD' 0,
         'opsz' 24;
     }
@@ -38,7 +38,7 @@
     &.icon-filled-light {
         font-variation-settings:
         'FILL' var(--icon-fill-filled),
-        'wght' 200,
+        'wght' 200, // 300 in Figma
         'GRAD' 0,
         'opsz' 24;
     }
@@ -46,7 +46,7 @@
     &.icon-filled-regular {
         font-variation-settings:
         'FILL' var(--icon-fill-filled),
-        'wght' 300,
+        'wght' 300, // 400 in Figma
         'GRAD' 0,
         'opsz' 24;
     }
@@ -54,7 +54,7 @@
     &.icon-filled-semibold {
         font-variation-settings:
         'FILL' var(--icon-fill-filled),
-        'wght' 400,
+        'wght' 400, // 600 in Figma
         'GRAD' 0,
         'opsz' 24;
     }

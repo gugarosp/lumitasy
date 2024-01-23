@@ -11,6 +11,14 @@
     font-family: "Material Symbols Rounded";
     user-select: none;
 
+    &.icon-outlined-light {
+        font-variation-settings:
+        'FILL' var(--icon-fill-outlined),
+        'wght' 200,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
     &.icon-outlined-regular {
         font-variation-settings:
         'FILL' var(--icon-fill-outlined),
@@ -18,11 +26,19 @@
         'GRAD' 0,
         'opsz' 24;
     }
-
+    
     &.icon-outlined-semibold {
         font-variation-settings:
         'FILL' var(--icon-fill-outlined),
         'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+    
+    &.icon-filled-light {
+        font-variation-settings:
+        'FILL' var(--icon-fill-filled),
+        'wght' 200,
         'GRAD' 0,
         'opsz' 24;
     }

@@ -32,6 +32,13 @@ body {
     padding: 0 var(--spacing-8x);
 }
 
+.content-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8x);
+    padding: var(--spacing-3x) var(--spacing-8x) 0;
+}
+
 .no-margin {
     margin: 0;
 }

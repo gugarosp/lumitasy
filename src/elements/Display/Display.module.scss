@@ -1,11 +1,15 @@
 .display {
     display: flex;
     align-items: center;
-    height: 104px;
+    height: 80px;
     padding: 0 var(--spacing-3x);
     border-radius: var(--rounded-corners-1x);
     background-color: var(--color-secondary-darker-700);
     text-decoration: none;
+
+    &.display-subtitle {
+        height: 104px;
+    }
 
     .content {
         display: flex;

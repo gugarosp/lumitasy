@@ -16,7 +16,7 @@ export default function Display(
     }: DisplayProps) {
 
     return (
-        <a href={link !== "" ? `${link}` : undefined} className={styles.display}>
+        <a href={link !== "" ? `${link}` : undefined} className={`${styles.display} ${subtitle !== "" ? styles["display-subtitle"] : ""}`}>
             <div className={styles.content}>
                 <div className={styles["title-content"]}>
                     { 

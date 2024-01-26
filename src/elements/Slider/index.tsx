@@ -3,7 +3,7 @@ import styles from "./Slider.module.scss";
 
 interface SliderProps {
     sliderPosition?: number
-    sliderVideoElement?: any
+    sliderVideoElement?: () => HTMLVideoElement
 }
 
 export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderProps) {
@@ -72,7 +72,7 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
     const handleCurrentVideoTime = useRef<number>(0);
 
     // Initial video status (playing or paused) (used only if sliderVideoElement exists)
-    const handleVideoCurrentStatus = useRef<any>();
+    const handleVideoCurrentStatus = useRef<boolean>();
 
     // Starts handle movement/listeners
     function startHandleMovement () {
@@ -80,7 +80,7 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
 
         setVideoHandleClass(styles["video-handle-time"]);
 
-        handleVideoCurrentStatus.current = sliderVideoElement().paused;
+        handleVideoCurrentStatus.current = sliderVideoElement?.().paused;
 
         window.addEventListener("mousemove", slide);
         window.addEventListener("mouseup", finishSlideHandle);

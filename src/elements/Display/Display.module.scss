@@ -11,6 +11,10 @@
         height: 104px;
     }
 
+    &.display-icon {
+        padding: 0 var(--spacing-3x) 0 var(--spacing-2x);
+    }
+
     .content {
         display: flex;
         flex-direction: column;

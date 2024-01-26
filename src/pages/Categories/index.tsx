@@ -1,32 +1,22 @@
 import styles from "./Categories.module.scss"
 
 import Menu from "components/Menu";
+import { CategoriesContext } from "context/categories";
 import Display from "elements/Display";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 
 interface categoriesListProps {
-    id: number
-    slug: string
-    name: string
-    icon: string
+    categoriesList: {
+        id: number
+        slug: string
+        name: string
+        icon: string
+    }[]
 }
 
 export default function Categories () {
 
-    const [categoriesList, setCategoriesList] = useState<categoriesListProps[]>([]);
-
-    useEffect(() => {
-        async function categories() {
-            const response = await fetch("http://lumitasy.siteseguro.ws/api/categories/");
-            const info = await response.text();
-            return info;
-        }
-
-        categories().then(data => {
-            setCategoriesList(JSON.parse(data));
-        });
-
-    }, []);
+    const { categoriesList }:categoriesListProps = useContext(CategoriesContext);
 
     return (
         <>

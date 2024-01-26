@@ -1,6 +1,6 @@
 import styles from "./Play.module.scss"
 
-import { useContext, useRef, useState } from "react";
+import { RefObject, SyntheticEvent, useContext, useRef, useState } from "react";
 import Button from "elements/Button";
 import VideoPlayerControls from "components/VideoPlayerControls";
 import { PlayMovieContext } from "context/playMovie";
@@ -9,13 +9,13 @@ import NotFoundContent from "components/NotFoundContent";
 import Menu from "components/Menu";
 
 interface playProps {
-    video: any,
-    metaDataVideo: any
+    video: RefObject<HTMLVideoElement>,
+    metaDataVideo: (event: SyntheticEvent<HTMLVideoElement, Event>) => void
     getVideoInfo: string
     videoDuration: number
     PlayPauseVideo: () => void,
     videoInfo: () => void,
-    whilePlayVideo: any,
+    whilePlayVideo: (event: EventTarget) => void,
     movieLoaded: boolean,
     setPlayPauseIcon: React.Dispatch<React.SetStateAction<string>>,
     fullscreen: () => void,
@@ -146,7 +146,7 @@ export default function Play () {
     function closeAd () {
         setAdClass(styles["ad-hide"]);
 
-        video.current.play(); // Plays video when ad is closed
+        video.current?.play(); // Plays video when ad is closed
     }
 
     // Page title

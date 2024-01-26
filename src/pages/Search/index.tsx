@@ -63,8 +63,8 @@ export default function Search() {
                             <SuperMessage 
                                 icon="sentiment_sad"
                                 infoText="Sorry! We didn’t find your movie"
-                                messageTitle={`No result for ${searchWord}`}
-                                messageSubtitle="" />
+                                messageTitle={`No result for "${searchWord}"`}
+                                messageSubtitle="Try again" />
                     }
                 </div>
             </section>

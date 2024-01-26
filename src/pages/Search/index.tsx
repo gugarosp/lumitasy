@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { MoviesContext } from "context/movies";
 import Poster from "elements/Poster";
 import Input from "elements/Input";
-import Icon from "elements/Icon";
+import SuperMessage from "components/SuperMessage";
 
 interface MovieContextProps {
     moviesList: {
@@ -40,7 +40,7 @@ export default function Search() {
                     <Input placeholder="Search" typing={(event) => typingEvent(event)} />
                 </div>
 
-                <div className={`content`}>
+                <div className="content">
                     {
                         searchWord === "" ?
                             <></>
@@ -60,21 +60,11 @@ export default function Search() {
                                 }
                             </div>
                         : 
-                            <div className={styles["no-result"]}>
-                                <div className={styles.error}>
-                                    <div className={styles.icon}>
-                                        <Icon>sentiment_sad</Icon>
-                                    </div>
-                                    <h2 className="title-alternative no-margin">
-                                        Sorry! We didn’t find your movie
-                                    </h2>
-                                </div>
-
-                                <div className={styles.message}>
-                                    <h2 className="no-margin">No result for "{searchWord}"</h2>
-                                    <p className="no-margin">Try again</p>
-                                </div>
-                            </div>
+                            <SuperMessage 
+                                icon="sentiment_sad"
+                                infoText="Sorry! We didn’t find your movie"
+                                messageTitle={`No result for ${searchWord}`}
+                                messageSubtitle="" />
                     }
                 </div>
             </section>

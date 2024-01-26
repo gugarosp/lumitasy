@@ -21,9 +21,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={
-          <MoviesProvider>
-            <Home />
-          </MoviesProvider>
+          <CategoriesProvider>
+            <MoviesProvider>
+              <Home />
+            </MoviesProvider>
+          </CategoriesProvider>
         }>
         </Route>
         <Route path="movie/*" element={

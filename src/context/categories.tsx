@@ -1,13 +1,15 @@
 import { ReactElement, createContext, useEffect, useState } from "react";
 
-export const CategoriesContext:any = createContext<categoriesListProps | null>(null);
-
 interface categoriesListProps {
     id: number
     slug: string
     name: string
     icon: string
 }
+
+export const CategoriesContext:any = createContext<categoriesListProps | null>(null);
+CategoriesContext.displayName = 'Categories';
+
 
 interface CategoriesProviderProps {
     children: ReactElement

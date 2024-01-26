@@ -9,6 +9,7 @@ interface moviesListProps {
 }
 
 export const MoviesContext:any = createContext<moviesListProps | null>(null);
+MoviesContext.displayName = 'Movies';
 
 interface MoviesProviderProps {
     children: ReactElement

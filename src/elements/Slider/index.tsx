@@ -93,13 +93,9 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
 
     // Calculation for the handle to slide according mouse/touch movement
     function slide (event:MouseEvent | TouchEvent) {
-        let sliderWidth = 0;
-        let sliderBaseXPosition = 0;
 
-        if (handle.current !== null) {
-            sliderWidth = handle.current.getBoundingClientRect().width;
-            sliderBaseXPosition = handle.current.getBoundingClientRect().x;
-        }
+        const sliderWidth = handle.current !== null ? handle.current.getBoundingClientRect().width : 0;
+        const sliderBaseXPosition = handle.current !== null ? handle.current.getBoundingClientRect().x : 0;
         
         if (event instanceof TouchEvent) {
             handleLastTouchPosition.current = event.touches[0]?.clientX === undefined ? handleLastTouchPosition.current : event.touches[0].clientX;

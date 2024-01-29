@@ -1,13 +1,17 @@
 import { ReactElement, createContext, useEffect, useState } from "react";
 
 interface categoriesListProps {
-    id: number
-    slug: string
-    name: string
-    icon: string
+    id?: number
+    slug?: string
+    name?: string
+    icon?: string
 }
 
-export const CategoriesContext:any = createContext<categoriesListProps | null>(null);
+interface categoriesContextType {
+    categoriesList: categoriesListProps[];
+}
+
+export const CategoriesContext = createContext<categoriesContextType | null>(null);
 CategoriesContext.displayName = 'Categories';
 
 
@@ -17,7 +21,7 @@ interface CategoriesProviderProps {
 
 export const CategoriesProvider = ({children}:CategoriesProviderProps) => {
 
-    const [categoriesList, setCategoriesList] = useState<categoriesListProps[]>([]);
+    const [categoriesList, setCategoriesList] = useState<categoriesListProps[]>([{}]);
 
     useEffect(() => {
         async function categories() {

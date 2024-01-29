@@ -5,17 +5,19 @@ import { CategoriesContext } from "context/categories";
 import { useContext } from "react";
 
 interface categoriesListProps {
-    categoriesList: {
-        id: number
-        slug: string
-        name: string
-        icon: string
-    }[]
+    id: number
+    slug: string
+    name: string
+    icon: string
+}
+
+interface categoriesContextType {
+    categoriesList: categoriesListProps[];
 }
 
 export default function Home() {
 
-    const { categoriesList }:categoriesListProps = useContext(CategoriesContext);
+    const { categoriesList } = useContext(CategoriesContext) as categoriesContextType;
 
     return (
         <>

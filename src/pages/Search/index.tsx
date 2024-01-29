@@ -7,20 +7,24 @@ import Poster from "elements/Poster";
 import Input from "elements/Input";
 import SuperMessage from "components/SuperMessage";
 
-interface MovieContextProps {
-    moviesList: {
-        title: string,
-        slug: string,
-        categories: string
-        year: string
-        description: string
-    }[];
+interface moviesListProps {
+    id?: number
+    slug?: string
+    title?: string
+    categories?: string
+    source?: string
+    year?: string
+    description?: string
+}
+
+interface moviesContextType {
+    moviesList: moviesListProps[];
 }
 
 export default function Search() {
 
     // Movie list
-    const { moviesList }: MovieContextProps = useContext(MoviesContext);
+    const { moviesList } = useContext(MoviesContext) as moviesContextType;
 
     // Search word
     const [searchWord, setSearchWord] = useState("");
@@ -30,7 +34,7 @@ export default function Search() {
     }
 
     // Search result
-    const searchResult = moviesList.filter(item => item.title.toLowerCase().includes(searchWord));
+    const searchResult = moviesList.filter(item => item.title?.toLowerCase().includes(searchWord));
 
     return (
         <>
@@ -53,7 +57,7 @@ export default function Search() {
                                                 key={index}
                                                 link={`movie/${item.slug}`}
                                                 src={`http://lumitasy.siteseguro.ws/images/movies/posters/${item.slug}.png`}
-                                                title={item.title}
+                                                title={item.title !== undefined ? item.title : ""}
                                             />
                                         )
                                     })

@@ -1,14 +1,20 @@
 import { ReactElement, createContext, useEffect, useState } from "react";
 
 interface moviesListProps {
-    id: number
-    slug: string
-    title: string
-    categories: string
-    source: string
+    id?: number
+    slug?: string
+    title?: string
+    categories?: string
+    source?: string
+    year?: string
+    description?: string
 }
 
-export const MoviesContext:any = createContext<moviesListProps | null>(null);
+interface moviesContextType {
+    moviesList: moviesListProps[];
+}
+
+export const MoviesContext = createContext<moviesContextType | null>(null);
 MoviesContext.displayName = 'Movies';
 
 interface MoviesProviderProps {
@@ -16,7 +22,7 @@ interface MoviesProviderProps {
 }
 
 export const MoviesProvider = ({children}:MoviesProviderProps) =>{
-    const [moviesList, setMoviesList] = useState<moviesListProps[]>([]);
+    const [moviesList, setMoviesList] = useState<moviesListProps[]>([{}]);
 
     useEffect(() => {
         async function movies() {

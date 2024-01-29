@@ -10,16 +10,22 @@ interface CategorySliderProps {
     categorySlug: string;
 }
 
-interface MovieContextProps {
-    moviesList: {
-        title: string,
-        slug:string,
-        categories: string}[];
+interface moviesListProps {
+    id?: number
+    slug?: string
+    title?: string
+    categories?: string
+    source?: string
+    year?: string
+    description?: string
 }
 
+interface moviesContextType {
+    moviesList: moviesListProps[];
+}
 
 export default function CategorySlider({ categoryName, categorySlug }: CategorySliderProps) {
-    const { moviesList }:MovieContextProps = useContext(MoviesContext);
+    const { moviesList } = useContext(MoviesContext) as moviesContextType;
 
     return (
         
@@ -28,13 +34,13 @@ export default function CategorySlider({ categoryName, categorySlug }: CategoryS
 
         <div className={styles.container}>
             {
-                moviesList.filter(item => item.categories.includes(categorySlug)).map((item, index) => {
+                moviesList.filter(item => item.categories?.includes(categorySlug)).map((item, index) => {
                 return (
                         <Poster
                             key={index}
                             link={`movie/${item.slug}`}
                             src={`http://lumitasy.siteseguro.ws/images/movies/posters/${item.slug}.png`}
-                            title={item.title}
+                            title={item.title !== undefined ? item.title : ""}
                         />
                     )
                 })

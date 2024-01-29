@@ -7,21 +7,26 @@ import Button from "elements/Button";
 import Separator from "elements/Separator";
 import { useContext } from "react";
 
-interface MovieContextProps {
-    moviesList: {
-        title: string,
-        slug:string,
-        categories: string
-        year: string
-        description: string
-    }[];
+
+interface moviesListProps {
+    id?: number
+    slug?: string
+    title: string
+    categories?: string
+    source?: string
+    year?: string
+    description?: string
+}
+
+interface moviesContextType {
+    moviesList: moviesListProps[];
 }
 
 export default function Movie () {
 
     const movieSlug = window.location.href.split("movie/")[1];
 
-    const { moviesList }:MovieContextProps = useContext(MoviesContext);
+    const { moviesList } = useContext(MoviesContext) as moviesContextType;
 
     const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
 
@@ -55,7 +60,7 @@ export default function Movie () {
                             <div className={styles.meta}>
                                 <div className={styles.categories}>
                                     {
-                                        movieInfo.categories.split(", ").map((item, index) => {
+                                        movieInfo.categories?.split(", ").map((item, index) => {
                                             return (
                                                 <span className="h7 title-alternative" key={index}>{item}</span>
                                             )

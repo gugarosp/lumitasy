@@ -21,12 +21,18 @@ interface playProps {
     fullscreen: () => void,
 }
 
-interface MovieContextProps {
-    moviesList: {
-        title: string,
-        slug:string,
-        source: string
-    }[];
+interface moviesListProps {
+    id?: number
+    slug?: string
+    title?: string
+    categories?: string
+    source?: string
+    year?: string
+    description?: string
+}
+
+interface moviesContextType {
+    moviesList: moviesListProps[];
 }
 
 export default function Play () {
@@ -39,7 +45,7 @@ export default function Play () {
     const { metaDataVideo }:playProps = useContext(PlayMovieContext);
 
     // Movie Reference
-    const { moviesList }:MovieContextProps = useContext(MoviesContext);
+    const { moviesList } = useContext(MoviesContext) as moviesContextType;
     const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
 
     // Loads movie when the source from api is loaded

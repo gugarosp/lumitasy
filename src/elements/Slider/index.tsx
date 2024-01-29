@@ -58,7 +58,7 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
     /////////////
 
     // Ref to get handle html element
-    const handle = useRef<any>();
+    const handle = useRef<HTMLDivElement>(null);
 
     // Handle movement status
     const sliderMoving = useRef<boolean>(false);
@@ -93,8 +93,13 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
 
     // Calculation for the handle to slide according mouse/touch movement
     function slide (event:MouseEvent | TouchEvent) {
-        const sliderWidth = handle.current.parentElement.querySelector(":first-child").getBoundingClientRect().width;
-        const sliderBaseXPosition = handle.current.parentElement.querySelector(":first-child").getBoundingClientRect().x;
+        let sliderWidth = 0;
+        let sliderBaseXPosition = 0;
+
+        if (handle.current !== null) {
+            sliderWidth = handle.current.getBoundingClientRect().width;
+            sliderBaseXPosition = handle.current.getBoundingClientRect().x;
+        }
         
         if (event instanceof TouchEvent) {
             handleLastTouchPosition.current = event.touches[0]?.clientX === undefined ? handleLastTouchPosition.current : event.touches[0].clientX;
@@ -168,11 +173,10 @@ export default function Slider ({sliderPosition = 0, sliderVideoElement}:SliderP
 
     return (
         <div className={styles.slider}>
-            <div className={styles["background"]} onClick={event => {barClickPosition(event)}} >
+            <div ref={handle} className={styles["background"]} onClick={event => {barClickPosition(event)}} >
                 <div className={styles["current-position"]} style={{width: `${currentSlidePosition}%`}}></div>
             </div>
             <div
-                ref={handle}
                 data-videohandletime={sliderVideoElement ? timeFormat(handleCurrentVideoTime.current) : undefined}
                 className={`${styles.handle} ${sliderVideoElement ? videohandleClass : ""}`}
                 style={{left: `${currentSlidePosition}%`}}

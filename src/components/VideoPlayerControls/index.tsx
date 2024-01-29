@@ -1,11 +1,11 @@
 import Button from "elements/Button";
 import styles from "./VideoPlayerControls.module.scss"
 import Slider from "elements/Slider";
-import { useContext, useEffect, useState } from "react";
+import { RefObject, useContext, useEffect, useState } from "react";
 import { PlayMovieContext } from "context/playMovie";
 
 interface playProps {
-    video: any
+    video: RefObject<HTMLVideoElement>
     videoCurrentTime: number,
     videoDuration: number
     PlayPauseVideo: () => void
@@ -49,12 +49,14 @@ export default function VideoPlayerControls () {
     const [volumeIcon, setVolumeIcon] = useState("volume_up");
 
     function volume () {
-        if (volumeIcon === "volume_up") {
-            setVolumeIcon("volume_off");
-            video.current.volume = 0;
-        } else {
-            setVolumeIcon("volume_up");
-            video.current.volume = 1;
+        if (video.current !== null) {
+            if (volumeIcon === "volume_up") {
+                setVolumeIcon("volume_off");
+                video.current.volume = 0;
+            } else {
+                setVolumeIcon("volume_up");
+                video.current.volume = 1;
+            }
         }
     }
 
@@ -72,7 +74,9 @@ export default function VideoPlayerControls () {
     function changeVideoTime (direction:string, seconds:number) {
         const vector = direction === "forward" ? 1 : "backward" ? -1 : 0;
 
-        video.current.currentTime = videoCurrentTime + (vector * seconds);
+        if (video.current !== null) {
+            video.current.currentTime = videoCurrentTime + (vector * seconds);
+        }
     }
 
     // Keyboard player controls
@@ -92,7 +96,7 @@ export default function VideoPlayerControls () {
     return (
         <div className={styles["video-player-controls"]}>
 
-            <Slider sliderPosition={sliderPosition} sliderVideoElement={() => sliderVideoElement(video.current)}/>
+            <Slider sliderPosition={sliderPosition} sliderVideoElement={() => sliderVideoElement(video.current !== null ? video.current : document.createElement("video"))}/>
 
             <div className={styles.controls}>
                 <div className={styles.time}>

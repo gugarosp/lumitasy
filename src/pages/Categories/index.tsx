@@ -28,13 +28,16 @@ export default function Categories () {
                     <h1 className="no-margin">Categories</h1>
                     <div className={styles["categories-list"]}>
                         {
-                            categoriesList.map((item, index) => {
-                                return (
-                                    <Display key={index} icon={item.icon} link={`/category/${item.slug}`}>
-                                        {item.name}
-                                    </Display>
-                                )
-                            })
+                            categoriesList.length > 1 ?
+                                categoriesList.map((item, index) => {
+                                    return (
+                                        <Display key={index} icon={item.icon} link={`/category/${item.slug}`}>
+                                            {item.name}
+                                        </Display>
+                                    )
+                                })
+                            : 
+                                ""
                         }
                     </div>
                 </div>

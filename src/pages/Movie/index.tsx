@@ -90,7 +90,7 @@ export default function Movie () {
                     </div>
                 </section>
             : moviesListLoaded === true && movieInfo?.title === undefined ? 
-                    <NotFoundContent />
+                <NotFoundContent />
             : ""
             }
         </>

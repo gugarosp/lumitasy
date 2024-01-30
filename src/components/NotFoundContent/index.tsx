@@ -12,7 +12,7 @@ export default function NotFoundContent () {
                         icon="movie"
                         infoText="404 / Page not found"
                         messageTitle="Oh No! The movie is not here!"
-                        messageSubtitle={["But don’t worry, just go ", <a href='/'>here</a>, " and watch fantastic movies."]}
+                        messageSubtitle={["But don’t worry, just go ", <a key="not-found" href='/'>here</a>, " and watch fantastic movies."]}
                     />
                 </div>
             </section>

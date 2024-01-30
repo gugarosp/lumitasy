@@ -32,7 +32,8 @@ interface moviesListProps {
 }
 
 interface moviesContextType {
-    moviesList: moviesListProps[];
+    moviesList: moviesListProps[]
+    moviesListLoaded: boolean
 }
 
 export default function Play () {
@@ -46,6 +47,7 @@ export default function Play () {
 
     // Movie Reference
     const { moviesList } = useContext(MoviesContext) as moviesContextType;
+    const { moviesListLoaded } = useContext(MoviesContext) as moviesContextType;
     const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
 
     // Loads movie when the source from api is loaded
@@ -161,7 +163,7 @@ export default function Play () {
     return (
         <>  
             {
-                movieInfo?.title !== undefined
+                moviesListLoaded === true && movieInfo?.title !== undefined
                 ?
                     <section className={`${styles.play} ${hideCursor}`}>
 
@@ -236,7 +238,7 @@ export default function Play () {
                             </div>
                         </div>
                     </section>
-                : moviesList[0] !== undefined && movieInfo?.title === undefined ? 
+                : moviesListLoaded === true && movieInfo?.title === undefined ? 
                     <>
                         <Menu />
                         <NotFoundContent />

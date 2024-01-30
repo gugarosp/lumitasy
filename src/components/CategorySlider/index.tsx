@@ -1,13 +1,12 @@
 import styles from "./CategorySlider.module.scss"
 
 import Poster from "elements/Poster";
-
 import { MoviesContext } from "context/movies";
 import { useContext } from "react";
 
 interface CategorySliderProps {
-    categoryName: string;
-    categorySlug: string;
+    categoryName?: string;
+    categorySlug?: string;
 }
 
 interface moviesListProps {
@@ -24,7 +23,7 @@ interface moviesContextType {
     moviesList: moviesListProps[];
 }
 
-export default function CategorySlider({ categoryName, categorySlug }: CategorySliderProps) {
+export default function CategorySlider({ categoryName = "", categorySlug = "" }: CategorySliderProps) {
     const { moviesList } = useContext(MoviesContext) as moviesContextType;
 
     return (

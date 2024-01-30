@@ -3,17 +3,7 @@ import CategorySlider from "components/CategorySlider";
 import Menu from "components/Menu";
 import { CategoriesContext } from "context/categories";
 import { useContext } from "react";
-
-interface categoriesListProps {
-    id: number
-    slug: string
-    name: string
-    icon: string
-}
-
-interface categoriesContextType {
-    categoriesList: categoriesListProps[];
-}
+import { categoriesContextType } from "context/categoriesTypes";
 
 export default function Home() {
 

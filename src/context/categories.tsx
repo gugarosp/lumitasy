@@ -1,19 +1,8 @@
 import { ReactElement, createContext, useEffect, useState } from "react";
-
-interface categoriesListProps {
-    id?: number
-    slug?: string
-    name?: string
-    icon?: string
-}
-
-interface categoriesContextType {
-    categoriesList: categoriesListProps[];
-}
+import { ICategoriesList, categoriesContextType } from "./categoriesTypes";
 
 export const CategoriesContext = createContext<categoriesContextType | null>(null);
 CategoriesContext.displayName = 'Categories';
-
 
 interface CategoriesProviderProps {
     children: ReactElement
@@ -21,7 +10,7 @@ interface CategoriesProviderProps {
 
 export const CategoriesProvider = ({children}:CategoriesProviderProps) => {
 
-    const [categoriesList, setCategoriesList] = useState<categoriesListProps[]>([{}]);
+    const [categoriesList, setCategoriesList] = useState<ICategoriesList[]>([{}]);
 
     useEffect(() => {
         async function categories() {

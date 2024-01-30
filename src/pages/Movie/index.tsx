@@ -19,7 +19,8 @@ interface moviesListProps {
 }
 
 interface moviesContextType {
-    moviesList: moviesListProps[];
+    moviesList: moviesListProps[]
+    moviesListLoaded: boolean
 }
 
 export default function Movie () {
@@ -27,6 +28,8 @@ export default function Movie () {
     const movieSlug = window.location.href.split("movie/")[1];
 
     const { moviesList } = useContext(MoviesContext) as moviesContextType;
+
+    const { moviesListLoaded } = useContext(MoviesContext) as moviesContextType;
 
     const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
 
@@ -40,7 +43,7 @@ export default function Movie () {
         <>
             <Menu />
             {
-            movieInfo?.title !== undefined
+            moviesListLoaded === true && movieInfo?.title !== undefined
             ? 
                 <section className={`${styles.movie} outer-content-common outer-content-full`}>
 
@@ -86,8 +89,8 @@ export default function Movie () {
                         </div>
                     </div>
                 </section>
-            : moviesList[0] !== undefined && movieInfo?.title === undefined ? 
-                <NotFoundContent />
+            : moviesListLoaded === true && movieInfo?.title === undefined ? 
+                    <NotFoundContent />
             : ""
             }
         </>

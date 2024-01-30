@@ -11,7 +11,8 @@ interface moviesListProps {
 }
 
 interface moviesContextType {
-    moviesList: moviesListProps[];
+    moviesList: moviesListProps[]
+    moviesListLoaded: boolean
 }
 
 export const MoviesContext = createContext<moviesContextType | null>(null);
@@ -23,6 +24,7 @@ interface MoviesProviderProps {
 
 export const MoviesProvider = ({children}:MoviesProviderProps) =>{
     const [moviesList, setMoviesList] = useState<moviesListProps[]>([{}]);
+    const [moviesListLoaded, setMoviesListLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         async function movies() {
@@ -33,12 +35,13 @@ export const MoviesProvider = ({children}:MoviesProviderProps) =>{
   
         movies().then(data => {
           setMoviesList(JSON.parse(data));
+          setMoviesListLoaded(true);
         });
   
     }, []);
 
     return (
-        <MoviesContext.Provider value={{ moviesList }}>
+        <MoviesContext.Provider value={{ moviesList, moviesListLoaded }}>
             {children}
         </MoviesContext.Provider>
     )

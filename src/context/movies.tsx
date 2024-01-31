@@ -1,19 +1,5 @@
 import { ReactElement, createContext, useEffect, useState } from "react";
-
-interface moviesListProps {
-    id?: number
-    slug?: string
-    title?: string
-    categories?: string
-    source?: string
-    year?: string
-    description?: string
-}
-
-interface moviesContextType {
-    moviesList: moviesListProps[]
-    moviesListLoaded: boolean
-}
+import { IMoviesList, moviesContextType } from "./moviesTypes";
 
 export const MoviesContext = createContext<moviesContextType | null>(null);
 MoviesContext.displayName = 'Movies';
@@ -23,7 +9,7 @@ interface MoviesProviderProps {
 }
 
 export const MoviesProvider = ({children}:MoviesProviderProps) =>{
-    const [moviesList, setMoviesList] = useState<moviesListProps[]>([{}]);
+    const [moviesList, setMoviesList] = useState<IMoviesList[]>([{}]);
     const [moviesListLoaded, setMoviesListLoaded] = useState<boolean>(false);
 
     useEffect(() => {

@@ -3,24 +3,11 @@ import styles from "./CategorySlider.module.scss"
 import Poster from "elements/Poster";
 import { MoviesContext } from "context/movies";
 import { useContext } from "react";
+import { moviesContextType } from "context/moviesTypes";
 
 interface CategorySliderProps {
-    categoryName?: string;
-    categorySlug?: string;
-}
-
-interface moviesListProps {
-    id?: number
-    slug?: string
-    title?: string
-    categories?: string
-    source?: string
-    year?: string
-    description?: string
-}
-
-interface moviesContextType {
-    moviesList: moviesListProps[];
+    categoryName?: string
+    categorySlug?: string
 }
 
 export default function CategorySlider({ categoryName = "", categorySlug = "" }: CategorySliderProps) {

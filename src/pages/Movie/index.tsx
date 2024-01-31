@@ -6,22 +6,7 @@ import { MoviesContext } from "context/movies";
 import Button from "elements/Button";
 import Separator from "elements/Separator";
 import { useContext } from "react";
-
-
-interface moviesListProps {
-    id?: number
-    slug?: string
-    title: string
-    categories?: string
-    source?: string
-    year?: string
-    description?: string
-}
-
-interface moviesContextType {
-    moviesList: moviesListProps[]
-    moviesListLoaded: boolean
-}
+import { moviesContextType } from "context/moviesTypes";
 
 export default function Movie () {
 

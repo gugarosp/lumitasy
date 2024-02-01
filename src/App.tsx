@@ -50,7 +50,13 @@ function App() {
             <Categories />
           </CategoriesProvider>
         }></Route>
-        <Route path="category/*" element={<Category />}></Route>
+        <Route path="category/*" element={
+          <CategoriesProvider>
+            <MoviesProvider>
+              <Category />
+            </MoviesProvider>
+          </CategoriesProvider>
+        }></Route>
         <Route path="watch-later" element={<WatchLater />}></Route>
         <Route path="about" element={<About />}></Route>
         <Route path="*" element={<NotFound />}></Route>

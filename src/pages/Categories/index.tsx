@@ -10,6 +10,9 @@ export default function Categories () {
 
     const { categoriesList } = useContext(CategoriesContext) as categoriesContextType;
 
+    // Page title
+    document.title = `Categories | Lumitasy`;
+
     return (
         <>
             <Menu />

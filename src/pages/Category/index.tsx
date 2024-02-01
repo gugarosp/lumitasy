@@ -24,6 +24,9 @@ export default function Category () {
     // List result
     const listResult = moviesList.filter(item => item.categories?.toLowerCase().includes(categorySlug));
 
+    // Page title
+    document.title = `${categoryName} | Lumitasy`;
+
     return (
         <>
             <Menu />

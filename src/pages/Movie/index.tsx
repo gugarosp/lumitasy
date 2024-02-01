@@ -18,6 +18,7 @@ export default function Movie () {
 
     const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
 
+    // Page title
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
     function addWatchLater() {

@@ -36,6 +36,9 @@ export default function Search() {
     // Search result
     const searchResult = moviesList.filter(item => item.title?.toLowerCase().includes(searchWord));
 
+    // Page title
+    document.title = `Search | Lumitasy`;
+    
     return (
         <>
             <Menu />

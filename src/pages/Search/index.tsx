@@ -3,9 +3,9 @@ import styles from "./Search.module.scss"
 import Menu from "components/Menu";
 import { useContext, useState } from "react";
 import { MoviesContext } from "context/movies";
-import Poster from "elements/Poster";
 import Input from "elements/Input";
 import SuperMessage from "components/SuperMessage";
+import PosterList from "components/PosterList";
 
 interface moviesListProps {
     id?: number
@@ -49,20 +49,9 @@ export default function Search() {
                         searchWord === "" ?
                             <></>
                         : searchResult.length !== 0 ?
-                            <div className={styles.result}>
-                                {
-                                    searchResult.map((item, index) => {
-                                        return (
-                                            <Poster
-                                                key={index}
-                                                link={`movie/${item.slug}`}
-                                                src={`http://lumitasy.siteseguro.ws/images/movies/posters/${item.slug}.png`}
-                                                title={item.title !== undefined ? item.title : ""}
-                                            />
-                                        )
-                                    })
-                                }
-                            </div>
+                            
+                            <PosterList movieList={searchResult} />
+
                         : 
                             <SuperMessage 
                                 icon="sentiment_sad"

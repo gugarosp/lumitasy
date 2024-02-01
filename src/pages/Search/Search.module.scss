@@ -7,17 +7,4 @@
         padding-bottom: var(--spacing-3x);
     }
 
-    .result {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--spacing-3x);
-
-        a {
-            flex-basis: calc((100% / 8) - 21px);
-            flex-grow: 0;
-            flex-shrink: 0;
-        }
-
-    }
-
 }

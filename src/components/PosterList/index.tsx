@@ -22,7 +22,7 @@ export default function PosterList ({movieList}:PosterListProps) {
                 return (
                     <Poster
                         key={index}
-                        link={`movie/${item.slug}`}
+                        link={`/movie/${item.slug}`}
                         src={`http://lumitasy.siteseguro.ws/images/movies/posters/${item.slug}.png`}
                         title={item.title !== undefined ? item.title : ""}
                     />

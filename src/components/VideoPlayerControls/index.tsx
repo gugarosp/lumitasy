@@ -1,26 +1,17 @@
 import Button from "elements/Button";
 import styles from "./VideoPlayerControls.module.scss"
 import Slider from "elements/Slider";
-import { RefObject, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PlayMovieContext } from "context/playMovie";
-
-interface playProps {
-    video: RefObject<HTMLVideoElement>
-    videoCurrentTime: number,
-    videoDuration: number
-    PlayPauseVideo: () => void
-    playPauseIcon: string,
-    fullscreenIcon: string;
-    fullscreen: () => void
-}
+import { playMovieContextType } from "context/playMovieTypes";
 
 export default function VideoPlayerControls () {
     // Video Element
-    const { video }:playProps = useContext(PlayMovieContext);
+    const { video } = useContext(PlayMovieContext) as playMovieContextType;
     
     // Video current time and duration
-    const { videoCurrentTime }:playProps = useContext(PlayMovieContext);
-    const { videoDuration }:playProps = useContext(PlayMovieContext);
+    const { videoCurrentTime } = useContext(PlayMovieContext) as playMovieContextType;
+    const { videoDuration } = useContext(PlayMovieContext) as playMovieContextType;
     
     // Transforms the video current time and total time into a 'h:mm:ss' format
     function timeFormat (time:number) {
@@ -40,10 +31,10 @@ export default function VideoPlayerControls () {
     }, [sliderBarPositionPercentage])
     
     // Play and pause video
-    const { PlayPauseVideo }:playProps = useContext(PlayMovieContext);
+    const { playPauseVideo } = useContext(PlayMovieContext) as playMovieContextType;
 
     // Play and pause icon change
-    const { playPauseIcon }:playProps = useContext(PlayMovieContext);
+    const { playPauseIcon } = useContext(PlayMovieContext) as playMovieContextType;
 
     // Volume
     const [volumeIcon, setVolumeIcon] = useState("volume_up");
@@ -61,8 +52,8 @@ export default function VideoPlayerControls () {
     }
 
     // Fullscreen
-    const { fullscreenIcon }:playProps = useContext(PlayMovieContext);
-    const { fullscreen }:playProps = useContext(PlayMovieContext);
+    const { fullscreenIcon } = useContext(PlayMovieContext) as playMovieContextType;
+    const { fullscreen } = useContext(PlayMovieContext) as playMovieContextType;
 
 
     // Passes the video html element to slider element
@@ -82,7 +73,7 @@ export default function VideoPlayerControls () {
     // Keyboard player controls
     function keyboardControls (event:KeyboardEvent) {
         switch (event.code) {
-            case 'Space': PlayPauseVideo(); break;
+            case 'Space': playPauseVideo?.(); break;
             case 'ArrowLeft': changeVideoTime("backward", 10); break;
             case 'ArrowRight': changeVideoTime("forward", 10);
         }
@@ -111,7 +102,7 @@ export default function VideoPlayerControls () {
                         <span className="h8 title-alternative">10</span>
                     </div>
                     
-                    <Button icon={playPauseIcon} iconFill={true} type="icon-ring" size="titan" strength="higher" action={() => PlayPauseVideo()}/>
+                    <Button icon={playPauseIcon} iconFill={true} type="icon-ring" size="titan" strength="higher" action={() => playPauseVideo?.()}/>
                     
                     <div className={styles.forward}>
                         <Button icon="replay" iconFill={true} type="icon-ring" size="giant" strength="higher" action={() => changeVideoTime("forward", 10)} />
@@ -121,7 +112,7 @@ export default function VideoPlayerControls () {
 
                 <div className={styles.options}>
                     <Button icon={volumeIcon} size="giant" strength="lower" action={() => volume()} />
-                    <Button icon={fullscreenIcon} size="giant" strength="lower" action={() => fullscreen()} />
+                    <Button icon={fullscreenIcon} size="giant" strength="lower" action={() => fullscreen?.()} />
                 </div>
 
             </div>

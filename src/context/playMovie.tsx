@@ -1,6 +1,7 @@
 import { ReactElement, createContext, useRef, useState } from "react";
+import { playMovieContextType } from "./playMovieTypes";
 
-export const PlayMovieContext:any = createContext<PlayMovieProviderProps | null>(null);
+export const PlayMovieContext = createContext<playMovieContextType | null>(null);
 PlayMovieContext.displayName = 'Play Movie';
 
 interface PlayMovieProviderProps {
@@ -10,14 +11,12 @@ interface PlayMovieProviderProps {
 export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
 
     // Video Element
-    const video = useRef<HTMLVideoElement>();
+    const video = useRef<HTMLVideoElement>(null);
 
-    function metaDataVideo () {
-        if (video.current !== undefined) {
-            setVideoCurrentTime(Math.floor(video.current.currentTime));
-            setVideoDuration(Math.ceil(video.current.duration));
-            setMovieLoaded(true);
-        }
+    function metaDataVideo (element:HTMLVideoElement) {
+        setVideoCurrentTime(Math.floor(element.currentTime));
+        setVideoDuration(Math.ceil(element.duration));
+        setMovieLoaded(true);
     }
 
     // Video Infos
@@ -26,11 +25,12 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
     const [videoDuration, setVideoDuration] = useState(0);
     
     // Play and pause video
-    function PlayPauseVideo () {
+    function playPauseVideo () {
         if (video.current?.paused === true && movieLoaded === true) {
             video.current.play();
         } else if (video.current?.paused === false && movieLoaded === true) {
             video.current.pause();
+            clearInterval(getVideoInfo.current);
         }
     }
     
@@ -71,22 +71,16 @@ export const PlayMovieProvider = ({children}:PlayMovieProviderProps) => {
         <PlayMovieContext.Provider value={
             {
                 video,
-                metaDataVideo,
-                getVideoInfo,
                 videoCurrentTime,
-                setVideoCurrentTime,
                 videoDuration,
-                setVideoDuration,
-                PlayPauseVideo,
-                videoInfo,
-                whilePlayVideo,
                 movieLoaded,
-                setMovieLoaded,
                 playPauseIcon,
-                setPlayPauseIcon,
                 fullscreenIcon,
+                playPauseVideo,
                 fullscreen,
-                setFullscreenIcon
+                metaDataVideo,
+                whilePlayVideo,
+                setPlayPauseIcon
             }
         }>
             {children}

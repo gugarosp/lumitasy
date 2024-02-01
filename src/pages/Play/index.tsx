@@ -1,25 +1,13 @@
 import styles from "./Play.module.scss"
 
-import { RefObject, SyntheticEvent, useContext, useRef, useState } from "react";
 import Button from "elements/Button";
 import VideoPlayerControls from "components/VideoPlayerControls";
-import { PlayMovieContext } from "context/playMovie";
-import { MoviesContext } from "context/movies";
 import NotFoundContent from "components/NotFoundContent";
 import Menu from "components/Menu";
-
-interface playProps {
-    video: RefObject<HTMLVideoElement>,
-    metaDataVideo: (event: SyntheticEvent<HTMLVideoElement, Event>) => void
-    getVideoInfo: string
-    videoDuration: number
-    PlayPauseVideo: () => void,
-    videoInfo: () => void,
-    whilePlayVideo: (event: EventTarget) => void,
-    movieLoaded: boolean,
-    setPlayPauseIcon: React.Dispatch<React.SetStateAction<string>>,
-    fullscreen: () => void,
-}
+import { useContext, useRef, useState } from "react";
+import { PlayMovieContext } from "context/playMovie";
+import { MoviesContext } from "context/movies";
+import { playMovieContextType } from "context/playMovieTypes";
 
 interface moviesListProps {
     id?: number
@@ -42,8 +30,8 @@ export default function Play () {
     const movieSlug = window.location.href.split("play/")[1];
     
     // Video Element
-    const { video }:playProps = useContext(PlayMovieContext);
-    const { metaDataVideo }:playProps = useContext(PlayMovieContext);
+    const { video } = useContext(PlayMovieContext) as playMovieContextType;
+    const { metaDataVideo } = useContext(PlayMovieContext) as playMovieContextType;
 
     // Movie Reference
     const { moviesList } = useContext(MoviesContext) as moviesContextType;
@@ -58,13 +46,13 @@ export default function Play () {
     }
 
     // Play and pause video
-    const { PlayPauseVideo }:playProps = useContext(PlayMovieContext);
+    const { playPauseVideo } = useContext(PlayMovieContext) as playMovieContextType;
 
     // Video while playing
-    const { whilePlayVideo }:playProps = useContext(PlayMovieContext);
+    const { whilePlayVideo } = useContext(PlayMovieContext) as playMovieContextType;
 
     // Movie load status
-    const { movieLoaded }:playProps = useContext(PlayMovieContext);
+    const { movieLoaded } = useContext(PlayMovieContext) as playMovieContextType;
 
     ////////////////////////////////////////
     /* HIDE AND SHOW CONTROLS AND ACTIONS */
@@ -116,10 +104,10 @@ export default function Play () {
     });
 
     // Play/Pause Icon
-    const { setPlayPauseIcon }:playProps = useContext(PlayMovieContext);
+    const { setPlayPauseIcon } = useContext(PlayMovieContext) as playMovieContextType;
 
     // Fullscreen
-    const { fullscreen }:playProps = useContext(PlayMovieContext);
+    const { fullscreen } = useContext(PlayMovieContext) as playMovieContextType;
 
 
     ////////////////////////////////////////
@@ -170,16 +158,16 @@ export default function Play () {
                         <div className={styles["video-container"]}>
                             <video
                                 ref={video}
-                                onLoadedMetadata={event => metaDataVideo(event)}
-                                onPlay={event => {whilePlayVideo(event.target); setPlayPauseIcon("pause");}}
-                                onPause={() => {setPlayPauseIcon("play_arrow");}}
+                                onLoadedMetadata={event => metaDataVideo?.(event.currentTarget)}
+                                onPlay={event => {whilePlayVideo?.(event.currentTarget); setPlayPauseIcon?.("pause");}}
+                                onPause={() => {setPlayPauseIcon?.("play_arrow");}}
                             >
                                 <source src={movieInfo?.source} type="video/mp4" />
                             </video>
 
                             <div
                                 className={styles.glass}
-                                onClick={() => {PlayPauseVideo();}}
+                                onClick={() => {playPauseVideo?.();}}
                                 onDoubleClick={fullscreen}
                             >
                                 <div className={`${styles["loading-warning"]} ${movieLoaded === true ? styles["loading-warning-hide"] : "" }`}>

@@ -5,7 +5,7 @@ import NotFoundContent from "components/NotFoundContent";
 import { MoviesContext } from "context/movies";
 import Button from "elements/Button";
 import Separator from "elements/Separator";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { moviesContextType } from "context/moviesTypes";
 
 export default function Movie () {
@@ -18,12 +18,38 @@ export default function Movie () {
 
     const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
 
+    // Watch Later
+    const watchLaterList = JSON.parse(localStorage.getItem("watch-later") || "[]");
+
+    const [watchLaterIcon, setWatchLaterIcon] = useState("add");
+    const [watchLaterMessage, setWatchLaterMessage] = useState("Watch Later");
+
+    if (watchLaterList.includes(movieInfo?.id) && watchLaterIcon === "add") {
+        setWatchLaterIcon("delete");
+        setWatchLaterMessage("Remove from Watch Later");
+    }
+                
+    function addRemoveWatchLater() {
+                    
+        if (watchLaterList.includes(movieInfo?.id)) {
+            const movieWatchListIndex = watchLaterList.findIndex((id:number) => id === movieInfo.id);
+            watchLaterList.splice(movieWatchListIndex, 1);
+            
+            setWatchLaterIcon("add");
+            setWatchLaterMessage("Watch Later");
+        } else {
+            watchLaterList.push(movieInfo?.id);
+            
+            setWatchLaterIcon("delete");
+            setWatchLaterMessage("Remove from Watch Later");
+        }
+        
+        localStorage.setItem("watch-later", JSON.stringify(watchLaterList));
+        
+    }
+    
     // Page title
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
-
-    function addWatchLater() {
-        console.log("Add this movie to watch later list");
-    }
 
     return (
         <>
@@ -70,7 +96,7 @@ export default function Movie () {
                                 <Button icon="play_arrow" size="titan" iconFill={true} strength="lower" type="icon-ring" link={`/play/${movieSlug}`}>Watch Movie</Button>
                             </div>
                             <div>
-                                <Button icon="add" size="extra-large" iconFill={true} strength="lower" type="icon" action={addWatchLater}>Watch Later</Button>
+                                <Button icon={watchLaterIcon} size="extra-large" iconFill={false} strength="lower" type="icon" action={addRemoveWatchLater}>{watchLaterMessage}</Button>
                             </div>
                         </div>
                     </div>

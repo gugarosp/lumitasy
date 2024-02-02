@@ -19,17 +19,19 @@ export default function Movie () {
     const movieInfo = moviesList.filter(item => item.slug === movieSlug)[0];
 
     // Watch Later
-    const watchLaterList = JSON.parse(localStorage.getItem("watch-later") || "[]");
+    const watchLaterListChecker = JSON.parse(localStorage.getItem("watch-later") || "[]");
 
     const [watchLaterIcon, setWatchLaterIcon] = useState("add");
     const [watchLaterMessage, setWatchLaterMessage] = useState("Watch Later");
 
-    if (watchLaterList.includes(movieInfo?.id) && watchLaterIcon === "add") {
+    if (watchLaterListChecker.includes(movieInfo?.id) && watchLaterIcon === "add") {
         setWatchLaterIcon("delete");
         setWatchLaterMessage("Remove from Watch Later");
     }
                 
     function addRemoveWatchLater() {
+
+        const watchLaterList = JSON.parse(localStorage.getItem("watch-later") || "[]");
                     
         if (watchLaterList.includes(movieInfo?.id)) {
             const movieWatchListIndex = watchLaterList.findIndex((id:string) => id === movieInfo.id);

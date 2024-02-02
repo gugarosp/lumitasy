@@ -1,5 +1,5 @@
 export interface IMoviesList {
-    id?: number
+    id?: string
     slug?: string
     title?: string
     categories?: string

@@ -2,16 +2,10 @@ import styles from "./PosterList.module.scss"
 
 import Poster from "elements/Poster"
 
+import { IMoviesList } from "context/moviesTypes";
+
 interface PosterListProps {
-    movieList: {
-        id?: number
-        slug?: string
-        title?: string
-        categories?: string
-        source?: string
-        year?: string
-        description?: string
-    }[]
+    movieList: IMoviesList[]
 }
 
 export default function PosterList ({movieList}:PosterListProps) {

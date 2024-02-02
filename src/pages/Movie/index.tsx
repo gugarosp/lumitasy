@@ -2,10 +2,10 @@ import styles from "./Movie.module.scss"
 
 import Menu from "components/Menu";
 import NotFoundContent from "components/NotFoundContent";
-import { MoviesContext } from "context/movies";
 import Button from "elements/Button";
 import Separator from "elements/Separator";
 import { useContext, useState } from "react";
+import { MoviesContext } from "context/movies";
 import { moviesContextType } from "context/moviesTypes";
 
 export default function Movie () {
@@ -32,7 +32,7 @@ export default function Movie () {
     function addRemoveWatchLater() {
                     
         if (watchLaterList.includes(movieInfo?.id)) {
-            const movieWatchListIndex = watchLaterList.findIndex((id:number) => id === movieInfo.id);
+            const movieWatchListIndex = watchLaterList.findIndex((id:string) => id === movieInfo.id);
             watchLaterList.splice(movieWatchListIndex, 1);
             
             setWatchLaterIcon("add");

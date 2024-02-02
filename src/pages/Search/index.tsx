@@ -6,20 +6,7 @@ import { MoviesContext } from "context/movies";
 import Input from "elements/Input";
 import SuperMessage from "components/SuperMessage";
 import PosterList from "components/PosterList";
-
-interface moviesListProps {
-    id?: number
-    slug?: string
-    title?: string
-    categories?: string
-    source?: string
-    year?: string
-    description?: string
-}
-
-interface moviesContextType {
-    moviesList: moviesListProps[];
-}
+import { moviesContextType } from "context/moviesTypes";
 
 export default function Search() {
 

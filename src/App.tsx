@@ -57,7 +57,11 @@ function App() {
             </MoviesProvider>
           </CategoriesProvider>
         }></Route>
-        <Route path="watch-later" element={<WatchLater />}></Route>
+        <Route path="watch-later" element={
+          <MoviesProvider>
+            <WatchLater />
+          </MoviesProvider>
+        }></Route>
         <Route path="about" element={<About />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

@@ -21,7 +21,9 @@ export default function Search() {
     }
 
     // Search result
-    const searchResult = moviesList.filter(item => item.title?.toLowerCase().includes(searchWord));
+    const searchResult = moviesList.filter(item => item.title?.includes(searchWord) || 
+                                                   item.title?.toLowerCase().includes(searchWord.toLowerCase()) || 
+                                                   item.title?.toUpperCase().includes(searchWord.toUpperCase()));
 
     // Page title
     document.title = `Search | Lumitasy`;

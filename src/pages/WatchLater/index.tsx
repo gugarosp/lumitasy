@@ -30,7 +30,7 @@ export default function WatchLater () {
                         {
                             watchLaterIds.length > 0 
                             ?
-                            <PosterList movieList={watchLaterList} />
+                            <PosterList movieList={watchLaterList} showDeleteButton={true}/>
                             :
                             <SuperMessage
                                 icon="theaters"

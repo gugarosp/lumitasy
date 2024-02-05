@@ -3,10 +3,44 @@
     flex-wrap: wrap;
     gap: var(--spacing-3x);
 
-    a {
+    .wrapper {
         flex-basis: calc((100% / 8) - 21px);
         flex-grow: 0;
         flex-shrink: 0;
+        position: relative;
+
+        .footer {
+            display: none;
+        }
+
+        &.show-footer {
+            &:hover {
+                &> a {
+                    position: relative;
+                    
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        width: 100%;
+                        height: 35%;
+                        background: linear-gradient(0deg, var(--color-transparent-black-80) 0%, var(--color-transparent-black-00) 100%);
+                    }
+    
+                }
+    
+                .footer {
+                    display: flex;
+                    justify-content: flex-end;
+                    position: absolute;
+                    right: var(--spacing-1x);
+                    bottom: var(--spacing-1x);
+                }
+    
+            }
+
+        }
+
     }
 
 }

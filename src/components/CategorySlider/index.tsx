@@ -23,12 +23,13 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
                 {
                     moviesList.filter(item => item.categories?.includes(categorySlug)).map((item, index) => {
                         return (
-                            <Poster
-                                key={index}
-                                link={`movie/${item.slug}`}
-                                src={`http://lumitasy.siteseguro.ws/images/movies/posters/${item.slug}.png`}
-                                title={item.title !== undefined ? item.title : ""}
-                            />
+                            <div className={styles["poster-wrapper"]} key={index}>
+                                <Poster
+                                    link={`movie/${item.slug}`}
+                                    src={`http://lumitasy.siteseguro.ws/images/movies/posters/${item.slug}.png`}
+                                    title={item.title !== undefined ? item.title : ""}
+                                />
+                            </div>
                         )
                     })
                 }

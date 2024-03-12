@@ -17,7 +17,9 @@ export default function Home() {
                 {
                     categoriesList.map((item, index) => {
                         return (
-                            <CategorySlider key={index} categoryName={item.name} categorySlug={item.slug} />
+                            <div key={index}>
+                                <CategorySlider categoryName={item.name} categorySlug={item.slug} />
+                            </div>
                         )
                     })
                 }

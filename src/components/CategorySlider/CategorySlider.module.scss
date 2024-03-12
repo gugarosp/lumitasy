@@ -9,7 +9,7 @@
         display: flex;
         gap: var(--spacing-3x);
         
-        a {
+        .poster-wrapper {
             display: block;
             flex-basis: calc((100vw/8) - 39px);
             flex-grow: 0;

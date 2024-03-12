@@ -10,24 +10,22 @@
     
     // Button
     @mixin button ($height, $text-font-size, $text-line-height, $icon-font-size, $icon-line-height, $gap, $height-icon-ring, $icon-outline-stroke, $gap-icon-ring) {
-        height: $height;
         font-size: var(--font-size-#{$text-font-size});
         line-height: var(--font-size-#{$text-font-size});
-        gap: $gap;
-        padding: 0 var(--spacing-2x) 0 var(--spacing-1x);
-
-        // Type
-        &.type-icon {
-
-            .icon {
+        
+        .icon {
             display: inline-grid;
             place-items: center;
             height: 100%;
             aspect-ratio: 1/1;
             font-size: var(--font-size-#{$icon-font-size});
             line-height: var(--font-size-#{$icon-line-height});
-            }
+        }
 
+        // Type
+        &.type-icon {
+            gap: $gap;
+            height: $height;
         }
 
         &.type-icon-ring {
@@ -89,12 +87,11 @@
 
     // Text 
     &.text-hide {
-        padding: 0;
-
+        
         .text {
             display: none;
         }
-
+        
     }
 
 }

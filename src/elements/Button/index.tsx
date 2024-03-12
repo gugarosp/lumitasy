@@ -41,6 +41,7 @@ export default function Button (
                 styles[`type-${type}`]} ${
                 children === "" ? styles[`text-hide`] : ""}`
             }>
+                
             <span
                 className={
                     `material-symbols-rounded icon-${

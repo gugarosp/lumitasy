@@ -15,18 +15,21 @@
         line-height: var(--font-size-#{$text-font-size});
         gap: $gap;
         padding: 0 var(--spacing-2x) 0 var(--spacing-1x);
-    
-        // Icon
-        .icon {
+
+        // Type
+        &.type-icon {
+
+            .icon {
             display: inline-grid;
             place-items: center;
             height: 100%;
             aspect-ratio: 1/1;
             font-size: var(--font-size-#{$icon-font-size});
             line-height: var(--font-size-#{$icon-line-height});
+            }
+
         }
 
-        // Type
         &.type-icon-ring {
             gap: $gap-icon-ring;
             height: $height-icon-ring;
@@ -40,6 +43,7 @@
         }
     }
 
+    // Size
     &.size-small {
         @include button (36px, "small", "small", "extra-large", "extra-large", var(--spacing-0-5x), 36px, 1px, var(--spacing-1x));
     }

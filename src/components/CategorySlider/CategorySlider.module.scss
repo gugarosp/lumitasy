@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-2x);
+    position: relative;
     overflow: hidden;
 
     .container {
@@ -17,4 +18,29 @@
         }
     }
 
+    .slide-forward, 
+    .slide-return {
+        position: absolute;
+        top: 50%;
+        background-color: var(--color-transparent-black-60);
+        border-radius: var(--rounded-corners-1x);
+        scale: 0;
+        opacity: 0;
+        transition: opacity .5s;
+    }
+
+    .slide-forward {
+        right: var(--spacing-8x);
+    }
+
+    &:hover {
+
+        .slide-forward, 
+        .slide-return {
+            display: initial;
+            scale: 1;
+            opacity: 1;
+        }
+
+    }
 }

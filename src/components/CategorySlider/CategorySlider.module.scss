@@ -8,6 +8,7 @@
     .container {
         display: flex;
         gap: var(--spacing-3x);
+        position: relative;
         
         .poster-wrapper {
             display: block;
@@ -19,7 +20,7 @@
     }
 
     .slide-forward, 
-    .slide-return {
+    .slide-backward {
         position: absolute;
         top: 50%;
         background-color: var(--color-transparent-black-60);
@@ -29,14 +30,20 @@
         transition: opacity .5s;
     }
 
+    $slideButtonsPosition: var(--spacing-1x);
+
     .slide-forward {
-        right: var(--spacing-8x);
+        right: $slideButtonsPosition;
+    }
+
+    .slide-backward {
+        left: $slideButtonsPosition;
     }
 
     &:hover {
 
         .slide-forward, 
-        .slide-return {
+        .slide-backward {
             display: initial;
             scale: 1;
             opacity: 1;

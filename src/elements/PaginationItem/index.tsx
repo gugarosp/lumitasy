@@ -7,9 +7,9 @@ interface PaginationItemProps {
 
 export default function PaginationItem ({ status = false, action }:PaginationItemProps) {
     return (
-        <div 
+        <button 
             className={`${styles["pagination-item"]} ${styles[status === true ? "active" : "inactive"]}`}
             onClick={() => action?.()}>
-        </div>
+        </button>
     )
 }

@@ -3,6 +3,8 @@
     place-items: center;
     width: 32px;
     aspect-ratio: 1;
+    border: 0;
+    background-color: transparent;
     cursor: pointer;
     
     &::before {

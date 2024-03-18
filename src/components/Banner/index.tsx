@@ -1,37 +1,35 @@
-import { Fragment, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import styles from "./Banner.module.scss"
 import robot from "./robot.png"
 import PaginationItem from "elements/PaginationItem";
 
+ interface BannerList {
+    movie?: string
+    slug?: string
+    background?: string
+    logo?: string
+    description?: string
+    active?: boolean
+}
+
 export default function Banner () {
-    const bannerObject = [
-        {
-            "movie": "OMG",
-            "slug": "omg",
-            "background": "https://images.unsplash.com/photo-1708439218339-b423ca4965d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDQ0OTQzOA&ixlib=rb-4.0.3&q=80&w=1080",
-            "logo": "http://lumitasy.siteseguro.ws/images/movies/logos/metropolis.png",
-            "description": "omg",
-            "active": true
-        },
-        {
-            "movie": "Loko",
-            "slug": "loko",
-            "background": "https://images.unsplash.com/photo-1708533548085-4d869ab08486?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxMDQ1MDY5MA&ixlib=rb-4.0.3&q=80&w=1080",
-            "logo": "http://lumitasy.siteseguro.ws/images/movies/logos/metropolis.png",
-            "description": "Loko",
-            "active": false
-        },
-        {
-            "movie": "Metropolis",
-            "slug": "metropolis",
-            "background": "http://lumitasy.siteseguro.ws/images/banner/background-1.png", 
-            "logo": "http://lumitasy.siteseguro.ws/images/movies/logos/metropolis.png",
-            "description": "In a futuristic city, a man falls in love with a woman who predicts the coming of a savior to mediate the class differences.",
-            "active": false
+    const [bannerList, setBannerList] = useState<BannerList[]>([{}]);
+    const [movieUrl, setMovieUrl] = useState(`/categories`);
+
+    useEffect(() => {
+        async function categories() {
+            const response = await fetch("http://lumitasy.siteseguro.ws/api/banner/");
+            const info = await response.text();
+            return info;
         }
-    ]
-    const [bannerList, setBannerList] = useState(bannerObject);
-    const [movieUrl, setMovieUrl] = useState(`/movie/${bannerObject[0].slug}`);
+
+        categories().then(data => {
+            setBannerList(JSON.parse(data));
+            setMovieUrl(`/movie/${JSON.parse(data)[0].slug}`);
+        });
+
+    }, []);
+
 
     function pagination (index:number) {
         bannerList.map(item => item.active = false);

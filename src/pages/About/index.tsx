@@ -12,7 +12,7 @@ export default function About() {
                     <h1 className="no-margin">About</h1>
                     <p>
                         Lumitasy is a solo project by the Frontend Developer and UX Designer Gustavo Pereira. If you
-                        wish to contact me, please, send me an e-mail or visit my profile on LinkedIn.
+                        wish to contact me, please, visit my profile on LinkedIn.
                     </p>
                     <div className={styles["about-list"]}>
                         <Display link="https://linkedin.com/in/gugarosp" target="_blank" subtitle="linkedin.com/in/gugarosp">

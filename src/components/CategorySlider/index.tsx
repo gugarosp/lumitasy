@@ -90,6 +90,16 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
         }
     }
 
+    // If page resizes
+    const pageResize:EventListener = () => {
+        setSlidePosition(0);
+        setCurrentSlidePage(0);
+
+        return window.removeEventListener("resize", pageResize);
+    }
+
+    window.addEventListener("resize", pageResize);
+
     return (
 
         <div className={`content ${styles["category-slider"]}`}>

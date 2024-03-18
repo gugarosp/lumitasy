@@ -1,4 +1,6 @@
 .banner {
+    display: flex;
+    justify-content: center;
     position: relative;
     height: 550px;
     user-select: none;
@@ -119,8 +121,7 @@
     .pagination {
         position: absolute;
         bottom: 0;
-        width: 100%;
-        text-align: center;
+        padding-bottom: var(--spacing-1x);
     }
 
 }

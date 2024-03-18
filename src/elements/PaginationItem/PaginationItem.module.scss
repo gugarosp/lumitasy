@@ -1,0 +1,23 @@
+.pagination-item {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    
+    &::before {
+        content: "";
+        width: 11.32px; // 16px width and height when rotated
+        aspect-ratio: 1;
+        border-radius: var(--rounded-corners-0-25x);
+        rotate: 45deg;
+    }
+
+    &.active::before {
+        background-color: var(--color-white);
+    }
+
+    &.inactive::before {
+        background-color: var(--color-transparent-white-40);
+    }
+}

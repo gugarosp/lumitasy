@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react"
 import styles from "./Banner.module.scss"
 import robot from "./robot.png"
+import PaginationItem from "elements/PaginationItem";
 
 export default function Banner () {
     const bannerObject = [
@@ -30,7 +31,7 @@ export default function Banner () {
         }
     ]
     const [bannerList, setBannerList] = useState(bannerObject);
-    const [movieUrl, setMovieUrl] = useState("/");
+    const [movieUrl, setMovieUrl] = useState(`/movie/${bannerObject[0].slug}`);
 
     function pagination (index:number) {
         bannerList.map(item => item.active = false);
@@ -83,6 +84,7 @@ export default function Banner () {
                             )
                         })
                     }
+                    
                 </a>
             </div>
 
@@ -90,11 +92,9 @@ export default function Banner () {
                 {
                     bannerList.map((item, index) => {
                         return(
-                            <span key={index} onClick={() => pagination(index)}>
-                                &nbsp;
-                                [{index}]
-                                &nbsp;
-                            </span>
+                            <Fragment key={index}>
+                                <PaginationItem status={item.active} action={() => pagination(index)}/>
+                            </Fragment>
                         )
                     })
                 }

@@ -5,6 +5,7 @@ interface DisplayProps {
     link?: string
     children?: string
     subtitle?: string
+    target?: string
 }
 
 export default function Display(
@@ -12,12 +13,14 @@ export default function Display(
         icon = "",
         link = undefined,
         children = "",
-        subtitle = ""
+        subtitle = "",
+        target = ""
     }: DisplayProps) {
 
     return (
         <a 
-            href={link !== "" ? `${link}` : undefined} 
+            href={link !== "" ? `${link}` : undefined}
+            target={target !== "" ? `${target}` : undefined}
             className={`${
                 styles.display} ${
                 subtitle !== "" ? styles["display-subtitle"] : ""} ${

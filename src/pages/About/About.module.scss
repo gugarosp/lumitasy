@@ -1,0 +1,12 @@
+.about {
+
+    p {
+        margin: 0;
+    }
+
+    .about-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-3x);
+    }
+}

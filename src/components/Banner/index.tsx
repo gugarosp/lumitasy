@@ -13,7 +13,7 @@ import PaginationItem from "elements/PaginationItem";
 }
 
 export default function Banner () {
-    const [bannerList, setBannerList] = useState<BannerList[]>([{}]);
+    const [bannerList, setBannerList] = useState<BannerList[]>([]);
     const [movieUrl, setMovieUrl] = useState(`/categories`);
 
     useEffect(() => {
@@ -63,7 +63,7 @@ export default function Banner () {
                 <a href={movieUrl} className={`${styles.container} ${styles["info-container"]}`}>
 
                     {
-                        bannerList.map((item, index) => {
+                        bannerList.length !== 0 ? bannerList.map((item, index) => {
                             return (
                                 <Fragment key={index}>
                                     <div className={`${styles["movie-info"]} ${item.active === true ? styles["movie-info-active"] : ""}`}>
@@ -80,7 +80,7 @@ export default function Banner () {
                                     </div>
                                 </Fragment>
                             )
-                        })
+                        }) : ""
                     }
                     
                 </a>

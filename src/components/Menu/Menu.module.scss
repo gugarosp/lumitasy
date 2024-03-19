@@ -1,3 +1,5 @@
+@import "css/variables/mediaqueries.scss";
+
 .menu {
     position: fixed;
     z-index: 10;
@@ -6,10 +8,10 @@
 
     .wrapper {
         display: flex;
-        gap: 120px;
-        height: 75px;
         align-items: center;
-        padding-top: 24px;
+        gap: 120px;
+        height: 76px;
+        padding-top: var(--spacing-3x);
         transition: gap .3s, height .3s, padding-top .3s;
 
 
@@ -22,6 +24,10 @@
                 transition: width .3s, height .3s;
             }
 
+        }
+
+        .mobile-menu {
+            display: none;
         }
 
         nav {
@@ -92,6 +98,85 @@
             }
 
         }
+    }
+
+}
+
+@media (max-width: $window-large) {
+    .menu {
+
+        .wrapper {
+            gap: var(--spacing-8x);            
+
+            nav {
+
+                ul {
+                    gap: var(--spacing-4x);
+                }
+
+            }
+
+        }
+
+    }
+}
+
+@media (max-width: $window-medium) {
+    .menu {
+
+        .wrapper {
+            justify-content: space-between;
+            row-gap: 0;
+            flex-wrap: wrap;
+            height: 48px;
+            padding-top: var(--spacing-1x);
+
+            .logo {
+
+                a {
+                    width: 104px;
+                    height: 34px;
+                }
+            }
+            
+            .mobile-menu {
+                display: initial;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                height: auto;
+
+                ul {
+                    flex-direction: column;
+                    gap: 0;
+                    width: 100%;
+
+                    li {
+                        width: 100%;
+                    }
+                }
+            }
+
+        }
+
+        &.scrolled {
+    
+            .wrapper {
+                height: 64px;
+    
+                .logo {
+                    
+                    a {
+                        width: 104px;
+                        height: 34px;
+                    }
+    
+                }
+            }
+        }
+
     }
 
 }

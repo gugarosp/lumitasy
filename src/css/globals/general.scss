@@ -1,3 +1,5 @@
+@import "css/variables/mediaqueries.scss";
+
 body {
     margin: 0;
     background-color: var(--color-secondary-darker-900);
@@ -41,4 +43,10 @@ body {
 
 .no-margin {
     margin: 0;
+}
+
+@media (max-width: $window-medium) {
+    .content {
+        padding: 0 var(--spacing-3x);
+    }
 }

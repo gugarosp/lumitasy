@@ -3,6 +3,7 @@ import MenuItem from "elements/MenuItem";
 
 import styles from "./Menu.module.scss"
 import { useState } from "react";
+import Button from "elements/Button";
 
 export default function Menu () {
     const menuItems = [
@@ -18,6 +19,10 @@ export default function Menu () {
         window.scrollY > 50 ? setMenuScrolled(styles.scrolled) : setMenuScrolled('');
     });
 
+    function openMenu () {
+        console.log("aaaaa");
+    }
+
     return (
         <section className={`${styles.menu} ${menuScrolled}`}>
             <div className={ `content ${styles.wrapper}` }>
@@ -26,6 +31,11 @@ export default function Menu () {
                         <LumitasyLogo />
                     </a>
                 </div>
+
+                <div className={styles["mobile-menu"]}>
+                    <Button icon="menu" size="extra-large" strength="lower" type="icon" action={() => openMenu()}/>
+                </div>
+                
                 <nav>
                     <ul>
                         <>

@@ -1,3 +1,5 @@
+@import "css/variables/mediaqueries.scss";
+
 .menu-item {
     display: inline-flex;
     align-items: center;
@@ -16,5 +18,11 @@
         height: 135%;
         top: -35%;
         color: var(--color-primary);
+    }
+}
+
+@media (max-width: $window-large) {
+    .menu-item {
+        font-size: var(--font-size-medium);
     }
 }

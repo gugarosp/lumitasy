@@ -1,58 +1,134 @@
+@import "css/variables/mediaqueries.scss";
+
 h1, h2, h3, h4, h5, h6, .h7, .h8, .h9 {
     font-family: var(--font-family-primary);
     font-weight: normal;
 }
 
-h1 {
+@mixin h1 () {
     font-size: var(--font-size-titan);
     line-height: var(--line-height-ultra);
 }
 
-h2 {
+h1 {
+    @include h1();
+}
+
+@mixin h2 () {
     font-size: var(--font-size-extra-giant);
     line-height: var(--line-height-extra-titan); 
 }
 
-h3 {
-    font-size: var(--font-size-giant); 
-    line-height: var(--line-height-titant);
+h2 {
+    @include h2();
 }
 
-h4 {
+@mixin h3 () {
+    font-size: var(--font-size-giant); 
+    line-height: var(--line-height-titan);
+}
+
+h3 {
+    @include h3();
+}
+
+@mixin h4 () {
     font-size: var(--font-size-extra-large);
     line-height: var(--line-height-extra-giant);
 }
 
-h5 {
+h4 {
+    @include h4();
+}
+
+@mixin h5 () {
     font-size: var(--font-size-large);
     line-height: var(--line-height-giant);
 }
 
-h6 {
+h5 {
+    @include h4();
+}
+
+@mixin h6 () {
     font-size: var(--font-size-medium);
     line-height: var(--line-height-extra-large);
+}
+
+h6 {
+    @include h6();
 }
 
 .h7, .h8, .h9 {
     display: block;
 }
 
-.h7 {
+@mixin h7 () {
     font-size: var(--font-size-small);
     line-height: var(--line-height-large);
 }
 
-.h8 {
+.h7 {
+    @include h7();
+}
+
+@mixin h8 () {
     font-size: var(--font-size-mini);
     line-height: var(--line-height-medium);
 }
 
-.h9 {
+.h8 {
+    @include h8();
+}
+
+@mixin h9 () {
     font-size: var(--font-size-micro);
     line-height: var(--line-height-small);
+}
+
+.h9 {
+    @include h9();
 }
 
 .title-alternative {
     font-family: var(--font-family-secondary);
     font-weight: var(--font-weight-semibold);
+}
+
+@media (max-width: $window-medium) {
+    .resp-h1 {
+        @include h1();
+    }
+    
+    .resp-h2 {
+        @include h2();
+    }
+    
+    .resp-h3 {
+        @include h3();
+    }
+    
+    .resp-h4 {
+        @include h4();
+    }
+    
+    .resp-h5 {
+        @include h5();
+    }
+    
+    .resp-h6 {
+        @include h6();
+    }
+    
+    .resp-h7 {
+        @include h7();
+    }
+    
+    .resp-h8 {
+        @include h8();
+    }
+    
+    .resp-h9 {
+        @include h9();
+    }
 }

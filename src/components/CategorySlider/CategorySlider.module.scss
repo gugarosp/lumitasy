@@ -1,3 +1,5 @@
+@import "css/variables/mediaqueries.scss";
+
 .category-slider {
     display: flex;
     flex-direction: column;
@@ -12,7 +14,7 @@
         
         .poster-wrapper {
             display: block;
-            flex-basis: calc((100vw/8) - 39px);
+            width: calc((100vw/8) - 39px);
             flex-grow: 0;
             flex-shrink: 0;
             line-height: 0;
@@ -22,11 +24,12 @@
     .slide-forward, 
     .slide-backward {
         position: absolute;
-        top: 50%;
+        top: calc(50% + 24px);
         background-color: var(--color-transparent-black-60);
         border-radius: var(--rounded-corners-1x);
         scale: 0;
         opacity: 0;
+        translate: 0 -50%;
         transition: opacity .5s;
     }
 
@@ -50,4 +53,65 @@
         }
 
     }
+
+}
+
+@media (max-width: $window-large) {
+    .category-slider {
+
+        .container {
+            gap: var(--spacing-2x);
+
+            .poster-wrapper {
+                width: calc((100vw/6) - 37.5px);
+            }
+
+        }
+
+    }
+
+}
+
+@media (max-width: $window-medium) {
+    .category-slider {
+        gap: var(--spacing-1x);
+        
+        .container {
+    
+            .poster-wrapper {
+                width: calc((100vw/4) - 28.25px);
+            }
+    
+        }
+        
+    }
+
+}
+
+@media (max-width: $window-small) {
+    .category-slider {
+     
+        .container {
+    
+            .poster-wrapper {
+                width: calc((100vw/3) - 32px);
+            }
+    
+        }
+        
+    }
+
+}
+
+@media only screen and (hover: none) and (pointer: coarse){
+    .category-slider {
+    
+        .slide-forward, 
+        .slide-backward {
+            scale: 1;
+            opacity: 1;
+        }
+
+    }
+
 }

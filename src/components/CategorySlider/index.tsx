@@ -22,21 +22,27 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
 
     // Slider movement
     function slideCategory (direction:string) {
-        const bodyWidth = document.querySelector("body")?.getBoundingClientRect().width;
-        
+        const bodyWidth = document.querySelector("body")?.getBoundingClientRect().width;      
+
         if (bodyWidth) {
-            // Slider sizes
-            const sidePadding = 64 * 2; // This will change when screen goes mobile
-            const gapSize = 24;  // This will change when screen goes mobile
+
+            // Quantity of posters in the safe area
+            const posterScreenQuantity = bodyWidth <= 576 ?  3 :
+                                         bodyWidth <= 768 ?  4 :
+                                         bodyWidth <= 992 ?  6 :
+                                         8
+
+            // Quantity of gaps between posters
+            const gapQuantity = posterScreenQuantity - 1;
+            
+            // Gap between posters
+            const gapSize = bodyWidth <= 992 ? 16 : 24;
+                
+            // Body content size sizes
+            const sidePadding = bodyWidth <= 768 ? 24 * 2 : 64 * 2; // This will change when screen goes mobile
 
             // Content safe area (page body width - content side paddings)
             const contentSafeArea = bodyWidth - sidePadding;
-            
-            // Quantity of gaps between posters
-            const gapQuantity = 7;  // This will change when screen goes mobile
-            
-            // Quantity of posters in the safe area
-            const posterScreenQuantity = 8; // This will change when screen goes mobile
 
             // Poster width calculated
             const posterWidth = Math.ceil(((contentSafeArea - (gapQuantity * gapSize)) / posterScreenQuantity) * 10) / 10;
@@ -51,7 +57,10 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
             const slidePositionIncrement = Math.round(contentSafeArea * .6);
 
             // Max quantity of times the button can be pressed
-            const totalButtonPress = Math.floor((sliderFullWidth - contentSafeArea) / slidePositionIncrement);
+            const totalButtonPress = Math.ceil((sliderFullWidth - contentSafeArea) / slidePositionIncrement);
+
+            console.log(currentSlidePage);
+            console.log(totalButtonPress);
 
             // Goes forwards
             if (direction === "forward") {
@@ -60,28 +69,28 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
                 if (slidePosition > -1 * (sliderFullWidth - contentSafeArea)) {
     
                     // Check the current slide page
-                    if (currentSlidePage !== totalButtonPress) {
+                    if (currentSlidePage !== totalButtonPress - 1) {
                         setSlidePosition(currentState => currentState - slidePositionIncrement);
+                        setCurrentSlidePage(currentState => currentState + 1);
                     } else {
                         setSlidePosition(-1 * (sliderFullWidth - contentSafeArea));
                     }
     
-                    setCurrentSlidePage(currentState => currentState + 1);
 
                 }
             
             // Goes backwards
             } else if (direction === "backward") {
 
-                if (slidePosition < 0) {
+                if (slidePosition <= 0) {
                     
-                    if (currentSlidePage !== totalButtonPress) {
+                    if (currentSlidePage !== 0) {
                         setSlidePosition(currentState => currentState + slidePositionIncrement);
+                        setCurrentSlidePage(currentState => currentState - 1);
                     } else {
                         setSlidePosition(0);
                     }
 
-                    setCurrentSlidePage(currentState => currentState - 1);
 
                 }
 
@@ -103,7 +112,7 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
     return (
 
         <div className={`content ${styles["category-slider"]}`}>
-            <h3 className="no-margin">{categoryName}</h3>
+            <h3 className="resp-h4 no-margin">{categoryName}</h3>
 
             <div className={styles.container} style={{left: slidePosition, transition: "left .5s"}}>
                 {

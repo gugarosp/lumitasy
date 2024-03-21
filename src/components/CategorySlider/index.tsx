@@ -38,8 +38,8 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
             // Gap between posters
             const gapSize = bodyWidth <= 992 ? 16 : 24;
                 
-            // Body content size sizes
-            const sidePadding = bodyWidth <= 768 ? 24 * 2 : 64 * 2; // This will change when screen goes mobile
+            // Body content sizes
+            const sidePadding = bodyWidth <= 768 ? 24 * 2 : 64 * 2;
 
             // Content safe area (page body width - content side paddings)
             const contentSafeArea = bodyWidth - sidePadding;
@@ -58,9 +58,6 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
 
             // Max quantity of times the button can be pressed
             const totalButtonPress = Math.ceil((sliderFullWidth - contentSafeArea) / slidePositionIncrement);
-
-            console.log(currentSlidePage);
-            console.log(totalButtonPress);
 
             // Goes forwards
             if (direction === "forward") {

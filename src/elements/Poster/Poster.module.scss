@@ -49,6 +49,23 @@
     }
 }
 
+@media (max-width: 320px) {
+    .poster {
+    
+        img {
+
+            &::before {
+                font-size: 8vw;
+            }
+    
+            &::after {
+                font-size: var(--font-size-mini);
+            }
+    
+        }
+    }
+}
+
 // Exceptions for Firefox
 @-moz-document url-prefix() {
     .poster img {

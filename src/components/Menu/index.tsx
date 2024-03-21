@@ -14,17 +14,18 @@ export default function Menu () {
     ]
 
     const [menuScrolled, setMenuScrolled] = useState('');
+    const [menuOpened, setMenuOpened] = useState(false);
 
     window.addEventListener("scroll", () => {
         window.scrollY > 50 ? setMenuScrolled(styles.scrolled) : setMenuScrolled('');
     });
 
     function openMenu () {
-        console.log("aaaaa");
+        setMenuOpened(menuOpened === false ? true : false);
     }
 
     return (
-        <section className={`${styles.menu} ${menuScrolled}`}>
+        <section className={`${styles.menu} ${menuScrolled} ${menuOpened === true ? styles.opened : ""}`}>
             <div className={ `content ${styles.wrapper}` }>
                 <div className={styles.logo}>
                     <a href="/">

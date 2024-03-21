@@ -16,9 +16,9 @@
         display: flex;
         align-items: center;
         gap: 120px;
-        height: 76px;
+        
         padding-top: var(--spacing-3x);
-        transition: gap .3s, height .3s, padding-top .3s;
+        transition: gap .3s, padding-top .3s;
 
 
         .logo {
@@ -26,8 +26,8 @@
             a {
                 display: inline-block;
                 width: 166px;
-                height: 49px;
-                transition: width .3s, height .3s;
+                
+                transition: width .3s;
             }
 
         }
@@ -37,13 +37,13 @@
         }
 
         nav {
-            height: 30px;
+            
             position: relative;
             top: 5px;
             transition: top .3s;
             
             ul, li {
-                height: 100%;
+                
             }
     
             ul {
@@ -58,7 +58,7 @@
                     text-align: center;
 
                     a {
-                        transition: font-size 0.3s, height .3s, color .3s, top .3s;
+                        transition: font-size 0.3s, color .3s, top .3s;
                     }
                 }
 
@@ -72,22 +72,26 @@
 
     &.scrolled {
         @include menuBackground();
+        
+        .wrapper {
+            padding-block: 14px;
+        }
+
     }
 
     &.scrolled,
     &.opened {
 
         .wrapper {
-            height: 68px;
+            
             gap: 80px;
             align-items: center;
-            padding-top: 0;
 
             .logo {
                 
                 a {
                     width: 120px;
-                    height: 42px;
+                    
                 }
 
             }
@@ -134,17 +138,15 @@
 
         .wrapper {
             justify-content: space-between;
-            row-gap: var(--spacing-1x);
+            row-gap: 0;
             flex-wrap: wrap;
-            height: auto;
-            max-height: 48px;
-            padding-top: var(--spacing-1x);
+            padding-block: 8px;
 
             .logo {
 
                 a {
                     width: 104px;
-                    height: 34px;
+                    
                 }
             }
             
@@ -153,17 +155,18 @@
             }
 
             nav {
-                display: none;
+                display: grid;
+                grid-template-rows: 0fr;
                 top: 0;
                 width: 100%;
-                height: auto;
+                transition: grid-template-rows .3s, padding .3s;
 
                 ul {
                     flex-direction: column;
                     width: 100%;
                     align-items: center;
                     gap: var(--spacing-2x);
-                    padding-block: var(--spacing-2x);
+                    overflow: hidden;
 
                     li {
                         margin-top: 0;
@@ -183,29 +186,29 @@
         &.opened {
     
             .wrapper {
-                height: 48px;
-                gap: var(--spacing-1x);
-                padding-top: var(--spacing-1x);
+                
+                gap: 0;
+                padding-block: 8px;
     
                 .logo {
                     
                     a {
                         width: 104px;
-                        height: 34px;
+                        
                     }
     
                 }
+
             }
         }
 
         &.opened {
             
             .wrapper {
-                height: auto;
-                max-height: none;
-            
+
                 nav {
-                    display: block;
+                    padding-block: 16px 8px;
+                    grid-template-rows: 1fr;
                 }
             
             }
@@ -233,8 +236,8 @@
         &.opened {
 
             .wrapper {
-                height: auto;
-                max-height: none;
+                
+                
             }
 
         }

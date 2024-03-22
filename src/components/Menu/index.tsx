@@ -1,4 +1,4 @@
-import LumitasyLogo from "elements/LumitasyLogo";
+import MainLogo from "elements/MainLogo";
 import MenuItem from "elements/MenuItem";
 
 import styles from "./Menu.module.scss"
@@ -29,7 +29,7 @@ export default function Menu () {
             <div className={ `content ${styles.wrapper}` }>
                 <div className={styles.logo}>
                     <a href="/">
-                        <LumitasyLogo />
+                        <MainLogo />
                     </a>
                 </div>
 

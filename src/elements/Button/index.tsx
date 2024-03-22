@@ -5,6 +5,7 @@ interface ButtonProps {
     iconFill?: boolean
     strength?: string
     size?: string
+    respSize?: string
     type?: string
     link?: string
     action?: () => void
@@ -17,6 +18,7 @@ export default function Button (
         iconFill = false, 
         strength = "lower", 
         size = "medium", 
+        respSize = "", 
         type = "icon", 
         link = "",
         action,
@@ -37,6 +39,7 @@ export default function Button (
             className={`${
                 styles.button} ${
                 styles[`size-${size}`]} ${
+                respSize !== "" ? styles[`resp-size-${respSize}`] : ""} ${
                 styles[`strength-${strength}`]} ${
                 styles[`type-${type}`]} ${
                 children === "" ? styles[`text-hide`] : ""}`

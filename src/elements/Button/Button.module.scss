@@ -1,3 +1,4 @@
+@import "css/variables/mediaqueries.scss";
 
 .button {
     display: inline-flex;
@@ -94,4 +95,40 @@
         
     }
 
+    // Responsive rules
+    @media (max-width: $window-medium) {
+
+        &.resp-size-small {
+            @include button (36px, "small", "small", "extra-large", "extra-large", var(--spacing-0-5x), 36px, 1px, var(--spacing-1x));
+        }
+    
+        &.resp-size-medium {
+            @include button (40px, "medium", "medium", "giant", "giant", var(--spacing-1x), 40px, 2px, var(--spacing-1x));
+        }
+    
+        &.resp-size-large {
+            @include button (44px, "large", "large", "extra-giant", "extra-giant", var(--spacing-1x), 48px, 2px, var(--spacing-2x));
+        }
+    
+        &.resp-size-extra-large {
+            @include button (48px, "extra-large", "extra-large", "titan", "titan", var(--spacing-1x), 56px, 3px, var(--spacing-2x));
+        }
+    
+        &.resp-size-giant {
+            @include button (56px, "giant", "giant", "extra-titan", "extra-titan", var(--spacing-1x), 64px, 3px, var(--spacing-2x));
+        }
+    
+        &.resp-size-extra-giant {
+            @include button (64px, "extra-giant", "extra-giant", "ultra", "ultra", var(--spacing-1x), 80px, 4px, var(--spacing-3x));
+        }
+    
+        &.resp-size-titan {
+            @include button (64px, "titan", "titan", "ultra", "ultra", var(--spacing-1x), 80px, 4px, var(--spacing-3x));
+        }
+
+    }
+
 }
+
+
+

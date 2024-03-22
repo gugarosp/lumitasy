@@ -182,6 +182,10 @@
 
                     .movie-logo {
                         height: 84px;
+
+                        img {
+                            object-position: center;
+                        }
                     }
                 }
     

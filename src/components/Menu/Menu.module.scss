@@ -41,10 +41,6 @@
             position: relative;
             top: 5px;
             transition: top .3s;
-            
-            ul, li {
-                
-            }
     
             ul {
                 display: flex;
@@ -230,16 +226,6 @@
             .logo {
                 margin-left: 16px;
             }
-        }
-
-        &.scrolled,
-        &.opened {
-
-            .wrapper {
-                
-                
-            }
-
         }
 
     }

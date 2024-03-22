@@ -86,7 +86,7 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
 
                 if (slidePosition <= 0) {
                     
-                    if (currentSlidePage !== 1) {
+                    if (currentSlidePage > 1) {
                         setSlidePosition(currentState => currentState + slidePositionIncrement);
                         setCurrentSlidePageIndicator("middle");
                     } else {
@@ -107,6 +107,7 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
     const pageResize:EventListener = () => {
         setSlidePosition(0);
         setCurrentSlidePage(0);
+        setCurrentSlidePageIndicator("first");
 
         return window.removeEventListener("resize", pageResize);
     }

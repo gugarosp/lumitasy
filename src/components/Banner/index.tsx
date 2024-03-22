@@ -70,7 +70,7 @@ export default function Banner () {
                                         <div className={styles["movie-logo"]}>
                                             <img src={item.logo} alt={item.movie} />
                                         </div>
-                                        <p>
+                                        <p className="resp-subtitle">
                                             {item.description}
                                         </p>
                                     </div>

@@ -1,14 +1,42 @@
-p {
+@import "css/variables/mediaqueries.scss";
+
+@mixin p() {
     font-size: var(--font-size-large);
     line-height: var(--line-height-extra-giant);
 }
 
-.subtitle {
+p {
+    @include p();
+}
+
+@mixin subtitle () {
     font-size: var(--font-size-small);
     line-height: var(--line-height-extra-large);
 }
 
-.description {
+.subtitle {
+    @include subtitle();
+}
+
+@mixin description () {
     font-size: var(--font-size-mini);
     line-height: var(--line-height-medium);
+}
+
+.description {
+    @include description();
+}
+
+@media (max-width: $window-medium) {
+    .resp-p {
+        @include p();
+    }
+
+    .resp-subtitle {
+        @include subtitle();
+    }
+
+    .resp-description {
+        @include description();
+    }
 }

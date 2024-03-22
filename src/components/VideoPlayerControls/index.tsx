@@ -91,28 +91,28 @@ export default function VideoPlayerControls () {
 
             <div className={styles.controls}>
                 <div className={styles.time}>
-                    <h5 className="title-alternative">
+                    <h5 className="title-alternative resp-h7 no-margin">
                         {timeFormat(videoCurrentTime)}/{timeFormat(videoDuration)}
                     </h5>
                 </div>
 
                 <div className={styles.player}>
                     <div className={styles.backward}>
-                        <Button icon="replay" iconFill={true} type="icon-ring" size="giant" strength="higher" action={() => changeVideoTime("backward", 10)}/>
-                        <span className="h8 title-alternative">10</span>
+                        <Button icon="replay" iconFill={true} type="icon-ring" size="giant" respSize="large" strength="higher" action={() => changeVideoTime("backward", 10)}/>
+                        <span className="h8 title-alternative resp-h9">10</span>
                     </div>
                     
-                    <Button icon={playPauseIcon} iconFill={true} type="icon-ring" size="titan" strength="higher" action={() => playPauseVideo?.()}/>
+                    <Button icon={playPauseIcon} iconFill={true} type="icon-ring" size="titan" respSize="extra-large" strength="higher" action={() => playPauseVideo?.()}/>
                     
                     <div className={styles.forward}>
-                        <Button icon="replay" iconFill={true} type="icon-ring" size="giant" strength="higher" action={() => changeVideoTime("forward", 10)} />
-                        <span className="h8 title-alternative">10</span>
+                        <Button icon="replay" iconFill={true} type="icon-ring" size="giant" respSize="large" strength="higher" action={() => changeVideoTime("forward", 10)} />
+                        <span className="h8 title-alternative resp-h9">10</span>
                     </div>
                 </div>
 
                 <div className={styles.options}>
-                    <Button icon={volumeIcon} size="giant" strength="lower" action={() => volume()} />
-                    <Button icon={fullscreenIcon} size="giant" strength="lower" action={() => fullscreen?.()} />
+                    <Button icon={volumeIcon} size="large" respSize="medium" strength="lower" action={() => volume()} />
+                    <Button icon={fullscreenIcon} size="large" respSize="medium" strength="lower" action={() => fullscreen?.()} />
                 </div>
 
             </div>

@@ -1,3 +1,5 @@
+@import "css/variables/mediaqueries.scss";
+
 .video-player-controls {
     display: flex;
     flex-direction: column;
@@ -61,7 +63,31 @@
             justify-content: flex-end;
         }
 
-
-
     }
+
+    @media (max-width: $window-medium) {
+        .controls {
+
+            .player {
+                gap: var(--spacing-2x);
+
+                .forward, .backward {
+    
+                    &> span {
+                        bottom: -1px;
+                    }
+                    
+                }
+            }
+            
+        }
+    }
+
+    @media (max-width: $window-small) {
+        .controls {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    
 }

@@ -1,5 +1,14 @@
 @import "css/variables/mediaqueries.scss";
 
+@mixin posterWidth ($numberOfPosters) {
+    @if ($numberOfPosters >= 8) {
+        width: calc((100% - (($numberOfPosters - 1) * var(--spacing-3x))) / $numberOfPosters);
+    } @else {
+        width: calc((100% - (($numberOfPosters - 1) * var(--spacing-2x))) / $numberOfPosters);
+    }
+
+}
+
 .category-slider {
     display: flex;
     flex-direction: column;
@@ -14,7 +23,7 @@
         
         .poster-wrapper {
             display: block;
-            width: calc((100vw/8) - 39px);
+            @include posterWidth(8);
             flex-grow: 0;
             flex-shrink: 0;
             line-height: 0;
@@ -63,7 +72,7 @@
             gap: var(--spacing-2x);
 
             .poster-wrapper {
-                width: calc((100vw/6) - 37.5px);
+                @include posterWidth(6);
             }
 
         }
@@ -79,7 +88,7 @@
         .container {
     
             .poster-wrapper {
-                width: calc((100vw/4) - 28.25px);
+                @include posterWidth(4);
             }
     
         }
@@ -94,7 +103,7 @@
         .container {
     
             .poster-wrapper {
-                width: calc((100vw/3) - 32px);
+                @include posterWidth(3);
             }
     
         }

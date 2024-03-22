@@ -1,3 +1,5 @@
+@import "css/variables/mediaqueries.scss";
+
 .movie {
     display: flex;
     flex-direction: column;
@@ -13,8 +15,8 @@
     .logo {
 
         .logo-container {
-            width: 392px;
-            height: 180px;
+            width: 316px;
+            aspect-ratio: 316/145;
             margin-top: var(--spacing-4x);
 
             img {
@@ -139,5 +141,47 @@
         }
         
         
+    }
+}
+
+@media (max-width: $window-medium) {
+    .movie {
+        .background {
+            height: 466px;
+            mask-image: linear-gradient(to top, var(--color-transparent-black-00) 0%, var(--color-black) 30%);
+
+            &::after {
+                content: none;
+            }
+        }
+
+        .logo {
+            display: grid;
+            place-items: center;
+            margin-top: 245px;
+        }
+
+        .data {
+            
+            .info {
+                width: 100%;
+            }
+
+        }
+
+    }
+}
+
+@media (max-width: $window-small) {
+    .movie {
+
+        .logo {
+
+            .logo-container {
+                width: 70%;
+            }
+
+        }
+
     }
 }

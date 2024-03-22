@@ -17,8 +17,11 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
     // Slide position
     const [slidePosition, setSlidePosition] = useState(0);
 
-    // Current slide page
+    // Current slide page (0 is the first page)
     const [currentSlidePage, setCurrentSlidePage] = useState(0);
+
+    // Current slide page indicator (for css purposes)
+    const [currentSlidePageIndicator, setCurrentSlidePageIndicator] = useState("first");
 
     // Slider movement
     function slideCategory (direction:string) {
@@ -56,24 +59,26 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
             // How much the slider moves when button is clicked
             const slidePositionIncrement = Math.round(contentSafeArea * .6);
 
-            // Max quantity of times the button can be pressed
-            const totalButtonPress = Math.ceil((sliderFullWidth - contentSafeArea) / slidePositionIncrement);
+            // Max page that slider can go
+            const maxPage = Math.ceil((sliderFullWidth - contentSafeArea) / slidePositionIncrement);
 
             // Goes forwards
             if (direction === "forward") {
                 
                 // Moves the slide
                 if (slidePosition > -1 * (sliderFullWidth - contentSafeArea)) {
-    
+                    
                     // Check the current slide page
-                    if (currentSlidePage !== totalButtonPress - 1) {
+                    if (currentSlidePage !== maxPage - 1) {
                         setSlidePosition(currentState => currentState - slidePositionIncrement);
-                        setCurrentSlidePage(currentState => currentState + 1);
+                        setCurrentSlidePageIndicator("middle");        
                     } else {
                         setSlidePosition(-1 * (sliderFullWidth - contentSafeArea));
+                        setCurrentSlidePageIndicator("last");
                     }
-    
 
+                    setCurrentSlidePage(currentState => currentState + 1);
+    
                 }
             
             // Goes backwards
@@ -81,18 +86,20 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
 
                 if (slidePosition <= 0) {
                     
-                    if (currentSlidePage !== 0) {
+                    if (currentSlidePage !== 1) {
                         setSlidePosition(currentState => currentState + slidePositionIncrement);
-                        setCurrentSlidePage(currentState => currentState - 1);
+                        setCurrentSlidePageIndicator("middle");
                     } else {
                         setSlidePosition(0);
+                        setCurrentSlidePageIndicator("first");
                     }
 
+                    setCurrentSlidePage(currentState => currentState - 1);
 
                 }
 
-
             }
+
         }
     }
 
@@ -111,7 +118,7 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
         <div className={`content ${styles["category-slider"]}`}>
             <h3 className="resp-h4 no-margin">{categoryName}</h3>
 
-            <div className={styles.container} style={{left: slidePosition, transition: "left .5s"}}>
+            <div className={styles.container} style={{left: slidePosition, transition: "left .5s"}} data-current-page={currentSlidePageIndicator}>
                 {
                     moviesList.filter(item => item.categories?.includes(categorySlug)).map((item, index) => {
                         return (

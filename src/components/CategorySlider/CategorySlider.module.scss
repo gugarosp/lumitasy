@@ -28,6 +28,14 @@
             flex-shrink: 0;
             line-height: 0;
         }
+
+        &[data-current-page="first"] ~  .slide-backward {
+           display: none;
+        }
+
+        &[data-current-page="last"] ~  .slide-forward {
+            display: none;
+        }
     }
 
     .slide-forward, 

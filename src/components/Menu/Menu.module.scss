@@ -20,7 +20,6 @@
         padding-top: var(--spacing-3x);
         transition: gap .3s, padding-top .3s;
 
-
         .logo {
 
             a {
@@ -37,7 +36,6 @@
         }
 
         nav {
-            
             position: relative;
             top: 5px;
             transition: top .3s;
@@ -79,7 +77,6 @@
     &.opened {
 
         .wrapper {
-            
             gap: 80px;
             align-items: center;
 
@@ -108,11 +105,7 @@
         }
     }
 
-}
-
-@media (max-width: $window-large) {
-    .menu {
-
+    @media (max-width: $window-large) {
         .wrapper {
             gap: var(--spacing-8x);            
 
@@ -125,13 +118,9 @@
             }
 
         }
-
     }
-}
 
-@media (max-width: $window-medium) {
-    .menu {
-
+    @media (max-width: $window-medium) {
         .wrapper {
             justify-content: space-between;
             row-gap: 0;
@@ -144,6 +133,7 @@
                     width: 104px;
                     
                 }
+
             }
             
             .mobile-menu {
@@ -169,9 +159,7 @@
                         width: auto;
                     }
                 }
-
             }
-
         }
 
         &.opened {
@@ -182,7 +170,6 @@
         &.opened {
     
             .wrapper {
-                
                 gap: 0;
                 padding-block: 8px;
     
@@ -213,11 +200,7 @@
 
     }
 
-}
-
-@media (max-width: 290px) {
-    .menu {
-
+    @media (max-width: 290px) {
         .wrapper {
             gap: var(--spacing-1x);
             flex-direction: column;
@@ -227,6 +210,7 @@
                 margin-left: 16px;
             }
         }
-
     }
 }
+
+

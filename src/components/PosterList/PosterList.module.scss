@@ -1,10 +1,20 @@
+@import "css/variables/mediaqueries.scss";
+
+@mixin posterWidth ($numberOfPosters) {
+    @if ($numberOfPosters >= 8) {
+        width: calc((100% - (($numberOfPosters - 1) * var(--spacing-3x))) / $numberOfPosters);
+    } @else {
+        width: calc((100% - (($numberOfPosters - 1) * var(--spacing-2x))) / $numberOfPosters);
+    }
+}
+
 .poster-list {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-3x);
 
     .wrapper {
-        flex-basis: calc((100% / 8) - 21px);
+        @include posterWidth(8);
         flex-grow: 0;
         flex-shrink: 0;
         position: relative;
@@ -43,4 +53,35 @@
 
     }
 
+}
+
+@media (max-width: $window-large) {
+    .poster-list {
+        gap: var(--spacing-2x);
+
+        .wrapper {
+            @include posterWidth(6);
+        }
+
+    }
+}
+
+@media (max-width: $window-medium) {
+    .poster-list {
+        
+        .wrapper {
+            @include posterWidth(4);
+        }
+
+    }
+}
+
+@media (max-width: $window-small) {
+    .poster-list {
+
+        .wrapper {
+            @include posterWidth(3);
+        }
+
+    }
 }

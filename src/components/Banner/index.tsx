@@ -50,8 +50,7 @@ export default function Banner () {
     }
 
     function endTouch () {
-       
-        const currentPage = bannerList.map(e => e.active).indexOf(true);
+        const currentPage = bannerList.map(item => item.active).indexOf(true);
         const lastPage = bannerList.length - 1;
         
         if (startTouchPosition?.current && endTouchPosition?.current) {

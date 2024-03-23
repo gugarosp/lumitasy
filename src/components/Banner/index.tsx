@@ -54,12 +54,12 @@ export default function Banner () {
         const currentPage = bannerList.map(e => e.active).indexOf(true);
         const lastPage = bannerList.length - 1;
         
-        if (startTouchPosition?.current && endTouchPosition?.current && startTouchPosition.current <= endTouchPosition.current) {
-            if (currentPage !== 0) {
+        if (startTouchPosition?.current && endTouchPosition?.current) {
+            if (currentPage !== 0 && startTouchPosition.current <= endTouchPosition.current) {
                 pagination(currentPage - 1);
             }
-        } else {
-            if ((currentPage !== lastPage)) {
+
+            if ((currentPage !== lastPage) && startTouchPosition.current >= endTouchPosition.current) {
                 pagination(currentPage + 1);
             }
         }

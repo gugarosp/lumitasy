@@ -1,6 +1,5 @@
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useEffect, useRef, useState } from "react"
 import styles from "./Banner.module.scss"
-import robot from "./robot.png"
 import PaginationItem from "elements/PaginationItem";
 
  interface BannerList {
@@ -39,6 +38,33 @@ export default function Banner () {
         setMovieUrl(`/movie/${bannerList[index].slug}`)
     }
 
+    const startTouchPosition = useRef<number>()
+    const endTouchPosition = useRef<number>();
+
+    function startTouch (event:React.TouchEvent<HTMLAnchorElement>) {
+        startTouchPosition.current = event.touches[0].clientX;
+    }
+
+    function moveTouch (event:React.TouchEvent<HTMLAnchorElement>) {
+        endTouchPosition.current = event.touches[0].clientX;
+    }
+
+    function endTouch () {
+       
+        const currentPage = bannerList.map(e => e.active).indexOf(true);
+        const lastPage = bannerList.length - 1;
+        
+        if (startTouchPosition?.current && endTouchPosition?.current && startTouchPosition.current <= endTouchPosition.current) {
+            if (currentPage !== 0) {
+                pagination(currentPage - 1);
+            }
+        } else {
+            if ((currentPage !== lastPage)) {
+                pagination(currentPage + 1);
+            }
+        }
+    }
+
     return (
         <section className={styles.banner}>
             <div className={styles.caroussel}>
@@ -60,7 +86,13 @@ export default function Banner () {
 
                 <div className={styles.shadows}></div>
 
-                <a href={movieUrl} className={`${styles.container} ${styles["info-container"]}`}>
+                <a 
+                    href={movieUrl}
+                    className={`${styles.container} ${styles["info-container"]}`}
+                    onTouchStart={event => startTouch(event)}
+                    onTouchMove={event => moveTouch(event)}
+                    onTouchEnd={() => endTouch()}
+                >
 
                     {
                         bannerList.length !== 0 ? bannerList.map((item, index) => {
@@ -76,7 +108,7 @@ export default function Banner () {
                                     </div>
 
                                     <div className={`${styles["featured-image"]} ${item.active === true ? styles["featured-image-active"] : ""}`}>
-                                        <img src={robot} alt={item.movie} />
+                                        <img src={item.background} alt={item.movie} />
                                     </div>
                                 </Fragment>
                             )

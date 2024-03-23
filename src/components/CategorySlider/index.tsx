@@ -2,7 +2,7 @@ import styles from "./CategorySlider.module.scss"
 
 import Poster from "elements/Poster";
 import { MoviesContext } from "context/movies";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { moviesContextType } from "context/moviesTypes";
 import Button from "elements/Button";
 
@@ -103,6 +103,30 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
         }
     }
 
+    // Swipe
+    const startTouchPosition = useRef<number>()
+    const endTouchPosition = useRef<number>();
+
+    function startTouch (event:React.TouchEvent<HTMLDivElement>) {
+        startTouchPosition.current = event.touches[0].clientX;
+    }
+
+    function moveTouch (event:React.TouchEvent<HTMLDivElement>) {
+        endTouchPosition.current = event.touches[0].clientX;
+    }
+
+    function endTouch () {
+        if (startTouchPosition?.current && endTouchPosition?.current) {
+            if (startTouchPosition.current <= endTouchPosition.current) {
+                slideCategory("backward");
+            }
+            
+            if (startTouchPosition.current >= endTouchPosition.current) {
+                slideCategory("forward");
+            }
+        }
+    }
+
     // If page resizes
     const pageResize:EventListener = () => {
         setSlidePosition(0);
@@ -119,7 +143,14 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
         <div className={`content ${styles["category-slider"]}`}>
             <h3 className="resp-h4 no-margin">{categoryName}</h3>
 
-            <div className={styles.container} style={{left: slidePosition, transition: "left .5s"}} data-current-page={currentSlidePageIndicator}>
+            <div 
+                className={styles.container}
+                style={{left: slidePosition, transition: "left .5s"}}
+                data-current-page={currentSlidePageIndicator}
+                onTouchStart={event => startTouch(event)}
+                onTouchMove={event => moveTouch(event)}
+                onTouchEnd={() => endTouch()}
+            >
                 {
                     moviesList.filter(item => item.categories?.includes(categorySlug)).map((item, index) => {
                         return (

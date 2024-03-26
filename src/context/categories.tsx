@@ -16,7 +16,7 @@ export const CategoriesProvider = ({children}:CategoriesProviderProps) => {
 
     useEffect(() => {
         async function categories() {
-            const response = await fetch("http://lumitasy.siteseguro.ws/api/categories/");
+            const response = await fetch("https://lumitasy.siteseguro.ws/api/categories/");
             const info = await response.text();
             return info;
         }

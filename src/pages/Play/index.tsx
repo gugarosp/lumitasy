@@ -199,7 +199,12 @@ export default function Play () {
                                     </div>
 
                                     <div className={styles["ad-content"]}>
-                                        <img src="/ad.png" alt="Advertisement" />
+                                        <ins className={styles["adsbygoogle"]}
+                                            data-ad-client="ca-pub-0670208710876378"
+                                            data-ad-slot="6415366891"
+                                            data-ad-format="auto"
+                                            data-full-width-responsive="true"></ins>
+                                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                                     </div>
                                 </div>
                             </div>

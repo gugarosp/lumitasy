@@ -7,4 +7,5 @@ export interface ICategoriesList {
 
 export interface categoriesContextType {
     categoriesList: ICategoriesList[];
+    categoriesListLoadedError: boolean
 }

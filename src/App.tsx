@@ -14,58 +14,66 @@ import About from 'pages/About';
 import { MoviesProvider } from "context/movies";
 import { PlayMovieProvider } from "context/playMovie";
 import { CategoriesProvider } from "context/categories";
+import ScreenBlocker from "components/ScreenBlocker";
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={
-          <CategoriesProvider>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={
+            <CategoriesProvider>
+              <MoviesProvider>
+                <Home />
+              </MoviesProvider>
+            </CategoriesProvider>
+          }>
+          </Route>
+          <Route path="movie/*" element={
             <MoviesProvider>
-              <Home />
+              <Movie />
             </MoviesProvider>
-          </CategoriesProvider>
-        }>
-        </Route>
-        <Route path="movie/*" element={
-          <MoviesProvider>
-            <Movie />
-          </MoviesProvider>
-        }></Route>
-        <Route path="play/*" element={
-          <MoviesProvider>
-            <PlayMovieProvider>
-              <Play />
-            </PlayMovieProvider>
-          </MoviesProvider>
-        }></Route>
-        <Route path="search" element={
-          <MoviesProvider>
-            <Search />
-          </MoviesProvider>
-        }></Route>
-        <Route path="categories" element={
-          <CategoriesProvider>
-            <Categories />
-          </CategoriesProvider>
-        }></Route>
-        <Route path="category/*" element={
-          <CategoriesProvider>
+          }></Route>
+          <Route path="play/*" element={
             <MoviesProvider>
-              <Category />
+              <PlayMovieProvider>
+                <Play />
+              </PlayMovieProvider>
             </MoviesProvider>
-          </CategoriesProvider>
-        }></Route>
-        <Route path="watch-later" element={
-          <MoviesProvider>
-            <WatchLater />
-          </MoviesProvider>
-        }></Route>
-        <Route path="about" element={<About />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
-    </BrowserRouter>
+          }></Route>
+          <Route path="search" element={
+            <MoviesProvider>
+              <Search />
+            </MoviesProvider>
+          }></Route>
+          <Route path="categories" element={
+            <CategoriesProvider>
+              <Categories />
+            </CategoriesProvider>
+          }></Route>
+          <Route path="category/*" element={
+            <CategoriesProvider>
+              <MoviesProvider>
+                <Category />
+              </MoviesProvider>
+            </CategoriesProvider>
+          }></Route>
+          <Route path="watch-later" element={
+            <MoviesProvider>
+              <WatchLater />
+            </MoviesProvider>
+          }></Route>
+          <Route path="about" element={<About />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </BrowserRouter>
+      <CategoriesProvider>
+        <MoviesProvider>
+          <ScreenBlocker />
+        </MoviesProvider>
+      </CategoriesProvider>
+    </>
   );
 }
 

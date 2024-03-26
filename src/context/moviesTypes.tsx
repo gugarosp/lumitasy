@@ -10,5 +10,6 @@ export interface IMoviesList {
 
 export interface moviesContextType {
     moviesList: IMoviesList[]
-    moviesListLoaded: boolean
+    moviesListLoaded: boolean,
+    moviesListLoadedError: boolean
 }

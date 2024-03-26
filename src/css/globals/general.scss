@@ -45,6 +45,10 @@ body {
     margin: 0;
 }
 
+.screen-blocker-error > :not([class^="Menu"]):not([class^="ScreenBlocker"]) {
+    display: none
+}
+
 @media (max-width: $window-medium) {
     .content {
         padding: 0 var(--spacing-3x);

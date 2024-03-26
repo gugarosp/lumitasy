@@ -1,0 +1,10 @@
+.screen-blocker {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-secondary-darker-800);
+}

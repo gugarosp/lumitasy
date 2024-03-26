@@ -12,6 +12,8 @@ export const MoviesProvider = ({children}:MoviesProviderProps) =>{
     const [moviesList, setMoviesList] = useState<IMoviesList[]>([{}]);
     const [moviesListLoaded, setMoviesListLoaded] = useState<boolean>(false);
 
+    const [moviesListLoadedError, setMoviesListLoadedError] = useState<boolean>(false);
+
     useEffect(() => {
         async function movies() {
             const response = await fetch("http://lumitasy.siteseguro.ws/api/movies/");
@@ -22,12 +24,14 @@ export const MoviesProvider = ({children}:MoviesProviderProps) =>{
         movies().then(data => {
           setMoviesList(JSON.parse(data));
           setMoviesListLoaded(true);
+        }).catch(() => {
+            setMoviesListLoadedError(true);
         });
   
     }, []);
 
     return (
-        <MoviesContext.Provider value={{ moviesList, moviesListLoaded }}>
+        <MoviesContext.Provider value={{ moviesList, moviesListLoaded, moviesListLoadedError }}>
             {children}
         </MoviesContext.Provider>
     )

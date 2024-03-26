@@ -12,6 +12,8 @@ export const CategoriesProvider = ({children}:CategoriesProviderProps) => {
 
     const [categoriesList, setCategoriesList] = useState<ICategoriesList[]>([{}]);
 
+    const [categoriesListLoadedError, setCategoriesListLoadedError] = useState<boolean>(false);
+
     useEffect(() => {
         async function categories() {
             const response = await fetch("http://lumitasy.siteseguro.ws/api/categories/");
@@ -21,12 +23,14 @@ export const CategoriesProvider = ({children}:CategoriesProviderProps) => {
 
         categories().then(data => {
             setCategoriesList(JSON.parse(data));
+        }).catch(() => {
+            setCategoriesListLoadedError(true);
         });
 
     }, []);
 
     return (
-        <CategoriesContext.Provider value={{ categoriesList }}>
+        <CategoriesContext.Provider value={{ categoriesList, categoriesListLoadedError }}>
             {children}
         </CategoriesContext.Provider>
     )

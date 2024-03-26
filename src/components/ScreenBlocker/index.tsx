@@ -22,12 +22,15 @@ export default function ScreenBlocker () {
         <>
             {moviesListLoadedError === true || categoriesListLoadedError === true ?
                 <div className={`${styles["screen-blocker"]} outer-content-common outer-content-full`}>
-                    <SuperMessage
-                        icon="thunderstorm"
-                        infoText="An error occurred"
-                        messageTitle="We are very sorry for this"
-                        messageSubtitle="Please, reload the page and try again"
-                        />
+                    <div className={styles.background}></div>
+                    <div className={styles["outer-content"]}>
+                        <SuperMessage
+                            icon="thunderstorm"
+                            infoText="An error occurred"
+                            messageTitle="We are very sorry for this"
+                            messageSubtitle="Please, reload the page and try again"
+                            />
+                    </div>
                 </div>
                 : ""
             }

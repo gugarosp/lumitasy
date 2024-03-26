@@ -17,7 +17,7 @@ export default function Banner () {
 
     useEffect(() => {
         async function categories() {
-            const response = await fetch("http://lumitasy.siteseguro.ws/api/banner/");
+            const response = await fetch("https://lumitasy.siteseguro.ws/api/banner/");
             const info = await response.text();
             return info;
         }

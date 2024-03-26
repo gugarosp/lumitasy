@@ -16,16 +16,14 @@
         display: flex;
         align-items: center;
         gap: 120px;
-        
         padding-top: var(--spacing-3x);
-        transition: gap .3s, padding-top .3s;
+        transition: padding-top .3s;
 
         .logo {
 
             a {
                 display: inline-block;
                 width: 166px;
-                
                 transition: width .3s;
             }
 
@@ -84,7 +82,6 @@
                 
                 a {
                     width: 120px;
-                    
                 }
 
             }

@@ -16,15 +16,17 @@ export default function Banner () {
     const [movieUrl, setMovieUrl] = useState(`/categories`);
 
     useEffect(() => {
-        async function categories() {
+        async function banner() {
             const response = await fetch("https://thymape.com.br/lumitasy/api/banner/");
             const info = await response.text();
             return info;
         }
 
-        categories().then(data => {
+        banner().then(data => {
             setBannerList(JSON.parse(data));
             setMovieUrl(`/movie/${JSON.parse(data)[0].slug}`);
+        }).catch(error => {
+            console.log(error);
         });
 
     }, []);

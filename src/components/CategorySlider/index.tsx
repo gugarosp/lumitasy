@@ -23,29 +23,41 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
     // Current slide page indicator (for css purposes)
     const [currentSlidePageIndicator, setCurrentSlidePageIndicator] = useState("first");
 
+    // Window width reference
+    const windowWidthReference = useRef<number>();
+    
     // Slider movement
     function slideCategory (direction:string) {
-        const bodyWidth = document.querySelector("body")?.getBoundingClientRect().width;      
+        windowWidthReference.current = window.innerWidth;
 
-        if (bodyWidth) {
+        const windowWidth = windowWidthReference.current; 
+        const bodyWidth = document.querySelector("body")?.getBoundingClientRect().width;
+
+        if (windowWidth && bodyWidth) {
+            console.log(windowWidth);
+            console.log(bodyWidth);
+            
+            // Scroll Size;
+            const scrollWidth = windowWidth - bodyWidth;
+            console.log(scrollWidth);
 
             // Quantity of posters in the safe area
-            const posterScreenQuantity = bodyWidth <= 576 ?  3 :
-                                         bodyWidth <= 768 ?  4 :
-                                         bodyWidth <= 992 ?  6 :
+            const posterScreenQuantity = windowWidth <= 576 ?  3 :
+                                         windowWidth <= 768 ?  4 :
+                                         windowWidth <= 992 ?  6 :
                                          8
 
             // Quantity of gaps between posters
             const gapQuantity = posterScreenQuantity - 1;
             
             // Gap between posters
-            const gapSize = bodyWidth <= 992 ? 16 : 24;
+            const gapSize = windowWidth <= 992 ? 16 : 24;
                 
             // Body content sizes
-            const sidePadding = bodyWidth <= 768 ? 24 * 2 : 64 * 2;
+            const sidePadding = windowWidth <= 768 ? 24 * 2 : 64 * 2;
 
-            // Content safe area (page body width - content side paddings)
-            const contentSafeArea = bodyWidth - sidePadding;
+            // Content safe area (page body width - content side paddings - scroll width)
+            const contentSafeArea = windowWidth - sidePadding - scrollWidth;
 
             // Poster width calculated
             const posterWidth = Math.ceil(((contentSafeArea - (gapQuantity * gapSize)) / posterScreenQuantity) * 10) / 10;

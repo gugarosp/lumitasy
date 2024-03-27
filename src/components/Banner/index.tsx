@@ -17,7 +17,7 @@ export default function Banner () {
 
     useEffect(() => {
         async function categories() {
-            const response = await fetch("https://lumitasy.siteseguro.ws/api/banner/");
+            const response = await fetch("https://thymape.com.br/lumitasy/api/banner/");
             const info = await response.text();
             return info;
         }

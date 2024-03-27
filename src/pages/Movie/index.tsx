@@ -62,12 +62,12 @@ export default function Movie () {
                 <section className={`${styles.movie} outer-content-common outer-content-full`}>
 
                     <div className={styles.background}>
-                        <img src={`http://lumitasy.siteseguro.ws/images/movies/backgrounds/${movieInfo.slug}.jpg`} alt={movieInfo.title} />
+                        <img src={`https://thymape.com.br/lumitasy/images/movies/backgrounds/${movieInfo.slug}.jpg`} alt={movieInfo.title} />
                     </div>
 
                     <div className={`${styles.logo} content`}>
                         <div className={styles["logo-container"]}>
-                            <img src={`http://lumitasy.siteseguro.ws/images/movies/logos/${movieInfo.slug}.png`} alt={movieInfo.title} />
+                            <img src={`https://thymape.com.br/lumitasy/images/movies/logos/${movieInfo.slug}.png`} alt={movieInfo.title} />
                         </div>
                     </div>
 

@@ -157,7 +157,7 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
                             <div className={styles["poster-wrapper"]} key={index}>
                                 <Poster
                                     link={`movie/${item.slug}`}
-                                    src={`http://lumitasy.siteseguro.ws/images/movies/posters/${item.slug}.png`}
+                                    src={`https://thymape.com.br/lumitasy/images/movies/posters/${item.slug}.png`}
                                     title={item.title !== undefined ? item.title : ""}
                                 />
                             </div>

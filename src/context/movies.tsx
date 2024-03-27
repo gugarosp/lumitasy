@@ -16,7 +16,7 @@ export const MoviesProvider = ({children}:MoviesProviderProps) =>{
 
     useEffect(() => {
         async function movies() {
-            const response = await fetch("https://lumitasy.siteseguro.ws/api/movies/");
+            const response = await fetch("https://thymape.com.br/lumitasy/api/movies/");
             const info = await response.text();
             return info;
         }

@@ -8,6 +8,7 @@ import { useContext, useRef, useState } from "react";
 import { PlayMovieContext } from "context/playMovie";
 import { MoviesContext } from "context/movies";
 import { playMovieContextType } from "context/playMovieTypes";
+import AdSense from "elements/Adsense";
 
 interface moviesListProps {
     id?: number
@@ -113,7 +114,6 @@ export default function Play () {
     ////////////////////////////////////////
     /* ADVERTISEMENT */
     ////////////////////////////////////////
-
     // Hide ad screen
     const [adClass, setAdClass] = useState("");
 
@@ -153,84 +153,81 @@ export default function Play () {
             {
                 moviesListLoaded === true && movieInfo?.title !== undefined
                 ?
-                    <section className={`${styles.play} ${hideCursor}`}>
+                    <>
+                        <div className={`${styles["ad-content"]} ${adClass}`}>
+                            <AdSense />
+                        </div>
 
-                        <div className={styles["video-container"]}>
-                            <video
-                                ref={video}
-                                onLoadedMetadata={event => metaDataVideo?.(event.currentTarget)}
-                                onPlay={event => {whilePlayVideo?.(event.currentTarget); setPlayPauseIcon?.("pause");}}
-                                onPause={() => {setPlayPauseIcon?.("play_arrow");}}
-                            >
-                                <source src={movieInfo?.source} type="video/mp4" />
-                            </video>
+                        <section className={`${styles.play} ${hideCursor}`}>
 
-                            <div
-                                className={styles.glass}
-                                onClick={() => {playPauseVideo?.();}}
-                                onDoubleClick={fullscreen}
-                            >
-                                <div className={`${styles["loading-warning"]} ${movieLoaded === true ? styles["loading-warning-hide"] : "" }`}>
+                            <div className={styles["video-container"]}>
+                                <video
+                                    ref={video}
+                                    onLoadedMetadata={event => metaDataVideo?.(event.currentTarget)}
+                                    onPlay={event => {whilePlayVideo?.(event.currentTarget); setPlayPauseIcon?.("pause");}}
+                                    onPause={() => {setPlayPauseIcon?.("play_arrow");}}
+                                >
+                                    <source src={movieInfo?.source} type="video/mp4" />
+                                </video>
 
-                                    <div className={styles["loading-icon"]}><div></div><div></div><div></div><div></div></div>
+                                <div
+                                    className={styles.glass}
+                                    onClick={() => {playPauseVideo?.();}}
+                                    onDoubleClick={fullscreen}
+                                >
+                                    <div className={`${styles["loading-warning"]} ${movieLoaded === true ? styles["loading-warning-hide"] : "" }`}>
 
-                                    <h6 className="title-alternative no-margin">
-                                        Your movie will begin soon
-                                    </h6>
-                                </div>
-                            </div>
+                                        <div className={styles["loading-icon"]}><div></div><div></div><div></div><div></div></div>
 
-                            <div className={`${styles.ad} ${adClass}`}>
-                                <div className={styles["ad-container"]}>
-                                    <div className={styles["ad-header"]}>
-                                        <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
-
-                                        <div className={`${styles["ad-skip"]} ${showSkipButton}`}>
-                                            <div className={styles["ad-skip-message"]}>
-                                                Skip ad in {skipAdCounterNumber}
-                                            </div>
-
-                                            <div className={styles["ad-skip-button"]}>
-                                                <Button icon="skip_next" size="large" strength="lower" iconFill={true} action={closeAd}>
-                                                    Skip ad
-                                                </Button>
-                                            </div>
-                                        </div>
+                                        <h6 className="title-alternative no-margin">
+                                            Your movie will begin soon
+                                        </h6>
                                     </div>
+                                </div>
 
-                                    <div className={styles["ad-content"]}>
-                                        <ins className={styles["adsbygoogle"]}
-                                            data-ad-client="ca-pub-0670208710876378"
-                                            data-ad-slot="6415366891"
-                                            data-ad-format="auto"
-                                            data-full-width-responsive="true"></ins>
-                                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                                <div className={`${styles.ad} ${adClass}`}>
+                                    <div className={styles["ad-container"]}>
+                                        <div className={styles["ad-header"]}>
+                                            <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
+
+                                            <div className={`${styles["ad-skip"]} ${showSkipButton}`}>
+                                                <div className={styles["ad-skip-message"]}>
+                                                    Skip ad in {skipAdCounterNumber}
+                                                </div>
+
+                                                <div className={styles["ad-skip-button"]}>
+                                                    <Button icon="skip_next" size="large" strength="lower" iconFill={true} action={closeAd}>
+                                                        Skip ad
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={styles.actions}>
-                            <div className={`${
-                                styles["actions-wrapper"]} ${
-                                movieLoaded === true ? ` ${
-                                    hideActionsClass}` : "" }`
-                            }>
-                                <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
+                            <div className={styles.actions}>
+                                <div className={`${
+                                    styles["actions-wrapper"]} ${
+                                    movieLoaded === true ? ` ${
+                                        hideActionsClass}` : "" }`
+                                }>
+                                    <Button icon="arrow_back" size="giant" strength="higher" link={`/movie/${movieSlug}`} />
+                                </div>
                             </div>
-                        </div>
 
-                        <div className={styles.controls}>
-                            <div className={`${
-                                styles["controls-wrapper"]}${
-                                movieLoaded === true ? ` ${
-                                        styles["show-controls"]} ${
-                                        hideControlsClass}` : "" }`
-                            }>
-                                <VideoPlayerControls />
+                            <div className={styles.controls}>
+                                <div className={`${
+                                    styles["controls-wrapper"]}${
+                                    movieLoaded === true ? ` ${
+                                            styles["show-controls"]} ${
+                                            hideControlsClass}` : "" }`
+                                }>
+                                    <VideoPlayerControls />
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </>
                 : moviesListLoaded === true && movieInfo?.title === undefined ? 
                     <>
                         <Menu />

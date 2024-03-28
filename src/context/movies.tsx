@@ -22,7 +22,7 @@ export const MoviesProvider = ({children}:MoviesProviderProps) =>{
         }
   
         movies().then(data => {
-          setMoviesList(JSON.parse(data));
+          setMoviesList(JSON.parse(data).sort(() => Math.random() - 0.5));
           setMoviesListLoaded(true);
         }).catch(() => {
             setMoviesListLoadedError(true);

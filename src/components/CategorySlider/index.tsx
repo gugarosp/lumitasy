@@ -24,7 +24,7 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
     const [currentSlidePageIndicator, setCurrentSlidePageIndicator] = useState("first");
 
     // Window width reference
-    const windowWidthReference = useRef<number>();
+    const windowWidthReference = useRef<number>(window.innerWidth);
     
     // Slider movement
     function slideCategory (direction:string) {
@@ -141,11 +141,19 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
 
     // If page resizes
     const pageResize:EventListener = () => {
-        setSlidePosition(0);
-        setCurrentSlidePage(0);
-        setCurrentSlidePageIndicator("first");
+        // Only if resize window width
+        if (windowWidthReference.current !== window.innerWidth) {
+            windowWidthReference.current = window.innerWidth;
 
-        return window.removeEventListener("resize", pageResize);
+            setSlidePosition(0);
+            setCurrentSlidePage(0);
+            setCurrentSlidePageIndicator("first");
+        }
+        
+
+        window.removeEventListener("resize", pageResize)
+
+        return window.addEventListener("resize", pageResize);
     }
 
     window.addEventListener("resize", pageResize);

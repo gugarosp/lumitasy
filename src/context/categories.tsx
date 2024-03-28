@@ -16,7 +16,7 @@ export const CategoriesProvider = ({children}:CategoriesProviderProps) => {
 
     useEffect(() => {
         async function categories() {
-            const response = await fetch("https://thymape.com.br/lumitasy/api/categories/");
+            const response = await fetch("https://lumitasy-resources.vercel.app/api/categories/index.json");
             const info = await response.text();
             return info;
         }

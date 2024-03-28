@@ -17,7 +17,7 @@ export default function Banner () {
 
     useEffect(() => {
         async function banner() {
-            const response = await fetch("https://thymape.com.br/lumitasy/api/banner/");
+            const response = await fetch("https://lumitasy-resources.vercel.app/api/banner/index.json");
             const info = await response.text();
             return info;
         }

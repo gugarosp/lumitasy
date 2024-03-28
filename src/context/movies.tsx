@@ -16,7 +16,7 @@ export const MoviesProvider = ({children}:MoviesProviderProps) =>{
 
     useEffect(() => {
         async function movies() {
-            const response = await fetch("https://thymape.com.br/lumitasy/api/movies/");
+            const response = await fetch("https://lumitasy-resources.vercel.app/api/movies/index.json");
             const info = await response.text();
             return info;
         }

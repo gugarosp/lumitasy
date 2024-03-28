@@ -149,7 +149,6 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
             setCurrentSlidePageIndicator("first");
         }
         
-
         window.removeEventListener("resize", pageResize)
 
         return window.addEventListener("resize", pageResize);

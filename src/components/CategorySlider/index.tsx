@@ -34,12 +34,9 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
         const bodyWidth = document.querySelector("body")?.getBoundingClientRect().width;
 
         if (windowWidth && bodyWidth) {
-            console.log(windowWidth);
-            console.log(bodyWidth);
             
             // Scroll Size;
             const scrollWidth = windowWidth - bodyWidth;
-            console.log(scrollWidth);
 
             // Quantity of posters in the safe area
             const posterScreenQuantity = windowWidth <= 576 ?  3 :
@@ -128,12 +125,14 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
     }
 
     function endTouch () {
+        const swipeDistance = 80;
+
         if (startTouchPosition?.current && endTouchPosition?.current) {
-            if (startTouchPosition.current <= endTouchPosition.current) {
+            if (startTouchPosition.current <= endTouchPosition.current - swipeDistance) {
                 slideCategory("backward");
             }
             
-            if (startTouchPosition.current >= endTouchPosition.current) {
+            if (startTouchPosition.current >= endTouchPosition.current + swipeDistance) {
                 slideCategory("forward");
             }
         }

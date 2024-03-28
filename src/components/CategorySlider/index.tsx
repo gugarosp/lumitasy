@@ -169,7 +169,7 @@ export default function CategorySlider({ categoryName = "", categorySlug = "" }:
                             <div className={styles["poster-wrapper"]} key={index}>
                                 <Poster
                                     link={`movie/${item.slug}`}
-                                    src={`https://thymape.com.br/lumitasy/images/movies/posters/${item.slug}.png`}
+                                    src={`https://lumitasy-resources.vercel.app/images/movies/posters/${item.slug}.png`}
                                     title={item.title !== undefined ? item.title : ""}
                                 />
                             </div>

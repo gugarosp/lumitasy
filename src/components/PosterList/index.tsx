@@ -36,7 +36,7 @@ export default function PosterList ({movieList, showDeleteButton = false}:Poster
                         <div className={`${styles.wrapper} ${showFooterClass}`} key={index}>
                             <Poster
                                 link={`/movie/${item.slug}`}
-                                src={`https://thymape.com.br/lumitasy/images/movies/posters/${item.slug}.png`}
+                                src={`https://lumitasy-resources.vercel.app/images/movies/posters/${item.slug}.png`}
                                 title={item.title !== undefined ? item.title : ""}
                             />
                             <div className={styles.footer}>

@@ -159,6 +159,15 @@
             display: grid;
             place-items: center;
             margin-top: 245px;
+
+            .logo-container {
+
+                img {
+                    object-position: center;
+                }
+
+            }
+            
         }
 
         .data {

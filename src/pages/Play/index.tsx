@@ -167,7 +167,7 @@ export default function Play () {
                                     onPlay={event => {whilePlayVideo?.(event.currentTarget); setPlayPauseIcon?.("pause");}}
                                     onPause={() => {setPlayPauseIcon?.("play_arrow");}}
                                 >
-                                    <source src={movieInfo?.source} type="video/mp4" />
+                                    <source src={`https://storage.googleapis.com/lumitasy-videos/${movieInfo?.slug}.mp4`} type="video/mp4" />
                                 </video>
 
                                 <div

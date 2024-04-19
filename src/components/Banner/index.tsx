@@ -8,6 +8,7 @@ import PaginationItem from "elements/PaginationItem";
     background?: string
     logo?: string
     description?: string
+    featured?: string
     active?: boolean
 }
 
@@ -111,7 +112,7 @@ export default function Banner () {
                                     </div>
 
                                     <div className={`${styles["featured-image"]} ${item.active === true ? styles["featured-image-active"] : ""}`}>
-                                        <img src={item.background} alt={item.movie} />
+                                        <img src={item.featured} alt={item.movie} />
                                     </div>
                                 </Fragment>
                             )

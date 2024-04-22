@@ -8,7 +8,7 @@ Lumitasy is a streaming service where you can watch online the most classic publ
 
 2. Clone this repository
 
-3. Go the the folder where you clond the repository and run `npm install`
+3. Go the the folder where you cloned the repository and run `npm install`
 
 4. Wait for the installation and then run `npm start`
 

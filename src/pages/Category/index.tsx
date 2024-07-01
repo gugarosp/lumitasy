@@ -26,6 +26,10 @@ export default function Category () {
 
     // Page title
     document.title = `${categoryName} | Lumitasy`;
+    
+    // Meta tags
+    document.querySelector("meta[name='title']")?.setAttribute("content", `${categoryName} | Lumitasy`);
+    document.querySelector("meta[name='description']")?.setAttribute("content", `Public domain ${categoryName?.toLocaleLowerCase()} movies`);
 
     return (
         <>

@@ -53,6 +53,10 @@ export default function Movie () {
     // Page title
     document.title = movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy";
 
+    // Meta tags
+    document.querySelector("meta[name='title']")?.setAttribute("content", movieInfo?.title !== undefined ? `${movieInfo.title} | Lumitasy` : "Lumitasy");
+    document.querySelector("meta[name='description']")?.setAttribute("content", movieInfo?.description !== undefined ? `${movieInfo.description}` : "Public domain movie");
+
     return (
         <>
             <Menu />

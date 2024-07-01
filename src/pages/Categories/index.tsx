@@ -12,6 +12,10 @@ export default function Categories () {
 
     // Page title
     document.title = `Categories | Lumitasy`;
+    
+    // Meta tags
+    document.querySelector("meta[name='title']")?.setAttribute("content", "Categories | Lumitasy");
+    document.querySelector("meta[name='description']")?.setAttribute("content", "Public domain movies by category");
 
     return (
         <>

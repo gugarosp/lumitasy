@@ -20,6 +20,12 @@ export default function WatchLater () {
         }
     });
 
+    // Page title
+    document.title = "Watch Later | Lumitasy";
+    
+    // Meta tags
+    document.querySelector("meta[name='title']")?.setAttribute("content", "Watch Later | Lumitasy");
+
     return (
         <>
             <Menu />

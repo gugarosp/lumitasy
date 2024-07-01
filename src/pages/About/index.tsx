@@ -4,6 +4,12 @@ import styles from "./About.module.scss"
 import Menu from "components/Menu";
 
 export default function About() {
+    // Page title
+    document.title = `About | Lumitasy`;
+
+    // Meta tags
+    document.querySelector("meta[name='title']")?.setAttribute("content", "About | Lumitasy");
+
     return (
         <>
             <Menu />

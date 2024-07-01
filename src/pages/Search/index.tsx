@@ -28,6 +28,10 @@ export default function Search() {
     // Page title
     document.title = `Search | Lumitasy`;
     
+    // Meta tags
+    document.querySelector("meta[name='title']")?.setAttribute("content", "Search | Lumitasy");
+    document.querySelector("meta[name='description']")?.setAttribute("content", "Search for the most classic public domain movies");
+    
     return (
         <>
             <Menu />
